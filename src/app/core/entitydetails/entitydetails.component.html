@@ -1,0 +1,42 @@
+<div class="p-grid ui-widget">
+  <div [ngClass]="{'p-col-4':!extended,'p-col-12':extended,'client-one-section':true, 'section-expanded': extended}">
+
+    <p-card class="entity-details">
+      <p-header>
+        <div *ngIf="icon2!==''" class="entity-icon2-wrapper">
+          <a (click)='icon2Click()'><i class="{{icon2}} entity-icon2 successText"></i></a>
+        </div>
+        <!-- <p-menubar [model]="items" class="entity-menu"></p-menubar> -->
+        <div class="ui-card-title">
+          <img src="../assets/layout/images/audsat-images/icons/{{icon}}" [ngClass]="{
+            'no-mark-icon': icon2==='',
+            'entity-icon': icon2!==''
+          }">
+          <div class="title">{{title}}</div>
+          <div [ngClass]="{
+            'status': true,
+            'successText': status==='Ativo',
+            'warningText': status==='Protótipo'
+          }">{{status}}</div>
+        </div>
+        <div class="ui-card-subtitle">
+          <div *ngIf="id">{{id}}</div>
+          {{subtitle}}
+        </div>
+        <div *ngIf="extendable" class="expand-button" (click)="toggleExtended()">{{extended?'<':'>'}}</div>
+      </p-header>
+      <div>
+        <ng-content></ng-content>
+      </div>
+      
+    </p-card>
+  </div>
+  <div class="p-col-8" *ngIf="!extended" style="padding-bottom:0">
+    <p-card [style]="{position:'relative'}">
+      <app-map *ngIf="mapHeight!==null" #map (drawFinished)='drawFinished($event)' [isClient]='isClient' [height]="mapHeight" [longitude]='lon' [latitude]='lat'></app-map>
+    </p-card>
+  </div>
+</div>
+
+<div (click)="convertPageToPDF()" class="pdf-download-button" [style.display]="expanded?'none':'block'">PDF</div>
+<div (click)="convertPageToImage()" class="png-download-button" [style.display]="expanded?'none':'block'">PNG</div>

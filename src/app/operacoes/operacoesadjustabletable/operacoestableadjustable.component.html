@@ -1,0 +1,6 @@
+<table class="operacoes-customtable-table">
+  <tr *ngFor="let row of tablecontent" [className]="row.class?row.class:''">
+    <td *ngFor="let col of row.cols" [className]="col.class?col.class:''" [attr.rowspan]="col.rowspan?col.rowspan:''" [attr.colspan]="col.colspan?col.colspan:''">
+      {{col.content||col}}</td>
+  </tr>
+</table>

@@ -1,0 +1,247 @@
+  <aol-map #map [width]='"100%"' [height]='height' (onClick)="mapOnClick($event)">
+    <aol-view [zoom]=zoom>
+      <aol-coordinate [x]=latitude [y]=longitude [srid]="'EPSG:4326'"></aol-coordinate>
+    </aol-view>
+    <aol-interaction-default></aol-interaction-default>
+    <aol-interaction-select></aol-interaction-select>
+    <aol-layer-tile #osm [visible]=osmVisibility>
+      <aol-source-osm ></aol-source-osm>
+    </aol-layer-tile>
+    <aol-layer-tile #digitalglobe [visible]=digitalVisibility>
+      <aol-source-xyz [url]='"https://api.mapbox.com/v4/digitalglobe.7099fd23/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZGlnaXRhbGdsb2JlIiwiYSI6ImNpeHFpNjNhbjA4dDUzM25uN2YyNzZxNW8ifQ.HupHt09Qm2mpsjudRrQM_w"'></aol-source-xyz>
+    </aol-layer-tile>
+    <aol-layer-tile #planet [visible]=planetVisibility>
+      <aol-source-tilewms [url]="'http://mapas.sigcar.com.br/erdas-apollo/map/SIGCAR_COOPERCITRUS_MOSAICO_MAP'" [params]='{"layers": "SIGCAR_COOPERCITRUS_MOSAICO", "format": "image/jpeg", "transparent": true, "version": "1.1.0", "attribution": ""}' ></aol-source-tilewms>
+    </aol-layer-tile>
+    <aol-layer-tile #rapideye [visible]= rapidVisibility>
+      <aol-source-xyz [url]="'https://planet.sccon.com.br/tiles0/{z}/{x}/{y}'"></aol-source-xyz>
+    </aol-layer-tile>
+    <aol-layer-vector>
+      
+      <aol-source-vector #drawLayerSource>
+        <aol-interaction-modify [source]="drawLayerSource.instance" (onModifyEnd)="endModify($event)"></aol-interaction-modify>
+        <div *ngIf="draw">
+          <aol-interaction-draw #draw type="Polygon" [source]="drawLayerSource.instance" geometryName='drawn' (onDrawEnd)="endDrawing($event.feature)"></aol-interaction-draw>
+        </div>
+        <div *ngIf="pointer">
+          <aol-interaction-draw #draw type="Point" [source]="drawLayerSource.instance" geometryName ='drawn' (onDrawEnd)="endMarking($event.feature)">
+          </aol-interaction-draw>
+        </div>
+        <div *ngIf="imoveis">
+          <aol-feature *ngFor="let p of pointDataImoveis">
+            <aol-geometry-point>
+              <aol-coordinate [x]="p[0]" [y]="p[1]" [srid]="'EPSG:4326'"></aol-coordinate>
+            </aol-geometry-point>
+            <aol-style>
+              <aol-style-icon [src]="iconUrl"></aol-style-icon>
+            </aol-style>
+          </aol-feature>
+          <div *ngFor="let data of dataImoveis" (click)="alert('test')" class="test_in_map">
+            <aol-feature>
+              <aol-geometry-polygon>
+                <aol-collection-coordinates
+                [coordinates]="data"
+                [srid]="'EPSG:4326'"
+                >
+                </aol-collection-coordinates>
+              </aol-geometry-polygon>
+              <aol-style>
+                <aol-style-stroke [color]="propertyColor"></aol-style-stroke>
+                <aol-style-fill [color]="propertyColor"></aol-style-fill>
+              </aol-style>
+            </aol-feature>
+          </div>
+        </div>
+
+    <div *ngIf="matricula">
+      <aol-feature *ngFor="let p of pointDataMatricula">
+        <aol-geometry-point>
+          <aol-coordinate
+          [x]="p[0]" [y]="p[1]" [srid]="'EPSG:4326'"
+          >
+        </aol-coordinate>
+
+      </aol-geometry-point>
+      <aol-style>
+        <aol-style-icon [src]="iconUrl"></aol-style-icon>
+      </aol-style>
+    </aol-feature>
+    <div *ngFor="let data of dataMatricula">
+    <aol-feature>
+      <aol-geometry-polygon>
+        <aol-collection-coordinates
+        [coordinates]="data"
+        [srid]="'EPSG:4326'"
+        >
+      </aol-collection-coordinates>
+    </aol-geometry-polygon>
+    <aol-style>
+      <aol-style-stroke [color]="registryColor"></aol-style-stroke>
+      <aol-style-fill [color]="registryColor"></aol-style-fill>
+    </aol-style>
+  </aol-feature>
+  </div>
+  </div>
+
+  <div *ngIf="operacoes">
+    <aol-feature *ngFor="let p of pointDataOperacoes">
+      <aol-geometry-point>
+        <aol-coordinate
+        [x]="p[0]" [y]="p[1]" [srid]="'EPSG:4326'"
+        >
+      </aol-coordinate>
+
+    </aol-geometry-point>
+    <aol-style>
+      <aol-style-icon [src]="iconUrl"></aol-style-icon>
+    </aol-style>
+  </aol-feature>
+  <div *ngFor="let data of dataOperacoes">
+
+  <aol-feature>
+
+    <aol-geometry-polygon>
+      <aol-collection-coordinates
+      [coordinates]="data"
+      [srid]="'EPSG:4326'"
+      >
+    </aol-collection-coordinates>
+  </aol-geometry-polygon>
+  <aol-style>
+    <aol-style-stroke [color]="operationColor"></aol-style-stroke>
+    <aol-style-fill [color]="operationColor"></aol-style-fill>
+  </aol-style>
+  </aol-feature>
+  </div>
+  </div>
+
+  <div *ngIf="garantias">
+    <aol-feature *ngFor="let p of pointDataGarantia">
+      <aol-geometry-point>
+        <aol-coordinate
+        [x]="p[0]" [y]="p[1]" [srid]="'EPSG:4326'"
+        >
+      </aol-coordinate>
+
+    </aol-geometry-point>
+    <aol-style>
+      <aol-style-icon [src]="iconUrl"></aol-style-icon>
+    </aol-style>
+  </aol-feature>
+  <div *ngFor="let data of dataGarantia">
+  <aol-feature>
+
+    <aol-geometry-polygon>
+      <aol-collection-coordinates
+      [coordinates]="data"
+      [srid]="'EPSG:4326'"
+      >
+    </aol-collection-coordinates>
+  </aol-geometry-polygon>
+  <aol-style>
+    <aol-style-stroke [color]="guaranteeColor"></aol-style-stroke>
+    <aol-style-fill [color]="guaranteeColor"></aol-style-fill>
+  </aol-style>
+  </aol-feature>
+  </div>
+  </div>
+
+
+  <div >
+    <aol-feature *ngFor="let p of pointShape">
+      <aol-geometry-point>
+        <aol-coordinate [x]="p[0]" [y]="p[1]" [srid]="'EPSG:4326'">
+      </aol-coordinate>
+    </aol-geometry-point>
+    <aol-style>
+      <aol-style-icon [src]="iconUrl"></aol-style-icon>
+    </aol-style>
+  </aol-feature>
+  </div>
+  <div>
+    <aol-feature>
+      <aol-geometry-polygon>
+        <aol-collection-coordinates [coordinates]="polygonShape" [srid]="'EPSG:4326'"></aol-collection-coordinates>
+      </aol-geometry-polygon>
+      <aol-style>
+        <aol-style-stroke [color]="propertyColor"></aol-style-stroke>
+        <aol-style-fill [color]="propertyColor"></aol-style-fill>
+      </aol-style>
+    </aol-feature>
+  </div>
+
+  <div >
+    <aol-feature *ngFor="let p of pointKml">
+      <aol-geometry-point>
+        <aol-coordinate [x]="p[0]" [y]="p[1]" [srid]="'EPSG:4326'"></aol-coordinate>
+    </aol-geometry-point>
+    <aol-style>
+      <aol-style-icon [src]="iconUrl"></aol-style-icon>
+    </aol-style>
+  </aol-feature>
+
+  <div  *ngFor='let data of polygonKml'>
+  <aol-feature >
+
+    <aol-geometry-polygon  >
+      <aol-collection-coordinates
+      [coordinates]="data"
+      [srid]="'EPSG:4326'"
+      >
+    </aol-collection-coordinates>
+  </aol-geometry-polygon>
+  <aol-style>
+    <aol-style-stroke [color]="propertyColor"></aol-style-stroke>
+    <aol-style-fill [color]="propertyColor"></aol-style-fill>
+  </aol-style>
+  </aol-feature>
+</div>
+  </div>
+
+
+  </aol-source-vector>
+  </aol-layer-vector>
+  <aol-control #control >
+    <aol-content>
+      <div id="id" class="ol-custom ol-unselectable ol-control">
+
+        <a (click)="ableChangeLayer()"><img src='assets/map-camadas.svg'></a>
+        <!-- <button  class="ol-zoom-in" type="button" (click)="ableChangeLayer()" ><i class='icon icon-buffer'></i></button> -->
+        <div *ngIf='editable'>
+          <a (click)="toggleDraw()"><img src='assets/map-lapis.svg'></a>
+          <a (click)="toggleMarking()"><img src="assets/localizacao.svg"></a>
+        </div>
+        <div class='notEdit' *ngIf='!editable'>
+          <a class='notClickable'><img src='assets/map-lapis.svg'></a>
+          <a class='notClickable'><img src="assets/localizacao.svg"></a>
+        </div>
+        <a (click)="resetToCenter()"><img src='assets/map-bussola.svg'></a>
+        <!-- <button class="ol-zoom-in" type="button" title="Show Me" (click)="allowDraw()"><i class='icon icon-pencil'></i></button>
+        <button class="ol-zoom-in" type="button" title="Show Me" (click)="allowMarking()"><i class='icon icon-dot-circled'></i></button>
+        <button class="ol-zoom-in" type="button" title="Show Me" (click)="resetToCenter()"><i class='icon icon-compass'></i></button> -->
+        <button class="ol-zoom-in plus" type="button" title="Zoom-In" (click)="increaseZoom()"><i class='icon icon-plus'></i></button>
+        <button class="ol-zoom-in minus" type="button" title="Zoom-Out" (click)="decreaseZoom()"><i class='icon icon-minus'></i></button>
+
+        <div [hidden]='isClient'>
+        <app-kmlshape (shapeExternal)="displayShape($event)" (kmlExternal)="displayKml($event)"></app-kmlshape>
+      </div>
+      </div>
+
+    </aol-content>
+    <aol-content>
+      <div *ngIf='showLayer'>
+        <!-- <p-dropdown [options]="layers" (onChange)="changeLayer($event)" ></p-dropdown> -->
+        <div class="ui-g custom-layers" style="width:250px;margin-bottom:10px">
+          <div class="ui-g-12 c"><p-radioButton name="group1" value="Option 1" label="Open Stree Map" [(ngModel)]="val1" inputId="opt1" (onClick)="openLayer()"></p-radioButton></div>
+          <div class="ui-g-12"><p-radioButton name="group1" value="Option 2" label="Digital Globe" [(ngModel)]="val1" inputId="opt2" (onClick)="digitalLayer()"></p-radioButton></div>
+          <div class="ui-g-12"><p-radioButton name="group1" value="Option 3" label="Planet" [(ngModel)]="val1" inputId="opt3" (onClick)="planetLayer()"></p-radioButton></div>
+          <div class="ui-g-12"><p-radioButton name="group1" value="Option 4" label="Rapid Eye" [(ngModel)]="val1" inputId="opt3" (onClick)="rapidLayer()"></p-radioButton></div>
+
+        </div>
+      </div>
+    </aol-content>
+  </aol-control>
+
+  </aol-map>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.3/proj4.js"></script>

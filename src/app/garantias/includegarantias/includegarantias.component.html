@@ -1,0 +1,135 @@
+<button pButton type="button" label="Incluir garantia" (click)="showDialog()" class="ui-button ui-button-color">
+</button>
+<p-dialog [(visible)]="displayDialog"
+[closable]="true"
+[modal]="true"
+[width]="1100"
+[minHeight]="400"
+[closeOnEscape]="true"
+[responsive]="true"
+[dismissableMask]="true"
+[draggable]="false"
+[positionTop]="15"
+[positionLeft]="'50%'"
+[autoZIndex]="true"
+[contentStyle]="{'max-height': '450px'}"
+styleClass="dialog-radius"
+>
+
+
+  <p-header>
+        <img class="center" src="{{step_img}}" />
+
+  </p-header>
+  <div class="p-grid">
+    <div class="p-col-12">
+      <p-tabView styleClass="d-none" [activeIndex]="stepActiveIndex">
+        <p-tabPanel header="Incluir Garantia">
+          <form #form="ngForm">
+            <div class="p-grid">
+              <div class="p-col-4 p-grid">
+                <div class="p-col-12">
+                  <div class="ui-inputgroup">
+                    <label>Nome da Garantia</label>
+                    <input pInputText [pKeyFilter]="blockSpecial" placeholder="Insira o nome da garantia" name="guaranteeRevision.guarantee.name" [(ngModel)]="guaranteeRevision.guarantee.name" />
+                  </div>
+                </div>
+                <div class="p-col-6">
+                  <div class="ui-inputgroup">
+                    <p-radioButton name="relationType" value="Hipotecária" label="Hipotecária" name="guaranteeRevision.guarantee.type" [(ngModel)]="guaranteeRevision.guarantee.guaranteeType" inputId="opt1"></p-radioButton>
+                  </div>
+                  <div class="ui-inputgroup">
+                    <p-radioButton name="relationType" value="Outros" label="Outros" name="guaranteeRevision.guarantee.type" [(ngModel)]="guaranteeRevision.guarantee.guaranteeType" inputId="opt2"></p-radioButton>
+                  </div>
+                </div>
+              </div>
+              <div class="p-col-4 p-grid">
+                <div class="p-col-12">
+                  <div class="ui-inputgroup">
+                    <label>Valor</label>
+                    <input
+                    currencyMask
+                    style="width:100%"
+                    class="ui-currency-mask-modal"
+                    placeholder="Insira o valor"
+                    name="revision.gurantee.value"
+                    [(ngModel)]="guaranteeRevision.guarantee.value"
+                    [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+
+                    <!-- <input pInputText placeholder="Insira o valor" name="guaranteeRevision.guarantee.value" [(ngModel)]="guaranteeRevision.guarantee.value" /> -->
+                  </div>
+                </div>
+                <div class="p-col-12" *ngIf="guaranteeRevision.guarantee.guaranteeType == 'Outros'">
+                  <div class="ui-inputgroup">
+                    <label>Outros</label>
+                    <input pInputText placeholder="Outros" name="Outros" [(ngModel)]="guaranteeRevision.guarantee.otherType" class="box-border" >
+                  </div>
+                </div>
+              </div>
+              <div class="p-col-4 p-grid">
+                <!-- <div class="p-col-12">
+                  <div class="ui-inputgroup">
+                    <label>Prazo</label>
+                    <input pInputText placeholder="Insira o prazo" name="guaranteeRevision.guarantee.timeSpanFinal" [(ngModel)]="guaranteeRevision.guarantee.timeSpanFinal">
+                  </div>
+                </div> -->
+                <div class="p-col-6 p-col-align-end">
+                    <label>Início</label>
+                    <p-calendar [(ngModel)]="guaranteeRevision.guarantee.timeSpanInitial" name="timeSpanInitial" [locale]="en" dateFormat="dd/mm/yy"
+                              [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" placeholder="De:" styleClass="calendar-modal"></p-calendar>
+                  </div>
+                  <div class="p-col-6 p-col-align-end">
+                    <label>Término</label>
+                    <p-calendar [(ngModel)]="guaranteeRevision.guarantee.timeSpanFinal" name="timeSpanFinal" [locale]="en" dateFormat="dd/mm/yy"
+                              [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" placeholder="Até:" styleClass="calendar-modal"></p-calendar>
+                  </div>
+                <div class="p-col-12">
+                  <div class="ui-inputgroup">
+                    <label>Pontos de Atendimento</label>
+                    <p-multiSelect [options]="unitsList" [(ngModel)]="guaranteeRevision.units" name="guarateeRevision.units" placeholder="Insira os pontos de atendimento" defaultLabel="Selecione" [filter]="false" dataKey='unitId' required></p-multiSelect>
+                  </div>
+                </div>
+              </div>
+              <div class="p-col-12">
+                <button pButton *ngIf="guaranteeRevision.guarantee.guaranteeType == 'Outros'" type="button" label="Salvar" class="ui-button button-font-size" (click)="save()"></button>
+                <button pButton *ngIf="guaranteeRevision.guarantee.guaranteeType == 'Hipotecária'" type="button" label="Incluir imóvel" class="ui-button button-font-size" (click)="goTo(2)"></button>
+                <button pButton *ngIf="guaranteeRevision.guarantee.guaranteeType == 'Hipotecária'" type="button" label="Incluir matrícula" class="ui-button button-font-size" (click)="goTo(1)"></button>
+              </div>
+            </div>
+          </form>
+        </p-tabPanel>
+        <p-tabPanel header="Matriculas">
+          <registry-wizard-step #registryStep [canBeGuarantee]="false"></registry-wizard-step>
+          <div class="p-grid" style="text-align: left">
+            <div class="p-col-12 wizard-buttons">
+              <button pButton type="button" label="Voltar" class="ui-button button-font-size" (click)="goTo(0)"></button>
+              <button pButton type="button" label="Adicionar no Mapa" (click)="goTo(3)" class="ui-button button-font-size"[disabled]="registryStep.form.form.invalid || registryStep.newThing==0"></button>
+              <button pButton type="button" label="Salvar" (click)="save()" class="ui-button button-font-size"[disabled]="registryStep.form.form.invalid || registryStep.newThing==1"></button>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel styleClass="d-none" header="Informações do Imovel">
+          <property-wizard-step #propertyStep [canBeGuarantee]="false"></property-wizard-step>
+          <div class="p-grid" style="text-align: left">
+            <div class="p-col-12 wizard-buttons">
+              <button pButton type="button" label="Voltar" class="ui-button button-font-size" (click)="goTo(0)"></button>
+              <button pButton type="button" label="Adicionar no Mapa" class="ui-button button-font-size" (click)="goTo(2)" [disabled]="propertyStep.form.form.invalid || propertyStep.newThing==-1 || propertyStep.newThing==0 || propertyStep.infoCar"></button>
+              <button pButton type="button" label="Salvar" class="button-font-size" (click)="save()" [disabled]="propertyStep.form.form.invalid || propertyStep.newThing==-1 || propertyStep.newThing==1 && !propertyStep.infoCar" ></button>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Mapa">
+          <app-map [editable]='true' (getPolygons)="getCoordinates($event)" class="map-content"></app-map>
+          <div class="p-grid p-justify-end">
+            <div class="p-col-2">
+              <button pButton type="button" label="Voltar" class="ui-button button-font-size" (click)="goTo(0)"></button>
+            </div>
+            <div class="p-col-2">
+              <button pButton type="button" label="Continuar" class="ui-button button-font-size" (click)="save()"></button>
+            </div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</p-dialog>

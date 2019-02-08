@@ -1,0 +1,37 @@
+<!-- <p-card styleClass="audsat-card"> -->
+  <p-table [value]="users" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>CPF/CNPJ</th>
+        <th>Situação</th>
+        <th>Perfil</th>
+        <!-- <th>Deletar</th> -->
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user >
+      <tr (click)="getUser(user.userId)" style="cursor: pointer">
+        <td>{{user.userId}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <!-- <ng-container *ngIf="(user.cnpj != ''); else elseTemplate"> -->
+          <td>{{user.cnpj}}</td>
+        <!-- </ng-container> -->
+        <!-- <ng-template #elseTemplate>
+          <td>{{user.cpf}}</td>
+        </ng-template> -->
+        <td>{{user.status}}</td>
+        <td></td>
+        <!-- <td><button pButton class="deletebtn"  icon="fa fa-times" type="button"></button></td> -->
+      </tr>
+    </ng-template>
+  </p-table>
+  <div class="p-grid">
+  <div class="p-col-12 p-md-4"><p style="color:white">{{users?.length + ' usúarios encontrados'}}</p></div>
+    <div class="p-col-12 p-md-2 p-md-offset-6">
+      <button pButton type="button" label="Baixar XLSX" class="ui-button" (click)="exportAsXLSX()"></button>
+    </div>
+  </div>
+<!-- </p-card> -->

@@ -1,0 +1,234 @@
+/*Sobrescrever variaveis de theme aqui*/
+
+/*Old Colors*/
+//$primaryColor: #97bd12;
+// border-bottom: 1px solid gray !important;
+// border: 1px solid white;
+// margin: -1px;
+
+/*ausdua
+    background-color: #028038;
+    border: 6px solid #028038 !important;
+    margin: -6px !important;*/
+/*New Colors*/
+// $primaryColor: #028038;
+// $primaryLightColor: #4ab064;
+// $primaryDarkColor: #00520d;
+
+// $secondaryColor: #1e3047;
+// $secondaryLightColor: #485973;
+// $secondaryDarkColor: #000620;
+/* -------------------------*/
+
+@import "../sass/theme/_theme";
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+@import "../sass/theme/_theme";
+@import "../sass/_mixins";
+
+
+body{
+//  .client{
+//    .ui-card{
+//      border-bottom: 2px solid $clientColor !important
+//    }
+//    .infobox .label,
+//    .entity-icon{
+//      color: $clientColor;
+//    }
+//  }
+//  .property{
+//    .ui-card{
+//      border-bottom: 2px solid $primaryColor !important
+//    }
+//  }
+
+//  .ui-card{
+//    .ui-card-title{
+//      text-transform: uppercase;
+//      font-weight: normal;
+//      font-size: $BoxSectionTitle;
+
+//    }
+//    .ui-card-subtitle{
+//      width:100%;
+//      font-size: 0.75rem;
+//      font-weight: normal;
+//      color: $textColor2;
+//    }
+//    .chartjs-size-monitor{
+//      height:20vh !important;
+//      border: 1px solid red;
+//    }
+//    border-bottom: 2px solid $dividerColor !important
+//  }
+
+  // .infobox{
+  //   text-align: center;
+  //   text-transform: capitalize;
+  //   .label{
+  //     color: $textColor3;
+  //     font-size: 0.75rem;
+  //   }
+  //   .data{
+  //     font-weight:100;
+  //     font-size: 2.5rem;
+  //   }
+  //   .line{
+  //     width: 45%;
+  //     margin: 0 auto 1rem auto;
+  //   }
+  // }
+
+  .primaryText  {color: $primaryColor !important;}
+  .secondaryText{color: $secondaryColor !important;}
+  .successText  {color: $successColor !important;}
+  .warningText  {color: $warningColor !important;}
+  .dangerText   {color: $dangerColor !important;}
+
+
+  .clientText  {color: $primaryColor !important;}
+  .propertyText{color: $secondaryColor !important;}
+  .registryText  {color: $successColor !important;}
+  .operationText  {color: $warningColor !important;}
+  .guaranteeText   {color: $dangerColor !important;}
+
+  .propertyMapText{color: $propertyColor !important;}
+  .registryMapText  {color: $registryColor !important;}
+  .operationMapText  {color: $operationsColor !important;}
+  .guaranteeMapText   {color: $guaranteeColor !important;}
+
+  /*Button*/
+  // .ui-button {
+  //   background-color: transparent;
+  //   border: 1px solid $borderColor;
+  //   color: $borderColor;
+  //   @include transition(background-color $transitionDuration);
+
+//    @include border-radius($borderRadius);
+  // }
+
+
+
+}
+
+
+
+// body {
+//   .ui-state-active,
+//   .ui-state-highlight {
+//     background-color: transparent;
+//     border: 1px solid transparent;
+//     border-color: $paginationColor;
+//     color: $primaryColor;
+//   }
+//   .ui-paginator {
+//     font-size: 20px !important;
+//     padding: $headerPadding;
+//     background-color: darken($headerBgColor, 5%);
+//     // background-color: darken(#aaa,5%);
+
+//     .ui-paginator-first,
+//     .ui-paginator-prev,
+//     .ui-paginator-next,
+//     .ui-paginator-last {
+//       color: $paginationColor;
+//       border: 1px solid transparent;
+//       border-color: $paginationColor;
+//       @include transition(color 0.3s);
+
+//       &:not(.ui-state-disabled):not(.ui-state-active):hover {
+//         color: $primaryColor;
+//         border-color: $primaryColor;
+//       }
+
+//       &:not(.ui-state-disabled):focus {
+//         outline: 0 none;
+//         border: 1px solid transparent;
+//         border-color: $primaryColor;
+//         color: $primaryColor;
+//         @include link-focus-shadow();
+//       }
+//     }
+
+//     .ui-paginator-pages {
+//       .ui-paginator-page {
+//         color: $paginationColor;
+//         border: 1px solid transparent;
+//         border-color: $paginationColor;
+//         @include transition(color 0.3s);
+//         &:not(.ui-state-active):hover {
+//           color: $primaryColor;
+//           border: 1px solid $primaryColor;
+//         }
+//         &:active {
+//           color: $primaryColor;
+//           border: 1px solid $primaryColor;
+//           //   background-color: $primaryColor;
+//         }
+//         &:focus {
+//           color: $primaryColor;
+//           outline: 0 none;
+//           border: 1px solid $primaryColor;
+//           @include link-focus-shadow();
+//         }
+//       }
+//     }
+//   }
+// }
+//   .ui-table-thead > tr > th,
+//   .ui-table-tfoot > tr > td {
+//     background-color: #ffffff;
+//     padding: auto;
+//     color: $textColor;
+//     text-align: left;
+//     border: none!important;
+//   }
+
+//   body .ui-table .ui-table-tbody > tr > td {
+//     border:none!important;
+//   }
+//   body .ui-table .ui-table-thead > tr > th{
+//     border:none!important;
+//     color:#808399;
+//     font-family: 'Source Sans Pro Light'!important;
+//     font-size:19x;
+//     border-style:transparent;
+//   }
+
+//   .ui-table-tbody {
+//     > tr {
+//       background: #ffffff;
+//       // border-color: darken($contentBorderColor, 5%);
+//       border-right:none!important;
+//       border-left:none!important;
+//       border: none!important;
+
+//       > td {
+//         background: #ffffff;
+//         border-top: none!important;
+//         border-bottom: transparent;
+//         border-right:none!important;
+//         border-left:none!important;
+//         // border-width: 1px;
+//         // border-color: inherit;
+//         padding: auto;
+//       }
+//     }
+//   }
+
+  body{
+  .ui-inputgroup{
+    margin-top:12px!important;
+    margin-bottom:12px!important;
+    .ui-inputgroup-addon{
+      padding-top: 15px!important;
+      background:transparent!important;
+      color:transparent!important;//$primaryColor!important;
+      border:transparent!important;
+    }
+  }
+}
+//   .ui-inputtext{
+//     border-right:1px solid #a8acb1 !important;
+//     // border-left:1px solid #a8acb1 !important;
+//   }

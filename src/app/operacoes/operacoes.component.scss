@@ -1,0 +1,17 @@
+*{
+    box-sizing: border-box
+}
+
+.ol-custom{
+   z-index: 1000;
+   bottom:50% !important;
+   right:1%;
+   position: absolute;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   padding-top: 20px;
+}
+.ol-zoom-in{
+  margin:5px;
+}

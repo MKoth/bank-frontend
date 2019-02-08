@@ -1,0 +1,49 @@
+<div (click)="showDialog()" class="add-entity-related">+</div>
+<p-dialog
+  [(visible)]="displayDialog"
+  [modal]="true"
+  [closeOnEscape]="true"
+  [responsive]="true"
+  [dismissableMask]="true"
+  [positionTop]="15"
+  [minWidth]="700"
+  [width]="1100"
+  [autoZIndex]="true"   
+  [contentStyle]="{'max-height': '500px'}" 
+  styleClass="dialog-radius"
+  (onHide)= "resetForm()"
+  >
+  <p-header>
+      <img class="center" src="{{step_img}}" />
+  </p-header>
+
+  <div class="p-grid ">
+    <div class="p-col-12 p-nogutter">
+
+      <p-tabView styleClass="d-none" [activeIndex]="stepActiveIndex">
+        <p-tabPanel styleClass="d-none" header="Informações da Matricula" style="border-bottom:1px #000000 solid !important;">
+          <registry-wizard-step #registryStep [canBeGuarantee]="relatedToType!='guarantee'" [canGuaranteeRelateToOperation]="relatedToType!='operation'"></registry-wizard-step>
+          <div class="p-grid" style="text-align: left">
+            <div class="p-col-12 wizard-buttons">
+              <button pButton type="button" label="Adicionar no Mapa" class="ui-button button-font-size" (click)="goTo(1)" [disabled]="registryStep.form.form.invalid || registryStep.newThing==-1 || registryStep.newThing==0 || registryStep.infoCar"></button>
+              <button pButton type="button" label="Salvar" class="button-font-size" (click)="save()" [disabled]="registryStep.form.form.invalid || registryStep.newThing==-1 || registryStep.newThing==1 && !registryStep.infoCar" ></button>
+            </div>
+          </div>
+         
+        </p-tabPanel>
+
+        <p-tabPanel header="Mapa">
+          <app-map [editable]='true' (getPolygons)="setRegistryCoordinates($event)" class="map-content" #map></app-map>  
+          <div class="p-grid p-justify-end" style="margin-bottom: 5px">
+            <div class="p-col-2">
+              <button pButton type="button" label="Voltar" class="ui-button button-font-size" (click)="goTo(0)"></button>
+            </div>
+            <div class="p-col-2">
+              <button pButton type="button" label="Finalizar" class="ui-button button-font-size" (click)="save()" ></button>
+            </div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</p-dialog>

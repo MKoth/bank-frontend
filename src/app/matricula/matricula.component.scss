@@ -1,0 +1,64 @@
+*{
+    box-sizing: border-box
+}
+
+.ol-custom{
+   z-index: 1000;
+   bottom:50% !important;
+   right:1%;
+   position: absolute;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   padding-top: 20px;
+}
+.ol-zoom-in{
+  margin:5px;
+}
+.athos2.p-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  // margin-right: -1 * $gutter;
+  // margin-left: -1 * $gutter;
+  margin-top: 0px;
+}
+
+// .ui-carousel{
+//   background:transparent !important;
+//   border:0 !important;
+//   outline: 0 !important;
+//   .ui-carousel-item{
+//     background:transparent !important;
+//     border:0 !important;
+//     outline: 0 !important;
+//     padding-left:10px!important;
+//     padding-right:10px!important;
+//     box-shadow: none !important;
+//       .ui-card.ui-widget.ui-widget-content.ui-corner-all{
+//         box-shadow: none !important;
+        
+//         .ui-card-body{
+//           background:transparent !important;
+//           .ui-card-content{
+//             background:transparent !important;
+//             .ui-panel{
+//               background:transparent !important;
+//               border:0 !important;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+
+
+
+.athos3.ui-tabview-panel.ui-widget-content {
+      //===============COLOQUEI AQUI E NÃO SEI SE VAI DAR RUIM==========================
+      background-color: transparent;
+      border: 0px solid//Estava 1px
+      //===============COLOQUEI AQUI E NÃO SEI SE VAI DAR RUIM==========================
+  }

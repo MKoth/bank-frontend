@@ -1,0 +1,57 @@
+$margin-bottom: 1.5rem;
+
+.p-col-3.title {
+    margin-left: 0!important;
+    margin-bottom: $margin-bottom;
+}
+.p-col-6.title {
+    margin-bottom: $margin-bottom;
+    
+}
+.p-col-3.value {
+    margin-left: 0!important;
+    position: relative;
+    margin-bottom: $margin-bottom;
+    color: #ffffff99;
+}
+.p-col-6.value {
+    position: relative;
+    margin-bottom: $margin-bottom;
+    padding-right: 35px;
+    color: #ffffff99;
+    &.warning{
+        &:after{
+            content: '';
+            background-image: url(../../../assets/layout/images/alerta-2.svg);
+            position: absolute;
+            height: 16px;
+            width: 16px;
+            right: 10px;
+            top: 2px;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+    }
+    &.close{
+        &:after{
+            content: 'x';
+            color: #ff4900;
+            position: absolute;
+            right: 12px;
+            top: 2px;
+            font-size: 1.3rem;
+            line-height: 0.7rem;
+        }
+    }
+    &.marked{
+        &:after{
+            content: '✔';
+            color: #02ff02;
+            position: absolute;
+            right: 8px;
+            top: 2px;
+            font-size: 1.2rem;
+            line-height: 0.8rem;
+        }
+    }
+}

@@ -1,0 +1,28 @@
+<div class="alert-box-boby">
+  <p class="needtime">
+      {{info.data.dDate}}
+  </p>
+  <p>
+      {{info.data.alert_name}}
+  </p>
+  <p class="car-info">
+        <img src="../assets/layout/images/matriculas.svg" alt="">
+      <span>{{info.data.CAR}}</span>
+  </p>
+  <p class="property-name">
+      <img src="../assets/layout/images/imoveis.svg" alt="">
+     <span>{{info.data.property_name}}</span> 
+  </p>
+  <div *ngIf='info.critical'>
+    <p class="serverity-info">
+        <img src="../assets/layout/images/alerta-2-red.svg" alt="">
+        <!-- <span> {{info.data.criticality}}</span> -->
+   </p>
+  </div>
+  <div *ngIf='!info.critical'>
+      <p class="serverity-info">
+        <img src="../assets/layout/images/alerta-2.svg" alt="">
+        <!-- <span> {{info.data.severity}}</span> -->
+     </p> 
+  </div>                   
+</div>

@@ -1,0 +1,32 @@
+<p-table [value]="revisions" [paginator]="true" [rows]="10" [lazy]="true" [totalRecords]="totalRecords" [loading]="loading" (onLazyLoading)="loadRevisions($event)">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Código</th>
+      <th>CPF/CNPJ</th>
+      <th>Complemento</th>
+      <th>Área</th>
+      <th>Ponto de Atendimento</th>
+      <th>Data do Cadastro</th>
+      <th>Número do CAR</th>
+      <th>Situação</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-revision let-rowIndex="rowIndex">
+    <tr (click)="goTo(revision.thing.id)" style="cursor: pointer">
+      <td class="ui-table-text">{{revision.property.code}}</td>
+      <td class="ui-table-text">{{revision.property.cpf}}</td>
+      <td class="ui-table-text">{{revision.property.complement}}</td>
+      <td class="ui-table-text">{{revision.property.area}}</td>
+      <td class="ui-table-text">{{unitsvector[rowIndex]}}</td>
+      <td class="ui-table-text">{{revision.thing.createdAt | date:"dd/MM/yyyy"}}</td>
+      <td class="ui-table-text">{{revision.property.car}}</td>
+      <td class="ui-table-text">{{revision.status}}</td>
+    </tr>
+  </ng-template>
+</p-table>
+<div class="p-grid">
+  <div class="p-col-12 p-md-4" style="color:white">{{revisions?(revisions?.length + ' imóveis encontrados'):''}}</div>
+  <div class="p-col-12 p-md-2 p-md-offset-6">
+    <button pButton type="button" label="Baixar XLSX" class="ui-button" (click)="exportAsXLSX()"></button>
+  </div>
+</div>

@@ -1,0 +1,149 @@
+<button pButton type="button" label="Incluir" (click)="showDialog()" class="ui-button"></button>
+
+
+<p-dialog [(visible)]="displayDialog" [maximizable]="true" [modal]="true" [closeOnEscape]="true" [responsive]="true"
+    [dismissableMask]="true" [width]="700" [minWidth]="300" [minY]="70" [blockScroll]="false">
+    <p-header>
+        <h2>
+            <img src="assets/layout/images/user-plus.svg" atl="user plus">
+            <!-- <i class="fa fa-fw fa-user"></i> -->
+            Incluir Usuário
+        </h2>
+    </p-header>
+    <div class="outer">
+        <form #userincludForm="ngForm" (ngSubmit)="registerUser(userincludForm)">
+            <div id="pf" class="p-grid">
+                <div class="p-col-12" style="display:none">
+                    <button pButton class="ui-button" type="submit" label="Incluir"></button>
+                </div>
+
+
+
+                <div class="p-col-6">
+                    <div class="ui-inputgroup">
+                        <!-- <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span> -->
+                        <label>Nome</label>
+                        <input pInputText placeholder="Insira o nome" name="name" [(ngModel)]="userinclud.name" />
+                    </div>
+                </div>
+
+                <div class="p-col-6">
+                    <div class="ui-inputgroup">
+                        <!-- <span class="ui-inputgroup-addon"
+              ><i class="fa fa-address-card"></i
+            ></span> -->
+                        <label>CPF</label>
+                        <input pInputText placeholder="Insira o CPF" name="cpf" [(ngModel)]="userinclud.cpf" />
+                    </div>
+                </div>
+
+                <div class="p-col-12">
+                    <div class="ui-inputgroup">
+                        <!-- <span class="ui-inputgroup-addon"
+              ><i class="fa fa-envelope"></i
+            ></span> -->
+                        <label>E-mail</label>
+                        <input pInputText type="email" placeholder="Insira o email" name="email" [(ngModel)]="userinclud.email" />
+                    </div>
+                </div>
+
+                <!--
+        <div class="p-col-6">
+          <div class="ui-inputgroup">
+           
+            <label>Situação</label>
+            <p-dropdown
+              [style]="{ width: '100%' }"
+              [options]="status"
+              [(ngModel)]="selectedStatus"
+            >
+            </p-dropdown>
+            
+            
+          </div>
+        </div>
+        -->
+
+                <!--
+        <div class="p-col-6">
+          <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">
+              <i class="fa fa-user-circle"></i>
+            </span> 
+            <label>Tipo</label>
+            <p-dropdown
+            [style]="{ width: '100%' }"
+            [options]="perfil"
+            [(ngModel)]="selectedPerfil"
+            >
+            </p-dropdown>
+            <input pInputText placeholder="Insira o perfil" #perfil />
+            </div>
+        </div>
+        -->
+
+                <div class="p-col-6">
+                    <div class="ui-inputgroup">
+                        <!-- <span class="ui-inputgroup-addon"
+              ><i class="fa fa-mobile"></i
+            ></span> -->
+                        <label>Celular</label>
+                        <input pInputText placeholder="Insira o número de celular" name="cellPhone" [(ngModel)]="userinclud.cellPhone" />
+                    </div>
+                </div>
+
+                <div class="p-col-6">
+                    <div class="ui-inputgroup">
+                        <!-- <span class="ui-inputgroup-addon"><i class="fa fa-phone"></i></span> -->
+                        <label>Telefone</label>
+                        <input pInputText placeholder="Insira o número de telefone" name="phoneNumber" [(ngModel)]="userinclud.phoneNumber" />
+                    </div>
+                </div>
+                <!-- <div class="p-col-12"> -->
+                <div class="p-col-12">
+                    <div class="ui-inputgroup">
+                        <!-- <p-card> -->
+                        <!-- <div class="oi"> -->
+                        <div class="apply">
+                            <p-table [value]="unitWrite">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>ID da Unidade</th>
+                                        <th>Nome da Unidade</th>
+                                        <th>Permissão<th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-unitWrite let-rindex="rowIndex">
+                                    <tr>
+                                        <td>{{unitWrite.unitId}} </td>
+                                        <td>{{unitWrite.unitLabel}}</td>
+                                        <td>
+                                            <p-dropdown [style]="{ width: '16vw' }" (onChange)="teste($event, rindex)"
+                                                [options]="perfil"></p-dropdown>
+                                        <td>
+                                    </tr>
+                                </ng-template>
+                                <ul *ngIf="unitWrite.length">
+                                    <li *ngFor="let file of unitWrite">teste</li>
+                                </ul>
+                            </p-table>
+                        </div>
+                        <!-- </div> -->
+                        <!-- </p-card> -->
+                    </div>
+                </div>
+                <div class="ui-inputgroup">
+                    <div class="p-col-12">
+                        <button pButton type="submit" class="ui-button" label="Confirmar"></button>
+                        <button pButton class="ui-button red-btn" (click)="closeDialog()" type="button" label="Cancelar"></button>
+                    </div>
+                    <!-- <div class="p-col-6">
+                <button pButton type="submit" class="ui-button" label="Confirmar"></button>
+            </div> -->
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+</p-dialog>

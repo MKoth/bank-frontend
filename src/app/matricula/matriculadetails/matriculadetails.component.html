@@ -1,0 +1,64 @@
+<app-entitydetails
+  title="{{revision?revision.registry.name:''}}"
+  subtitle="{{'Número da Matrícula: '+(revision?revision.registry.code:'')}}"
+  id="{{'ID: '+(revision?revision.thing.id:'')}}"
+  icon="matriculas.svg"
+  icon2="fa fa-fw fa-map-marker"
+  status="{{revision.status}}"
+  (icon2Clicked) ='centerMap($event)'
+  (extendToggled) = "setExtend($event)"
+  [extended]="false"
+  [extendable]="false"
+  mapHeight="{{this.mapHeight}}"
+  #entitydetails
+>
+  <form #registryForm="ngForm" (ngSubmit)="editRegistry(registryForm)" class="client-info-form">
+    <p-progressSpinner strokeWidth="2" [style]="{width: '2rem', height: '2rem', float: 'right'}" [style.display]="loading? 'block':'none'"></p-progressSpinner>
+    <button pButton
+      class="basic"
+      icon="fa fa-pencil"
+      (click)="toggleEdit()" type="button" [style.float]="'right'" [style.clear]="'both'" [style.display]="loading || !disabled? 'none':'block'">
+    </button>
+    <button pButton
+      class="basic"
+      icon="fa fa-thumbs-up"
+      (click)="showApprove()" type="button" [disabled]="approveDisable" [style.float]="'right'" [style.clear]="'both'" [style.display]="loading || approveDisable || !disabled? 'none':'block'" [style.marginTop]="'0.5rem'">
+    </button>
+    <button pButton
+      class="basic"
+      icon="fa fa-check"
+      (click)="toggleEdit()" [disabled]="registryForm.invalid" [style.float]="'right'" [style.display]="disabled? 'none':'block'">
+    </button>
+    <button pButton
+      class="basic"
+      icon="fa fa-times"
+      (click)="toggleEdit()" type="button" [style.float]="'right'" [style.clear]="'both'" [style.display]="loading || disabled? 'none':'block'" [style.marginTop]="'0.5rem'">
+    </button>
+    <div class="p-grid">
+      <div class="p-col-12 static-padding">
+        <span class="ui-float-label">
+            <label>Localização</label>
+            <span>{{revision?.registry.city}}{{'-'+revision?revision.registry.uf:"Não encontrada"}}</span>
+        </span>
+      </div>
+      <div class="p-col-12 static-padding">
+        <span class="ui-float-label">
+            <input type="text" pInputText name="area" [(ngModel)]="revision.registry.area" [disabled]="true">
+            <label>Área</label>
+        </span>
+      </div>
+      <div class="p-col-6 static-padding">
+        <span class="ui-float-label">
+            <p-multiSelect [style]="{'width':'100%'}" [options]="unitsList" dataKey='unitId' [(ngModel)]="revision.units" name="units" placeholder="Insira os pontos de atendimento" defaultLabel="Selecione" [disabled]="disabled" required [filter]="false"></p-multiSelect>
+            <label>Pontos de Atendimento</label>
+        </span>
+      </div>
+      <div class="p-col-12 static-padding">
+        <span class="ui-float-label">
+            <input type="text" pInputText name="createdAt" [ngModel]="revision.thing.createdAt | date:'dd/MM/yyyy'" [disabled]="true">
+            <label>Data do cadastro</label>
+        </span>
+      </div>
+    </div>
+  </form>
+</app-entitydetails>

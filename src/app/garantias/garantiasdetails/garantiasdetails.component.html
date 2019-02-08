@@ -1,0 +1,80 @@
+<app-entitydetails #entitydetails
+  title="{{revision?revision.guarantee.name:''}}"
+  subtitle=""
+  id="{{'ID: '+(revision?revision.thing.id:'')}}"
+  status="{{revision?revision.status:''}}"
+  icon="garantias.svg"
+  icon2="{{marker}}"
+  [extended]="false"
+  [extendable]="false"
+  mapHeight="{{this.mapHeight}}"
+
+>
+  <form #garantiasForm="ngForm" (ngSubmit)="editGarantias(garantiasForm)" class="client-info-form">
+    <p-progressSpinner strokeWidth="2" [style]="{width: '2rem', height: '2rem', float: 'right'}" [style.display]="loading? 'block':'none'"></p-progressSpinner>
+    <button pButton
+      class="basic"
+      icon="fa fa-pencil"
+      (click)="disabled = !disabled" type="button" [style.float]="'right'" [style.display]="loading || !disabled? 'none':'block'">
+    </button>
+    <button pButton
+    class="basic"
+    icon="fa fa-thumbs-up"
+    (click)="showApprove()" [disabled]="approveDisable" type="button" [style.float]="'right'" [style.clear]="'both'" [style.display]="loading || approveDisable || !disabled? 'none':'block'" [style.marginTop]="'0.5rem'">
+    </button>
+    <button pButton
+      class="basic"
+      icon="fa fa-check"
+      (click)="disabled = !disabled" [style.float]="'right'" [style.display]="loading || disabled? 'none':'block'">
+    </button>
+    <button pButton
+      class="basic"
+      icon="fa fa-times"
+      (click)="disabled = !disabled" type="button" [style.float]="'right'" [style.display]="loading || disabled? 'none':'block'" [style.clear]="'both'" [style.marginTop]="'0.5rem'">
+    </button>
+
+    <div class="p-grid">
+      <div class="p-col-6 static-padding">
+        <span class="ui-float-label">
+          <p-dropdown [options]="guaranteeOptions" name="revision.guarantee.type" [(ngModel)]="revision.guarantee.guaranteeType" [disabled]="disabled"></p-dropdown>
+          <label>Tipo de Garantia</label>
+        </span>
+      </div>
+      <div class="p-col-6 static-padding" *ngIf="revision.guarantee.guaranteeType === 'Outros' ">
+        <span class="ui-float-label">
+          <input type="text" [(ngModel)]="revision.guarantee.otherType" pInputText name="city" [disabled]="disabled">
+          <label>Outros:</label>
+        </span>
+      </div>
+      <div class="p-col-12 static-padding">
+        <span class="ui-float-label">
+          <input type="text" pInputText name="createdAt" [ngModel]="revision.guarantee.timeSpanInitial | date:'dd/MM/yyyy'" [disabled]="true">
+          <label>Vigência Inicial</label>
+        </span>
+      </div>
+      <div class="p-col-12 static-padding">
+        <span class="ui-float-label">
+          <input type="text" pInputText name="deadline" [ngModel]="revision.guarantee.timeSpanFinal | date:'dd/MM/yyyy'" [disabled]="true">
+          <label>Vigência Final</label>
+        </span>
+      </div>
+      <div class="p-col-12 static-padding">
+        <span class="ui-float-label">
+          <!-- <input type="text" pInputText name="value" [(ngModel)]="revision.guarantee.value" [disabled]="disabled">  -->
+          <label>Valor</label>
+          <input
+          currencyMask
+          style="width:100%"
+          class="ui-currency-mask"
+          placeholder="Insira o valor"
+          name="revision.gurantee.value"
+          [disabled]="disabled"
+          [(ngModel)]="revision.guarantee.value"
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          />
+          <label>Valor</label>
+        </span>
+      </div>
+    </div>
+  </form>
+</app-entitydetails>

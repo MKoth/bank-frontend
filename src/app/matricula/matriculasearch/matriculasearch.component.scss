@@ -1,0 +1,99 @@
+
+
+
+.ui-inputgroup .ui-float-label label{
+  color: #FFFFFF;
+  font-family:Roboto;
+  font-size:15px
+}
+
+    .p-col-1, .p-col-2, .p-col-3, .p-col-4, .p-col-5, .p-col-6, .p-col-7, .p-col-8, .p-col-9, .p-col-10, .p-col-11, .p-col-12,
+    .p-sm-1, .p-sm-2, .p-sm-3, .p-sm-4, .p-sm-5, .p-sm-6, .p-sm-7, .p-sm-8, .p-sm-9, .p-sm-10, .p-sm-11, .p-sm-12, .p-md-1, .p-md-2, .p-md-3, .p-md-4, .p-md-5, .p-md-6, .p-md-7, .p-md-8, .p-md-9, .p-md-10, .p-md-11, .p-md-12, .p-lg-1, .p-lg-2, .p-lg-3, .p-lg-4, .p-lg-5, .p-lg-6, .p-lg-7, .p-lg-8, .p-lg-9, .p-lg-10, .p-lg-11, .p-lg-12, .p-xl-1, .p-xl-2, .p-xl-3, .p-xl-4, .p-xl-5, .p-xl-6, .p-xl-7, .p-xl-8, .p-xl-9, .p-xl-10, .p-xl-11, .p-xl-12{
+      padding: 1rem;
+    }
+    .layout-wrapper .layout-main .layout-main-content{
+      padding: 1rem;
+    }
+    .p-grid{
+      margin-right: -1rem;
+      margin-left: -1rem;
+      margin-top: -0.1 rem;   
+     
+
+    }
+
+.ui-button-color{
+  border-radius: 10px;
+  /*background-color: #63BD58;*/
+  width: 170px;
+  height:40px;
+  font-family: 'Roboto';
+  font-size: 17px;
+  color:#FFFFFF;
+  padding: 5px;
+  background-image: linear-gradient(#63BD58,#61D258);
+
+}
+.ui-button-color-bus{
+  border-radius: 10px;
+  /*background-color: #63BD58;*/
+  width: 135px;
+  height:40px;
+  font-family: 'Roboto';
+  font-size: 17px;
+  color:#FFFFFF;
+  padding: 5px;
+  margin-left: 10px;
+  background-image: linear-gradient(#63BD58,#61D258);
+
+}
+.ui-card-title.ng-star-inserted{
+  text-align: left;
+}
+.ui-box{
+  width: 1300px;
+  height: 550px;
+  border-radius:30px ;
+  background-color: #25586D;
+  border:2px;
+  border-color: #FFFFFF
+}
+.ui-text-box{
+  border-bottom-left-radius:5px !important;
+  border-bottom-right-radius:5px !important;
+  border-top-right-radius:5px !important;
+  border-top-left-radius:5px !important;
+  font-family: Roboto;
+  font-size:17px;
+  color: #003E51;
+  /*height: 29px;*/
+  background-color: #FFFFFF
+}
+.ui-span{
+  width: 92% !important;
+}
+.margin-top{
+  margin-top: 2%;
+}
+.ui-title{
+  margin-top: -10px;
+  margin-left: 2%;
+}
+.padding-left{
+  padding-left: 8%;
+}
+#caret .ui-dropdown-trigger-icon .ui-clickable pi .pi-caret-down ::before{
+  color:red;
+}
+.date-margin{
+  margin:0px;
+}
+.date-font{
+  font-size: 15px;
+}
+.buscar-align-right{
+  text-align: right;
+}
+.ui-radiobutton-label{
+  padding-right: 10px;
+}

@@ -1,0 +1,103 @@
+.ui-inputgroup .ui-float-label label{
+  color: #FFFFFF;
+  font-family:Roboto;
+  font-size:15px
+}
+.ui-button-color{
+  border-radius: 10px;
+  /*background-color: #63BD58;*/
+  width: 170px;
+  height:40px;
+  font-family: 'Roboto';
+  font-size: 17px;
+  color:#FFFFFF;
+  padding: 5px;
+  background-image: linear-gradient(#63BD58,#61D258);
+
+}
+.ui-button-color-bus{
+  border-radius: 10px;
+  /*background-color: #63BD58;*/
+  width: 135px;
+  height:40px;
+  font-family: 'Roboto';
+  font-size: 17px;
+  color:#FFFFFF;
+  padding: 5px;
+  margin-left: 10px;
+  background-image: linear-gradient(#63BD58,#61D258);
+}
+.ui-card-title.ng-star-inserted{
+  text-align: left;
+
+}
+.ui-box{
+  margin-left:12px!important;
+  width: 1300px;
+  height: 550px;
+  border-radius:30px ;
+  background-color: #25586D;
+  border:2px;
+  border-color: #FFFFFF
+}
+.ui-text-box{
+  border-bottom-left-radius:5px !important;
+  border-bottom-right-radius:5px !important;
+  border-top-right-radius:5px !important;
+  border-top-left-radius:5px !important;
+  font-family: Roboto;
+  font-size:17px;
+  color: #003E51;
+  /*height: 28px;*/
+  background-color: #FFFFFF;
+  // width: 80%;
+  margin-bottom:10px ;
+  align-content:middle;
+}
+.secondcol{
+  margin-right:15px!important;
+  margin-left:15px!important;
+}
+.ui-dropdown{
+  height:28px!important;
+}
+.ui-calendar{
+  height:28px!important;
+}
+.date-end{
+  justify-content: end!important;
+  align-items: end!important;
+  align-content: end!important;
+}
+.ui-span{
+  width: 92% !important;
+}
+.margin-top{
+  margin-top: 2%;
+}
+.ui-title{
+  margin-top: -10px;
+  margin-left: 2%;
+}
+.padding-left{
+  padding-left: 8%;
+}
+#caret .ui-dropdown-trigger-icon .ui-clickable pi .pi-caret-down ::before{
+  color:red;
+}
+.date-margin{
+  margin:0px;
+}
+.date-font{
+  font-size: 15px;
+}
+.buscar-align-right{
+  text-align: right;
+}
+.ui-radiobutton-label{
+  padding-right: 10px;
+}
+
+label.ui-inputtext.ui-corner-all.ng-star-inserted {
+  border: 1px solid #aab4bd!important;
+}

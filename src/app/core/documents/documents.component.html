@@ -1,0 +1,94 @@
+<!-- <div class="p-grid Arquivos">
+  <div class="p-col-12 p-md-12">
+    <p-card title="Arquivos">
+      <p-header>
+        <div class='p-grid'>
+          <div class="p-col-6">
+            <img class="alerts" src="/assets/layout/images/arquivos.svg">
+            <span class="entity-details">Arquivos</span>
+          </div>
+        </div>
+      </p-header>
+      <p-table [value]='documents'>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Arquivo</th>
+            <th>Tamanho</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-document>
+          <tr (click)="getDocument(document.id)" style="cursor: pointer">
+            <td>{{document.name}}</td>
+            <td>{{document.size/1000}}Kb</td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <button pButton type="button" label="Upload" (click)="showDialog()" class="ui-button"><i class="fa fa-upload" aria-hidden="true"></i></button>
+    </p-card>
+  </div>
+</div>
+<p-dialog class="modal" [(visible)]="displayDialog" [modal]="true" [dismissableMask]="true" [width]="600" [height]="400">
+  <p-fileUpload chooseLabel="Selecionar Arquivo" multiple="multiple" name="file" maxFileSize="1000000" (onUpload)="onUpload($event)" [url]="API_Url" (onError)="onError($event)" (onBeforeSend)="onBeforeSend($event)">
+     <ng-template pTemplate="content">
+      <ul *ngIf="uploadedFiles.length">
+        <li *ngFor="let file of uploadedFiles"> {{file.name}} - {{file.size}} </li>
+      </ul>
+    </ng-template> 
+  </p-fileUpload>
+</p-dialog> -->
+
+<p-card title="Arquivos" class="Arquivos">
+  <p-header>
+    <div class='p-grid'>
+      <div class="p-col-6">
+        <img class="alerts" src="../assets/layout/images/arquivos.svg">
+        <span class="entity-details">Arquivos</span>
+      </div>
+    </div>
+  </p-header>
+  <p-table *ngIf="documents" [value]='documents'>
+    <div class="p-grid p-dir-col">
+      <div class="p-col">
+        <ng-template pTemplate="header">
+          <tr>
+            <div class="p-grid Arquivos">
+              <div class="p-col-6 p-md-4">
+                <th>Arquivo</th>
+              </div>
+              <div class="p-col-6 p-md-4">
+                <th>Tamanho</th>
+              </div>
+            </div>
+          </tr>
+        </ng-template>
+      </div>
+      <div class="p-col">
+        <ng-template pTemplate="body" let-document>
+          <tr>
+            <div class="p-grid">
+              <div class="p-col-6 p-md-4">
+                <td (click)="getDocument(document.name,document.id)" style="cursor: pointer">{{document?.name}}</td>
+              </div>
+              <div class="p-col-6 p-md-4">
+                <td>{{document?.size/1000}}Kb</td>
+              </div>
+              <div class="p-col-6 p-md-4">
+                <td><button pButton class="deletebtn" (click)="deleteFile(document.name,document.id)" icon="fa fa-times" type="button"></button></td>
+              </div>
+            </div>
+          </tr>
+        </ng-template>
+      </div>
+    </div>
+  </p-table>
+  <button pButton type="button" label="Upload" (click)="showDialog()" class="ui-button ui-button-colors"><i class="fa fa-upload" aria-hidden="true"></i></button>
+</p-card>
+<p-dialog class="modal" closable="true" [(visible)]="displayDialog" [modal]="true" [dismissableMask]="true" [width]="600"
+  [height]="400">
+  <p-header>
+    <h2>Anexar Arquivos</h2>
+  </p-header>
+  <div class="athos">
+    <p-fileUpload mode="advanced" multiple="multiple" name="file" chooseLabel="Selecionar Arquivo" maxFileSize="1000000" (onUpload)="onUpload($event)" [url]="API_Url" (onError)="onError($event)" (onBeforeSend)="onBeforeSend($event)"></p-fileUpload>
+  </div>
+</p-dialog>

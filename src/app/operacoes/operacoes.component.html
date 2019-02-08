@@ -1,0 +1,91 @@
+﻿<div class="p-grid" *ngIf="ready">
+  <div class="p-col-12">
+    <app-operacoesdetails #details [revision]="revision"></app-operacoesdetails>
+  </div>
+  <div class="p-col-12">
+    <!-- <app-alertpanel></app-alertpanel> -->
+  </div>
+  <div class="p-col-12">
+    <relations-tabs (getTabPolygon)='centerToPolygon($event)' (sendData)='updateMap($event)' [revision]="revision" type="operation"></relations-tabs>
+  </div>
+</div>
+<app-operacoestable1></app-operacoestable1>
+
+<div class="p-grid">
+    <div class="p-col-12 information-tabview" style="box-sizing: border-box">
+    <p-tabView>
+      <!----
+      <span id='clickableAwesomeFont' onclick='addFunction()'>
+          <i class="fa fa-plus-circle" style="font-size:48px;color:gre  en"></i>
+        </span>-->
+      <p-tabPanel class="solicitar-holder">
+        <ng-template pTemplate="header" style="font-weight: bold!important">
+          <span class="text-bold">GLEBA 1</span>
+        </ng-template>
+        <app-operacoestableadjustable 
+          [tablecontent]='[{class:"table-header", cols:["Área Total (ha)","Área não Cultivada (ha)", "Descrição"]},{cols:["90345","34.54","2454.3"]}]'
+        ></app-operacoestableadjustable>
+        <form class="operational-form">
+          <button pButton type="button" label="Solicitar" class="ui-button float-right-operational-button"></button>
+        </form>
+      </p-tabPanel>
+      <p-tabPanel class="solicitar-holder">
+        <ng-template pTemplate="header" style="font-weight: bold!important">
+          <span class="text-bold">GLEBA 2</span>
+        </ng-template>
+        <app-operacoestableadjustable 
+          [tablecontent]='[{class:"table-header", cols:["Área Total (ha)","Área não Cultivada (ha)", "Descrição"]},{cols:["70315","53.00","1444.9"]}]'
+        ></app-operacoestableadjustable>
+        <form class="operational-form">
+            <button pButton type="button" label="Solicitar" class="ui-button float-right-operational-button"></button>
+        </form>
+      </p-tabPanel>
+      <p-tabPanel class="solicitar-holder">
+        <ng-template pTemplate="header" style="font-weight: bold!important">
+          <span class="text-bold">GLEBA 3</span>
+        </ng-template>
+        <app-operacoestableadjustable 
+          [tablecontent]='[{class:"table-header", cols:["Área Total (ha)","Área não Cultivada (ha)", "Descrição"]},{cols:["10325","43.00","8464.19"]}]'
+        ></app-operacoestableadjustable>
+        <form class="operational-form">
+            <button pButton type="button" label="Solicitar" class="ui-button float-right-operational-button"></button>
+        </form>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>
+
+<app-operacoestable2></app-operacoestable2>
+
+<div class="p-grid">
+  <div class="p-col-12 p-md-4 client-one-section" style="box-sizing: border-box">
+    <app-operacoestabone></app-operacoestabone>
+  </div>
+  <div class="p-col-12 p-md-8" style="box-sizing: border-box">
+    <aol-map [width]="'100%'" [height]="'100%'">
+      <aol-view [zoom]="16">
+        <aol-coordinate [y]="-23.618280" [x]="-46.676741" [srid]="'EPSG:4326'"></aol-coordinate>
+      </aol-view>
+      <aol-layer-tile>
+        <aol-source-osm></aol-source-osm>
+      </aol-layer-tile>
+    </aol-map>
+  </div>
+</div>
+<div class="p-grid">
+  <div class="p-col-12 p-md-12 client-one-section rsa-details-holder" style="box-sizing: border-box; min-height: 200px;">
+    <app-operacoesrsadetails></app-operacoesrsadetails>
+  </div>
+</div>
+
+<app-operacoestable3></app-operacoestable3>
+<app-operacoestable4></app-operacoestable4>
+<app-operacoestable5></app-operacoestable5>
+
+<p-button label="Exportar" style="float:right;margin-bottom:20px;"></p-button>
+<p-button label="Gerar&nbsp;Croqui" style="float:right;margin-bottom:20px;"></p-button>
+<p-button label="Clonar&nbsp;Operação" style="float:right;margin-bottom:20px;"></p-button>
+<p-button label="Aprovar" style="float:right;margin-bottom:20px;"></p-button>
+
+
+<!-- </div> -->

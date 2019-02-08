@@ -1,0 +1,101 @@
+<p-card styleClass="pro-edit">
+  <p-header>
+    <div class="image-holder">
+      <img src="assets/layout/images/avatar.png" alt="admin Img">
+      <p class="header-text">{{user.name}}</p>
+    </div>
+  </p-header>
+  
+  <form #settingsForm="ngForm" (ngSubmit)="confirmEdit(settingsForm)">
+
+    <div class="p-grid">
+              <div class="p-md-4">
+                <label>Email</label>
+                <div class="ui-inputgroup">
+                    <input type="text" pInputText placeholder="" name="email" [(ngModel)]="user.email" [disabled]="this.disabled">
+                </div>
+              </div>
+          <!-- <div class="ui-inputgroup">
+                <span  class="ui-float-label">
+                <p-inplace closable="closable">
+                  <span pInplaceDisplay>
+                      {{exampleUser.email}}
+                  </span>
+                  <span pInplaceContent>
+                      <input type="text" value="{{exampleUser.email}}" [(ngModel)]="exampleUser.email" pInputText>
+                  </span>
+                </p-inplace>
+                </span>
+              </div>   -->
+          <div class="p-md-4">
+            <label>CPF</label>
+            <div class="ui-inputgroup">
+                <p-inputMask class="teste" mask="999.999.999-99" unmask="false" name="cpf" [(ngModel)]="user.cpf" [disabled]="this.disabled"></p-inputMask>
+            </div>
+          </div>
+          <div class="p-md-4">
+            <label>Telefone</label>
+            <div class="ui-inputgroup">
+                <input type="text" pInputText placeholder="" name="phoneNumber" [(ngModel)]="user.phoneNumber" [disabled]="this.disabled">
+            </div>
+          </div>
+    
+          <!-- <div class="p-md-4">
+            <div  class="ui-inputgroup">
+                <label for="float-input">Emails RSA</label>
+                <input type="text" pInputText [(ngModel)]="exampleUser.recebe_email_monitoramento" #RSA>
+            </div>
+          </div> -->
+          <div class="p-md-4">
+
+            <label>Celular</label>
+              <div class="ui-inputgroup">
+                  <p-inputMask class="teste" mask="(99)99999-9999" unmask="false" placeholder="Celular"  name="cellPhone" [(ngModel)]="user.cellPhone" [disabled]="this.disabled"></p-inputMask>
+              </div>
+           </div>
+     
+
+         <!-- <div class="p-md-6">
+            <label for="float-input">Recebe emails de monitoramento RSA?</label>
+            <div  class="ui-inputgroup">
+              <input type="text">
+            </div>-->
+                    
+          <div class="p-md-4">
+              <label>Perfil</label>
+            <div class="ui-inputgroup">
+                <p-dropdown styleClass="teste" [options]="modelRoles" name="Roles" [style]="{'width':'100%', 'min-height': '35px', 'border-radius':'5px'}"
+                  [(ngModel)]="user.roles" [disabled]="this.disabled"></p-dropdown>
+            </div>
+          </div>
+          <div class="p-md-4">
+              <label>Situação</label>
+            <div  class="ui-inputgroup">
+                <p-dropdown class="teste" [options]="status" name="status" [style]="{'width':'100%', 'min-height':'35px', 'border-radius':'5px'}"
+                  [(ngModel)]="selectedStatus" [disabled]="this.disabled" #situacao></p-dropdown>
+            </div>
+          </div>
+          <div class="p-md-4">
+            <label>Empresa</label>
+            <div  class="ui-inputgroup">
+                <input type="text" pInputText placeholder=""  name="company" [(ngModel)]="user.company" [disabled]="this.disabled">
+            </div>
+          </div>
+    
+          <div class="p-md-4">
+            <label>Pontos de atendimento</label>
+            <div class="ui-inputgroup">
+                <!-- <input type="text" pInputText placeholder="" [(ngModel)]="exampleUser.units" #pontos> -->
+                <p-multiSelect [style]="{'height':'35px', 'width': '100%', 'border-radius':'5px'}" [options]="units" name="userunits" dataKey='unitId'
+                [(ngModel)]="labelUnits" [filter]="false" [disabled]="this.disabled"></p-multiSelect>
+            </div>
+          </div>
+
+
+      <div class="p-col-12 p-md-2 p-md-offset-10">
+        <!-- <button  pButton type="button" class="ui-button " label="Confirmar" (click)="adminUpdate(email?.value,CPF?.value,empresa?.value,CNPJ?.value,telefone?.value,celular?.value,RSA?.value,situacao?.value,perfil?.value,atendimentos?.value,pontos?.value);"></button> -->
+        <button  pButton type="submit" class="ui-button " label="Confirmar"></button>
+      </div>
+    </div>
+  </form>
+</p-card>

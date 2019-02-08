@@ -1,0 +1,20 @@
+.test{
+  color:pink;
+
+}
+.ui-fileupload{
+  color:pink;
+}
+kml-import .ui-button-icon-only .ui-button-icon-left, .ui-button-text-icon-left .ui-button-icon-left, .ui-button-text-icon-right .ui-button-icon-right{
+  color:transparent !important;
+  position: absolute;
+}
+
+/*
+.ui-button-text-icon-left .ui-button-text{
+  font-color:black !important;
+} */
+.ui-button-text-icon-left .ui-button-text{
+  color:white;
+  padding:0;
+}

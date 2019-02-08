@@ -1,0 +1,80 @@
+<form #form="ngForm">
+  <div class="p-grid">
+    <div [ngClass]="{'p-col-6':canRelateToOperation,'p-col-12':!canRelateToOperation}">
+      <div class="ui-inputgroup">
+        <p-checkbox name="single" [(ngModel)]="isGuarantee" binary="true"></p-checkbox>
+        Garantia hipotecária
+      </div>
+      <div *ngIf="isGuarantee">
+        <div class="ui-inputgroup">
+          <label>Nome</label>
+          <input pInputText [pKeyFilter]="blockSpecial" placeholder="Insira o nome da garantia" required (change)="getGuarantee()" name="revision.guarantee.name" [(ngModel)]="revision.guarantee.name">
+          <div class="hint">
+            <span *ngIf="newThing==1">
+              Nova garantia
+            </span>
+            <span *ngIf="newThing==0">
+              Garantia já existente
+            </span>
+          </div>
+        </div>
+        <div class="ui-inputgroup">
+          <label>Início</label>
+          <!-- <input pInputText placeholder="Insira a data de início" required name="revision.guarantee.timeSpanInitial" [(ngModel)]="revision.guarantee.timeSpanInitial"> -->
+          <p-calendar [(ngModel)]="revision.guarantee.timeSpanInitial" name="timeSpanInitial" [locale]="en" dateFormat="dd/mm/yy"
+          [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" placeholder="De:" styleClass="calendar-modal"></p-calendar>
+        </div>
+        <div class="ui-inputgroup">
+          <label>Término</label>
+          <!-- <input pInputText placeholder="Insira a data de término" required name="revision.guarantee.timeSpanFinal" [(ngModel)]="revision.guarantee.timeSpanFinal"> -->
+          <p-calendar [(ngModel)]="revision.guarantee.timeSpanFinal" name="timeSpanFinal" [locale]="en" dateFormat="dd/mm/yy"
+          [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" placeholder="Até:" styleClass="calendar-modal"></p-calendar>
+        </div>
+        <div class="ui-inputgroup">
+          <label>Valor</label>
+          <!-- <input pInputText placeholder="Insira o valor" required name="revision.guarantee.value" [(ngModel)]="revision.guarantee.value"> -->
+          <input
+          currencyMask
+          style="width:100%"
+          class="ui-currency-mask-modal"
+          placeholder="Insira o valor"
+          name="revision.gurantee.value"
+          [(ngModel)]="revision.guarantee.value"
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          />
+        </div>
+        <div class="ui-inputgroup" *ngIf="canRelateToOperation">
+          <label>Código da Operação</label>
+          <input pInputText placeholder="Insira o código da operação" name="operationRevision.operation.code" >
+        </div>
+        <div class="ui-inputgroup">
+          <label>Ponto de atendimento</label>
+          <p-multiSelect
+          [style]="{'width':'100%'}"
+          [options]="unitsList"
+          [(ngModel)]="revision.units"
+          name="revision.units"
+          placeholder="Insira os pontos de atendimento"
+          defaultLabel="Selecione"
+          [filter]="false"
+          dataKey='unitId'
+          required
+          ></p-multiSelect>
+        </div>
+      </div>
+    </div>
+    <div class="p-col-6" *ngIf="canRelateToOperation">
+      <div class="entity-infobox" *ngIf="isGuarantee">
+        <div class="p-grid">
+          <div class="p-col-12">
+            <div class="ui-inputgroup">
+              <label>Dados da Operação</label>
+            </div>
+          </div>
+          <div class="p-col-6">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

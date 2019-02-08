@@ -1,0 +1,192 @@
+
+    <app-entitydetails
+      title="{{revision?revision.operation.code:''}}"
+      subtitle="{{'Operação: '+revision.thing.audsat_id}}"
+      icon="operacoes.svg"
+      icon2="fa fa-fw fa-map-marker"
+      id="{{'ID: '+(revision?revision.thing.id:'')}}"
+      status="Ativo"
+      (icon2Clicked) ='centerMap($event)'
+      (extendToggled) = "setExtend($event)"
+      [extended]="extended"
+      [extendable]="true"
+      #entitydetails
+    >
+
+    <!--<i class="fa fa-fw fa-map-marker"></i>-->
+    <form #operationForm="ngForm" (ngSubmit)="editOperation(operationForm)" class="client-info-form">
+      <button pButton
+        class="basic"
+        icon="fa fa-pencil"
+        (click)="toggleEdit()" [style.float]="'right'" [style.display]="disabled? 'block':'none'">
+      </button>
+      <button pButton
+        class="basic"
+        icon="fa fa-check"
+        (click)="toggleEdit()" [style.float]="'right'" [style.display]="disabled? 'none':'block'">
+      </button>
+      <button pButton
+      class="basic"
+      icon="fa fa-times"
+      (click)="toggleEdit()" type="button" [style.float]="'right'" [style.clear]="'both'" [style.display]="loading || disabled? 'none':'block'" [style.marginTop]="'0.5rem'">
+      </button>
+      <div class="p-grid">
+        <div [className]="expanded?'custom-1-of-7':'p-col-6 static-padding'">
+          <span class="ui-float-label">
+              <input type="text" pInputText name="name" [(ngModel)]="revision.operation.name" [disabled]="disabled">
+              <label>Nome do Cliente</label>
+          </span>
+        </div>
+        <div [className]="expanded?'custom-1-of-7':'p-col-6 static-padding'">
+          <span class="ui-float-label">
+              <input type="text" pInputText name="cpfcnpj" [(ngModel)]="cpfcnpj" [disabled]="disabled">
+              <label>CPF/CNPJ</label>
+          </span>
+        </div>
+        <div [className]="expanded?'custom-1-of-7':'p-col-6 static-padding'">
+          <span class="ui-float-label">
+              <input type="text" pInputText name="city" [(ngModel)]="city" [disabled]="disabled">
+              <label>Localização</label>
+          </span>
+        </div>
+        <div [className]="expanded?'custom-1-of-7':'p-col-6 static-padding'">
+          <span class="ui-float-label">
+              <input type="text" pInputText name="accessGuide" [(ngModel)]="accessGuide" [disabled]="disabled">
+              <label>Roteiro de Acesso</label>
+          </span>
+        </div>
+        <div [className]="expanded?'custom-1-of-7':'p-col-6 static-padding'">
+          <span class="ui-float-label">
+            <p-multiSelect [style]="{'width':'100%'}" [options]="unitsList" dataKey='unitId' [(ngModel)]="revision.units" name="units" placeholder="Insira os pontos de atendimento" defaultLabel="Selecione" [disabled]="disabled" required [filter]="false"></p-multiSelect>
+            <label>Ponto de Atendimento</label>
+          </span>
+        </div>
+        <div [className]="expanded?'custom-1-of-7':'p-col-6 static-padding'">
+            <span class="ui-float-label">
+                <input type="text" pInputText name="inclusionDate" [(ngModel)]="revision.operation.inclusionDate" [disabled]="disabled">
+                <label>Data da Operação</label>
+            </span>
+        </div>
+        <div [className]="expanded?'custom-1-of-7':'p-col-6 static-padding'">
+            <span class="ui-float-label">
+                <input type="text" pInputText value="clone" [disabled]="disabled">
+                <label>Clonado de</label>
+            </span>
+        </div>
+        <div [className]="expanded?'custom-1-of-7':'p-col-6 static-padding'">
+          <span class="ui-float-label">
+              <input type="text" pInputText name="restriction" [(ngModel)]="restriction" [disabled]="disabled">
+              <label>Possui Restrição</label>
+          </span>
+        </div>
+        <div [className]="expanded?'custom-1-of-7':'p-col-6 static-padding'">
+            <span class="ui-float-label">
+                <input type="text" pInputText name="vigency" [(ngModel)]="vigency" [disabled]="disabled">
+                <label>Vigência</label>
+            </span>
+        </div>
+        <div [className]="expanded?'custom-1-of-7':'p-col-6 static-padding'">
+            <span class="ui-float-label">
+                <input type="text" pInputText name="cultura" [(ngModel)]="revision.operation.crop" [disabled]="disabled">
+                <label>Cultura Agriicola</label>
+            </span>
+        </div>
+        <div [className]="expanded?'custom-1-of-7':'p-col-6 static-padding'">
+          <span class="ui-float-label">
+              <input type="text" pInputText value="area" [disabled]="disabled">
+              <label>Total da Parea Financiada</label>
+          </span>
+        </div>
+        <div [className]="expanded?'custom-1-of-7':'p-col-6 static-padding'">
+          <span class="ui-float-label">
+              <input type="text" pInputText value="cadastrante" [disabled]="disabled">
+              <label>Cadastrante</label>
+          </span>
+        </div>
+        <!--Expanded fields-->
+        <div class="custom-1-of-7" [style.display]="expanded?'block':'none'">
+          <span class="ui-float-label">
+              <input type="text" pInputText value="{{revision.createdAt | date}}" [disabled]="true">
+              <label>Data de Cadastro 2</label>
+          </span>
+        </div>
+        <div class="custom-1-of-7" [style.display]="expanded?'block':'none'">
+          <span class="ui-float-label">
+              <input type="text" pInputText name="approvaldate2" [(ngModel)]="revision.statusAuthor" [disabled]="true">
+              <label>Data de Aprovação 2</label>
+          </span>
+        </div>
+        <div class="custom-1-of-7" [style.display]="expanded?'block':'none'">
+          <span class="ui-float-label">
+              <input type="text" pInputText name="longitude" [(ngModel)]="revision.statusAuthor" [disabled]="true">
+              <label>Longitude</label>
+          </span>
+        </div>
+        <div class="custom-1-of-7" [style.display]="expanded?'block':'none'">
+          <span class="ui-float-label">
+              <input type="text" pInputText name="latitude" [(ngModel)]="car" [disabled]="true">
+              <label>Latitude</label>
+          </span>
+        </div>
+        <div class="custom-1-of-7" [style.display]="expanded?'block':'none'">
+          <span class="ui-float-label">
+              <input type="text" pInputText name="latitude2" [(ngModel)]="car" [disabled]="true">
+              <label>Latitude 2</label>
+          </span>
+        </div>
+        <div class="custom-1-of-7" [style.display]="expanded?'block':'none'">
+          <span class="ui-float-label">
+              <input type="text" pInputText name="longitude2" [(ngModel)]="revision.statusAuthor" [disabled]="true">
+              <label>Longitude 2</label>
+          </span>
+        </div>
+        <div class="custom-1-of-7" [style.display]="expanded?'block':'none'">
+          <span class="ui-float-label">
+              <input type="text" pInputText name="condiciado" [(ngModel)]="car" [disabled]="true">
+              <label>Condição da análise</label>
+          </span>
+        </div>
+        <div class="custom-1-of-7" [style.display]="expanded?'block':'none'">
+          <span class="ui-float-label">
+              <input type="text" pInputText name="analise" [(ngModel)]="revision.statusAuthor" [disabled]="true">
+              <label>Data da análise</label>
+          </span>
+        </div>
+        <div class="custom-1-of-7" [style.display]="expanded?'block':'none'">
+          <span class="ui-float-label">
+              <input type="text" pInputText name="registrodata" [(ngModel)]="car" [disabled]="true">
+              <label>Data do registro</label>
+          </span>
+        </div>
+        <div class="custom-1-of-7" [style.display]="expanded?'block':'none'">
+          <span class="ui-float-label">
+              <input type="text" pInputText name="retificacao" [(ngModel)]="revision.statusAuthor" [disabled]="true">
+              <label>Houve retificação</label>
+          </span>
+        </div>
+        <div class="custom-1-of-7" [style.display]="expanded?'block':'none'">
+          <span class="ui-float-label">
+              <input type="text" pInputText name="rl" [(ngModel)]="car" [disabled]="true">
+              <label>Situação RL</label>
+          </span>
+        </div>
+        <div class="custom-1-of-7" [style.display]="expanded?'block':'none'">
+          <span class="ui-float-label">
+              <input type="text" pInputText name="restritousoarea" [(ngModel)]="revision.statusAuthor" [disabled]="true">
+              <label>Área de uso restrito</label>
+          </span>
+        </div>
+      </div>
+    </form>
+
+  <!-- <p-dialog class="modal" [(visible)]="displayDialog" [modal]="true" [closeOnEscape]="true" [closable]="true" [width]="600"
+    [height]="400">
+    <app-client-edit [revision]="revision"></app-client-edit>
+  </p-dialog> -->
+
+    </app-entitydetails>
+  <!-- <div class="p-col-12 p-md-8 client-map-section" style="box-sizing: border-box" [style.display]="expanded?'none':'block'">
+    <p-card>
+      <app-map [pointData]="pointData" [data]="data" [tabType]="tabType" ></app-map>
+    </p-card>
+  </div> -->

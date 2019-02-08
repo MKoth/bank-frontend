@@ -1,0 +1,13 @@
+<button pButton type="button" label="Importar Imóvel" (click)="showDialog()"></button>
+<div>
+  <p-dialog class="modal" [(visible)]="displayDialog" [modal]="true" [dismissableMask]="true" [width]="600" [height]="400">
+    <p-header>
+      <h2>Importar Arquivo CSV</h2>
+    </p-header>
+    <div class="athos">
+      <p-fileUpload mode="advanced" name="file"
+      [url]="API_Url" accept=".csv,.xls,.xlsx" maxFileSize="1000000" (onUpload)="onUpload($event)"
+      (onBeforeSend)="onBeforeSend($event)" (onError)="onError($event)" chooseLabel="Selecionar Arquivos"></p-fileUpload>
+    </div>
+  </p-dialog>
+</div>

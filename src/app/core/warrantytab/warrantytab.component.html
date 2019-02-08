@@ -1,0 +1,31 @@
+<app-entitycard title="{{guarantee.name}}"
+subtitle="{{'Nome: '+(revision?revision.guarantee.guaranteeName:'')}}"
+icon="icon-garantias"
+icon2="icon-location guaranteeMapText"
+detailsCollapsed="{{detailsCollapsed}}"
+id="{{revision.thing.id}}"
+status="Ativo"
+class="client"
+entityroute="/garantia"
+>
+    <div [ngClass]="{'danger': hasAlerts === true,'':hasAlerts ===false}" class="p-col-12">
+      Tipo:{{guarantee.guaranteeType}}
+    </div>
+    <div [ngClass]="{'warning': hasAttentions === true,'':hasAttentions ===false}" class="p-col-12">
+      Valor:R{{guarantee.value | currency}}
+    </div>
+    <!-- <div class="p-col-12">
+      Nome do Imóvel
+    </div> -->
+    <!-- <p-footer>
+      <div class="p-col-12">
+        CAR
+      </div>
+      <div class="p-col-12">
+        Valor
+      </div>
+      <div class="p-col-12">
+        Prazo
+      </div>
+    </p-footer> -->
+</app-entitycard>

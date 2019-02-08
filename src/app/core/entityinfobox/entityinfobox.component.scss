@@ -1,0 +1,17 @@
+@import "../../../assets/sass/_variables";
+.infobox{
+  text-align: center;
+  text-transform: capitalize;
+  .label{
+    color: $textColor3;
+    font-size: 0.75rem;
+  }
+  .value{
+    font-weight:100;
+    font-size: 2.5rem;
+  }
+  .graph{
+    width: 45%;
+    margin: 0 auto 1rem auto;
+  }
+}

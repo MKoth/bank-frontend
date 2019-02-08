@@ -1,0 +1,37 @@
+<app-entitycard title="{{client.name}}"
+subtitle=""
+icon="icon-clientes"
+icon2=""
+detailsCollapsed="{{detailsCollapsed}}"
+status="{{revision.status}}"
+class="client"
+id="{{revision.thing.id}}"
+entityroute="/cliente"
+>
+    <!-- <div class="p-col-12">
+      ID do Cliente: {{client.id}}
+    </div> -->
+    <div class="p-col-12" [ngClass]="{'danger': hasAlerts === true,'':hasAlerts ===false}">
+      Nome: {{client.name}}
+    </div>
+    <div class="p-col-12" *ngIf="client.cpfcnpj.length >14" [ngClass]="{'warning': hasAttentions === true,'':hasAttentions ===false}">
+      Tipo de pessoa: Juridica
+    </div>
+    <div class="p-col-12" *ngIf="client.cpfcnpj.length <=14" [ngClass]="{'warning': hasAttentions === true,'':hasAttentions ===false}">
+      Tipo de pessoa: Fisica
+    </div>
+    <div class="p-col-12" *ngIf="client.cpfcnpj.length >14" [ngClass]="{'warning': hasAttentions === true,'':hasAttentions ===false}">
+        CNPJ: {{client.cpfcnpj}}
+    </div>
+    <div class="p-col-12" *ngIf="client.cpfcnpj.length <=14" [ngClass]="{'warning': hasAttentions === true,'':hasAttentions ===false}">
+        CPF: {{client.cpfcnpj}}
+    </div>
+    <p-footer>
+      <div class="p-col-12">
+        Trabalho escravo: {{client.hasSlaveWork}}
+      </div>
+      <div class="p-col-12">
+       Proprietário:
+      </div>
+    </p-footer>
+</app-entitycard>

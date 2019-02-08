@@ -1,0 +1,81 @@
+<div (click)="showDialog()" class="add-entity-related">+</div>
+<p-dialog
+  [(visible)]="displayDialog"
+  [modal]="true"
+  [closeOnEscape]="true"
+  [responsive]="true"
+  [dismissableMask]="true"
+  [positionTop]="15"
+  [minWidth]="700"
+  [minHeight]="500"
+  [width]="1100"
+  [autoZIndex]="true"
+  [contentStyle]="{'max-height': '550px'}"
+  styleClass="dialog-radius"
+  (onHide)="resetForm(guaranteeForm)"
+  >
+  <form #guaranteeForm="ngForm" (ngSubmit)="save()">
+  <p-header>
+    <h1><i class="icon-garantias"></i>Incluir garantia</h1>
+  </p-header>
+<div class="p-grid">
+  <div class="p-col-12 p-md-6">
+    <div class="ui-inputgroup">
+      <label>Nome</label>
+      <input pInputText [pKeyFilter]="blockSpecial" placeholder="Insira o nome da garantia" required (change)="getGuarantee()" name="revision.guarantee.name" [(ngModel)]="revision.guarantee.name">
+      <div class="hint">
+        <span *ngIf="newThing==1">
+          Nova garantia
+        </span>
+        <span *ngIf="newThing==0">
+          Garantia já existente
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="p-col-12 p-md-6">
+    <div class="ui-inputgroup">
+      <label>Valor</label>
+      <input
+      currencyMask
+      style="width:100%"
+      class="ui-currency-mask-modal"
+      placeholder="Insira o valor"
+      name="revision.gurantee.value"
+      [(ngModel)]="revision.guarantee.value"
+      [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+      />
+    </div>
+  </div>
+  <div class="p-col-6 p-col-align-end">
+    <label>Início</label>
+    <p-calendar [(ngModel)]="revision.guarantee.timeSpanInitial" name="timeSpanInitial" [locale]="en" dateFormat="dd/mm/yy"
+              [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" placeholder="De:" styleClass="calendar-modal"></p-calendar>
+  </div>
+  <div class="p-col-6 p-col-align-end">
+    <label>Término</label>
+    <p-calendar [(ngModel)]="revision.guarantee.timeSpanFinal" name="timeSpanFinal" [locale]="en" dateFormat="dd/mm/yy"
+              [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" placeholder="Até:" styleClass="calendar-modal"></p-calendar>
+  </div>
+  <div class="p-col-12 p-md-6">
+    <div class="ui-inputgroup">
+      <label>Ponto de atendimento</label>
+      <p-multiSelect
+      [style]="{'width':'100%'}"
+      [options]="unitsList"
+      [(ngModel)]="revision.units"
+      name="revision.units"
+      placeholder="Insira os pontos de atendimento"
+      defaultLabel="Selecione"
+      [filter]="false"
+      dataKey='unitId'
+      required
+      ></p-multiSelect>
+    </div>
+  </div>
+</div>
+<p-footer>
+  <button pButton class="ui-button button-font-size" (click)="hideDialog()" type="button" label="Cancelar"></button>
+  <button pButton type="submit" label="Salvar" class="ui-button button-font-size"></button>
+</p-footer>
+</form>

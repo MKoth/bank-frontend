@@ -1,0 +1,43 @@
+<button pButton type="button" label="Importar Operação" (click)="showDialog()"></button>
+<div>
+  <p-dialog class="modal" [(visible)]="displayDialog" [modal]="true" [dismissableMask]="true" [width]="600" [height]="400">
+    <p-header>
+      <h2>Importar Arquivo CSV</h2>
+    </p-header>
+    <div class="athos">
+      <p-fileUpload mode="advanced" name="file"
+      [url]="API_Url" accept=".csv,.xls,.xlsx" maxFileSize="1000000" (onUpload)="onUpload($event)"
+      (onBeforeSend)="onBeforeSend($event)" (onError)="onError($event)" chooseLabel="Selecionar Arquivos"></p-fileUpload>
+    </div>
+  </p-dialog>
+</div>
+
+<!--
+<button pButton type="button" label="Importar Operação" (click)="showDialog()"></button>
+<div>
+  <p-dialog class="modal" [(visible)]="displayDialog" [modal]="true" [dismissableMask]="true" [width]="600" [height]="400">
+    <div class="container">
+      <div class="ui-g">
+        <div class="ui-g-12">
+          <div class="card">
+            <h1>Importar Arquivo CSV</h1>
+            <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple"
+              maxFileSize="100000000">
+              <ng-template pTemplate type="content">
+                <ul>
+                  <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                </ul>
+              </ng-template>
+            </p-fileUpload>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <p-button type="submit" (click)="importar()" label="Importar" ></p-button>
+      </div>
+    </p-footer>
+  </p-dialog>
+</div>
+-->

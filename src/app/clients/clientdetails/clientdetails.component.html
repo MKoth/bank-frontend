@@ -1,0 +1,113 @@
+<app-entitydetails #entitydetails
+  title="{{revision?revision.client.name:''}}"
+  subtitle="{{revision?((revision.client.cpfcnpj.length<15 ?'CPF: ':'CNPJ: ')+revision.client.cpfcnpj):''}}"
+  id="{{'ID: '+(revision?revision.thing.id:'')}}"
+  icon="clientes.svg"
+  icon2=""
+  [extended]="false"
+  [extendable]="false"
+  status="{{revision.status}}"
+  mapHeight="{{this.mapHeight}}"
+  [isClient] = "isClient"
+  >
+  <form #clientForm="ngForm" (ngSubmit)="editClient(clientForm)" class="client-info-form">
+    <p-progressSpinner strokeWidth="2" [style]="{width: '2rem', height: '2rem', float: 'right'}" [style.display]="loading? 'block':'none'"></p-progressSpinner>
+    <button pButton
+      class="basic"
+      icon="fa fa-pencil"
+      (click)="toggleEdit()" type="button" [style.float]="'right'" [style.clear]="'both'" [style.display]="loading || !disabled? 'none':'block'">
+    </button>
+    <button pButton
+    class="basic"
+    icon="fa fa-thumbs-up"
+    (click)="showApprove()" type="button" [disabled]="approveDisable" [style.float]="'right'" [style.clear]="'both'" [style.display]="loading || approveDisable || !disabled? 'none':'block'" [style.marginTop]="'0.5rem'">
+    </button>
+    <button pButton
+      class="basic"
+      icon="fa fa-check"
+      (click)="toggleEdit()" [disabled]="clientForm.invalid" [style.float]="'right'" [style.clear]="'both'" [style.display]="loading || disabled? 'none':'block'">
+    </button>
+    <button pButton
+      class="basic"
+      icon="fa fa-times"
+      (click)="toggleEdit()" type="button" [style.float]="'right'" [style.clear]="'both'" [style.display]="loading || disabled? 'none':'block'" [style.marginTop]="'0.5rem'">
+    </button>
+
+  <div class="p-grid">
+    <div class="p-col-6 static-padding">
+      <span class="ui-float-label">
+          <input type="email" pInputText name="email" [(ngModel)]="revision.client.email" email [disabled]="disabled" required>
+          <label>Email</label>
+      </span>
+    </div>
+    <div class="p-col-6 static-padding">
+      <span class="ui-float-label">
+          <p-multiSelect [style]="{'width':'100%'}" [options]="unitsList" dataKey='unitId' [(ngModel)]="revision.units" name="units" placeholder="Insira os pontos de atendimento" defaultLabel="Selecione" [disabled]="disabled" required [filter]="false"></p-multiSelect>
+          <label>Pontos de Atendimento</label>
+      </span>
+    </div>
+    <div class="p-col-6 static-padding">
+      <span class="ui-float-label">
+            <p-inputMask
+              mask="(99) 9999-9999"
+              name="phoneNumber" [(ngModel)]="revision.client.phoneNumber" [disabled]="disabled"
+            ></p-inputMask>
+          <label>Telefone</label>
+      </span>
+    </div>
+    <div class="p-col-6 static-padding">
+      <span class="ui-float-label">
+            <p-inputMask
+              mask="(99) 99999-9999"
+              name="cellPhone" [(ngModel)]="revision.client.cellPhone" [disabled]="disabled"
+            ></p-inputMask>
+          <label>Celular</label>
+      </span>
+    </div>
+    <div class="p-col-6 static-padding">
+        <span class="ui-float-label">
+            <input type="text" pInputText name="embargo" [(ngModel)]="hasEmbargo" [disabled]="true">
+            <label>Situação do Embargo</label>
+        </span>
+    </div>
+    <div class="p-col-6 static-padding">
+        <span class="ui-float-label">
+            <input type="text" pInputText name="slavework" [(ngModel)]="hasSlaveWork" [disabled]="true">
+            <label>Trabalho Escravo</label>
+        </span>
+    </div>
+    <div class="p-col-6 static-padding">
+        <span class="ui-float-label">
+            <input type="text" pInputText value="{{revision.createdAt|date:'dd/MM/yyyy'}}" [disabled]="true">
+            <label>Data de Cadastro</label>
+        </span>
+    </div>
+    <div class="p-col-6 static-padding">
+      <span class="ui-float-label">
+          <input type="text" pInputText name="nome" [(ngModel)]="revision.thing.createdAuthor" [disabled]="true">
+          <label>Autor do Cadastro</label>
+      </span>
+    </div>
+    <div class="p-col-6 static-padding">
+        <span class="ui-float-label">
+            <input type="text" pInputText name="approvaldate" [ngModel]="revision.statusSetAt | date:'dd/MM/yyyy'" [disabled]="true">
+            <label>Data de Aprovação</label>
+        </span>
+    </div>
+    <div class="p-col-6 static-padding">
+        <span class="ui-float-label">
+            <input type="text" pInputText name="approvaluser" [(ngModel)]="revision.statusAuthor" [disabled]="true">
+            <label>Autor de Aprovação</label>
+        </span>
+    </div>
+  </div>
+  </form>
+<!--       <div class="p-col-6 p-md-2">
+        <a [routerLink]="[ 'edit']" routerLinkActive="active"><button pButton type="button" label="Editar" class="ui-button primary flat ui-button-text-only"></button></a>
+      </div> -->
+  <!-- <p-dialog class="modal" [(visible)]="displayDialog" [modal]="true" [closeOnEscape]="true" [closable]="true" [width]="600"
+    [height]="400">
+    <app-client-edit [revision]="revision"></app-client-edit>
+  </p-dialog> -->
+
+</app-entitydetails>

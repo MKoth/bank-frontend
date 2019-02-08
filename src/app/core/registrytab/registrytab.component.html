@@ -1,0 +1,23 @@
+<app-entitycard title="{{registry.name}}"
+subtitle=""
+icon="icon-matriculas"
+icon2="icon-location registryMapText"
+detailsCollapsed="{{detailsCollapsed}}"
+status="Ativo"
+class="client"
+id="{{revision.thing.id}}"
+entityroute="/matricula"
+(coordinates) = 'getCoordinates($event)'
+[registry]='registry'>
+
+  <div class="p-col-12">
+  </div>
+  <div class="p-col-12">
+    Código:{{registry.code}}
+  </div>
+  <div [hidden]="registry.city==null" class="p-col-12">
+    Localização:{{registry.city}}-{{registry.uf}}
+  </div>
+  <p-footer>
+  </p-footer>
+</app-entitycard>

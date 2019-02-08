@@ -1,0 +1,32 @@
+<p-card class="entity-card">
+  <p-header>
+    <div *ngIf="icon2!==''" class="entity-icon2-wrapper">
+    <a (click)='sendCoordinates()'>  <i class="{{icon2}} entity-icon2"></i></a>
+    </div>
+    <!-- <p-menubar [model]="items" class="entity-menu"></p-menubar> -->
+    <div class="ui-card-title">
+        <!-- <img class="card-icon-home" src="../assets/layout/images/cart-home-icon.svg" alt="home-icon"> -->
+      <i class="{{icon}} entity-icon" (click)="getEntity()" style="cursor: pointer"></i>
+      <div class="name-ui-wrapper">
+      {{title}}
+      <span [ngClass]="{
+        'status': true,
+        'successText': status==='Ativo',
+        'warningText': status==='Protótipo'
+        }">{{status}}</span>
+      </div>
+    </div>
+
+      <!-- <button pButton
+        class="colapse"
+        [icon]="detailsCollapsed==='true'?'fa fa-angle-down':'fa fa-angle-up'"
+        (click)="detailsCollapsed = detailsCollapsed==='true'?'false':'true'">
+      </button> -->
+
+  </p-header>
+  <div>
+    <p-panel [toggleable]="false" [collapsed]="detailsCollapsed==='true'" class="details">
+      <ng-content></ng-content>
+    </p-panel>
+  </div>
+</p-card>

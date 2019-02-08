@@ -1,0 +1,401 @@
+
+$incomplete: #bbb !default;
+$complete: #65d074 !default;
+$active: #337AB7 !default;
+$hover: #5671d0 !default;
+$step-danger: #d3140f !default;
+$step-warning: #edb10a !default;
+$step-info: #5b32d6 !default;
+
+// sizing
+
+$bubble-size: 30px !default;
+$bubble-line-thickness: 3px !default;
+$border-thickness: 1px !default;
+$darken-amount: 30% !default;
+
+// misc
+$mobile-size: 1300px !default;
+
+
+.ui-steps .ui-steps-item {
+  width: 25%;
+}
+
+.ui-steps.steps-custom {
+  margin-bottom: 30px;
+}
+
+.ui-steps.steps-custom .ui-steps-item {
+  height: 10px;
+  padding: 0 1em;
+}
+
+
+.ui-steps.steps-custom .ui-steps-item .ui-steps-number {
+  background-color: #0081c2;
+  color: #FFFFFF;
+  display: inline-block;
+  width: 36px;
+  border-radius: 50%;
+  margin-top: -14px;
+  margin-bottom: 10px;
+}
+
+.ui-steps.steps-custom .ui-steps-item .ui-steps-title {
+  color: #555555;
+}
+
+.d-none.ui-tabview .ui-tabview-nav {
+  display: none!important;
+}
+.ui-button-color{
+  border-radius: 5px;
+  background-image: linear-gradient(#63BD58,#61D258);
+  width: 170px;
+  height:40px;
+  font-family: 'Roboto';
+  font-size: 17px;
+  color:#FFFFFF;
+}
+
+
+@mixin bubble-style($color) {
+  background-color: $color;
+  color: $color;
+  border-color: darken($color, $darken-amount);
+  &:before,
+  &:after {
+    background-color: $color;
+    border-color: darken($color, $darken-amount);
+  }
+}
+.flexer {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.no-flexer {
+  display: block;
+}
+.no-flexer-element {
+  -ms-flex: 0;
+  -webkit-flex: 0;
+  -moz-flex: 0;
+  flex: 0;
+}
+.flexer-element {
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  flex: 1;
+}
+.progress-indicator {
+  @extend .flexer;
+  margin: 0;
+  padding: 0;
+  font-size: 80%;
+  text-transform: uppercase;
+  margin-bottom: 1em;
+  > li {
+    @extend .flexer-element;
+    list-style: none;
+    text-align: center;
+    width: auto;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    text-overflow: ellipsis;
+    color: $incomplete;
+    display: block;
+    &:hover {
+      color: darken($incomplete, $darken-amount);
+    }
+  }
+  > li .bubble {
+    border-radius: 1000px;
+    width: $bubble-size;
+    height: $bubble-size;
+    background-color: $incomplete;
+    display: block;
+    margin: 0 auto 0.5em auto;
+    border-bottom: $border-thickness solid darken($incomplete, 20%);
+  }
+
+  // line connectors
+
+  > li .bubble:before,
+  > li .bubble:after {
+    display: block;
+    position: absolute;
+    top: $bubble-size / 2 - $border-thickness;
+    width: 100%;
+    height: $bubble-line-thickness;
+    content: '';
+    background-color: $incomplete;
+  }
+  > li .bubble:before {
+    left: 0;
+  }
+  > li .bubble:after {
+    right: 0;
+  }
+
+  > li:first-child .bubble:before,
+  > li:first-child .bubble:after {
+    width: 50%;
+    margin-left: 62%;
+  }
+
+  > li:last-child .bubble:before,
+  > li:last-child .bubble:after {
+    width: 50%;
+    margin-right: 50%;
+  }
+
+
+  // completed state
+
+  > li.completed {
+    color: $complete;
+    .bubble {
+      @include bubble-style($complete);
+    }
+  }
+
+  // current state
+
+  > li.active {
+    color: $active;
+    .bubble {
+      @include bubble-style($active);
+    }
+  }
+
+  // button states
+
+  > li a:hover .bubble {
+    @include bubble-style($hover);
+  }
+
+  // override states
+
+  > li.danger .bubble {
+    @include bubble-style($step-danger);
+  }
+  > li.warning .bubble {
+    @include bubble-style($step-warning);
+  }
+  > li.info .bubble {
+    @include bubble-style($step-info);
+  }
+
+  // stacked version
+
+  &.stacked {
+    @extend .no-flexer;
+    > li {
+      text-indent: -10px;
+      text-align: center;
+      display: block;
+    }
+    > li .bubble:before,
+    > li .bubble:after {
+      left: 50%;
+      margin-left: -$bubble-line-thickness / 2;
+      width: $bubble-line-thickness;
+      height: 100%;
+    }
+    .stacked-text {
+      position: relative;
+      z-index: 10;
+      top: 0;
+      margin-left: 60% !important;
+      width: 45% !important;
+      display: inline-block;
+      text-align: left;
+      line-height: 1.2em;
+    }
+    > li a {
+      border: none;
+    }
+  }
+  &.stacked.nocenter {
+    > li .bubble {
+      margin-left: 0;
+      margin-right: 0
+    }
+    > li .bubble:before,
+    > li .bubble:after {
+      left: $bubble-size / 2;
+    }
+    .stacked-text {
+      width: auto !important;
+      display: block;
+      margin-left: $bubble-size * 2 !important;
+    }
+  }
+}
+
+@media handheld, screen and (max-width: $mobile-size) {
+  .progress-indicator {
+    font-size: 60%;
+  }
+}
+
+.stepper {
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .24), 0 0 2px rgba(0, 0, 0, .12);
+  margin: 18px;
+  padding: 18px;
+}
+
+.success {
+  text-align: center;
+}
+
+// start css on 19-11-018
+
+
+
+.ui-inputgroup {
+  color: #000;
+}
+ui-inputgroup label{
+  width: 100%;
+  float: left;
+
+}
+
+p-col-6l label{
+  width: 100%;
+  float: left;
+  color: #000000;
+
+}
+.celar {
+  clear: both;
+}
+
+.ui-g-4 {
+  float: left;
+  color: #000;
+}
+
+.fromg .text-color{
+  float: left !important;
+}
+
+.text-left {
+  text-align: left;
+  color: #000000;
+}
+
+.boxborder {
+
+  border: 2px solid #A1A6B5;
+  border-style: dashed;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+
+
+}
+.file{
+  border: 2px solid #A1A6B5;
+  padding: 5px;
+
+}
+p-dialog .ui-dialog{
+  position:relative;
+  overflow: scroll; 
+}
+
+.buttongrey {
+  background: #A1A6B5;
+  text-align: center;
+  width: 180px;
+  padding: 7px 14px;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 7px;
+  margin: 0px auto;
+  cursor:pointer;
+}
+
+// 20-11-2018
+
+.button-font.ui-button{
+  font-size: 13px !important;
+}
+.row-button{
+  display: flex;
+  display:-webkit-flex;
+}
+.button-font-size.ui-button{
+  font-size: 12px;
+}
+.buscar-align-left{
+  text-align: left;
+}
+.buscar-align-center{
+  text-align: center;
+}
+.header-text{
+  color:#164e5f;
+}
+.file-font-size{
+  font-size:17px;
+  font-weight:700;
+}
+.radio-label-font{
+  font-size: 10px;
+  white-space: nowrap;
+}
+.map-content{
+  display: block !important;
+  height:355px;
+  z-index: 20000;
+}
+.mt-4{
+margin-top:-10px;
+}
+.box-border{
+  border:1px solid grey !important;
+  height:30px;
+}
+.step3-box{
+  background: #e3e4e7;
+  padding: 10px;
+  color:#9099a5;
+  border-radius: 5px;
+  width: 100%;
+}
+
+
+.button-font-size.ui-button[_ngcontent-c5] {
+  border: none;
+  border-radius: 4px;
+}
+
+.wizbtn.ui-button{
+  display: inline-block;
+}
+
+
+
+/**
+ *ODA
+ */
+.wizard-buttons{
+  text-align: right;
+}
+.p-grid{
+  text-align: left;
+}
+.p-grid.header{
+  text-align: right;
+}
+

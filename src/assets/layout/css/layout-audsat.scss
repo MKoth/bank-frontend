@@ -1,0 +1,114 @@
+/* Sobrescrever variaveis de layout aqui */
+
+@import "../../sass/layout/_layout";
+
+
+body .ui-widget .ui-icon.fa, 
+body .ui-icon.fa {
+   font-family: audsat;
+}
+
+
+//Optional css for button;
+
+body .ui-button.ui-button-text-icon-left .ui-icon.fa, 
+body .ui-button.ui-button-text-icon-right .ui-icon.fa {
+        font-size: 20px;
+        margin-top: -11px;
+}
+            
+body.layout-compact .ui-button.ui-button-text-icon-left .ui-icon.fa, 
+body.layout-compact .ui-button.ui-button-text-icon-right .ui-icon.fa {
+        font-size: 18px;
+        margin-top: -10px;
+ }
+
+
+// body {
+//     font-family: 'Roboto'!important;
+//     color: $textColor;
+// }
+// h1,h2,h3,h4,h5,h6{
+//     font-family: 'Sorce Sans Pro Regular'!important;
+//     color: $secondaryColor;
+// }
+// h1{ font-size:40px; }
+// h2{ font-size:35px; }
+// h3{ font-size:30px; }
+// h4{ font-size:25px; }
+// h5{ font-size:20px; }
+// h6{ font-size:15px; }
+
+// // .ui-float-label label{
+// //   font-family: 'Lato Regular';
+// // }
+
+// button{
+//     // width:113px;
+//     // height:28px;
+//     // margin-right:8px;
+//     // margin-top:13px;
+//     background-color: $primaryColor;
+//     // border: none;
+//     color: $primaryTextColor;
+//     font-family: 'Roboto Regular'!important;
+//     // text-align: center;
+//     // text-decoration: none;
+//     // font-weight: 500;
+//     // border-radius: 3px;
+//     width:100%!important;
+// }
+// input.ui-inputtext, .ui-float-label{
+//     width: 100%;
+// }
+// .forms{
+//     background-color:white;
+// }
+
+// @media (min-width: 1025px) {
+//     .topbar{
+//         li > a{
+//             color:white !important;
+//             font-size:20px;
+//             margin-top:5px;
+//             i{
+//                 font-size: 23px;
+//                 vertical-align: bottom;
+//             }
+//         }
+//         li li a{
+//             color:$textColor  !important;
+//             font-size:14px;
+//             i{
+//                 font-size: 14px;
+//                 vertical-align: unset;
+//             }
+//         }
+//         .topbar-icon{
+//             font-size: 25px !important;
+//         }
+//     }
+// }
+
+// .information-tabview{
+//     .ui-tabview .ui-tabview-title{
+//        color: #808399 !important;
+//     }
+//     .ui-tabview-selected .ui-tabview-title{
+//         color:white !important;
+//     }
+
+// }
+
+
+// .layout-wrapper{
+//     min-height: 80%;
+//      min-height: -webkit-calc(100% - 46px);
+//      min-height: -moz-calc(100% - 46px);
+//      min-height: calc(100% - 46px);
+//  }
+ 
+//  body{
+//      overflow-x: hidden;
+//  }
+

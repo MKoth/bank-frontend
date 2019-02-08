@@ -1,0 +1,138 @@
+  <p-card styleClass="audsat-card">
+    <form #registryForm="ngForm" (ngSubmit)="buscar(registryForm)">
+
+  <div class="p-grid margin-top p-align-end" >
+    <div class="p-col-12 p-md-3">
+          <h2 class="ui-title">Buscar Matrículas</h2>
+    </div>
+    <div class="p-col-12 p-md-9 buscar-align-right">
+      <!-- <button pButton type="button" label="Incluir Imovel" (click)="showDialog()" class="ui-button ui-button-color" >
+        </button> -->
+          <app-includematricula></app-includematricula>
+          <app-importmatricula></app-importmatricula>
+          <!-- <button pButton type="button" label="Importar Imóvel" class="ui-button ui-button-color" (click)="showDialog()"></button> -->
+
+        </div>
+      </div>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <div class="p-col-12 p-md-4 p-md-offset-8 buscar-align-right">
+            <p-radioButton name="dateFilter" value="inclusionDate" [(ngModel)]="selectedValue"></p-radioButton>
+            <label class="ui-radiobutton-label"> Data de cadastro </label>
+            <p-radioButton name="dateFilter" value="valuationStatusDate" [(ngModel)]="selectedValue"></p-radioButton>
+            <label class="ui-radiobutton-label"> Data de aprovação </label>
+            <!-- <p-radioButton name="dateFilter" value="inclusionDate" [(ngModel)]="selectedValue"></p-radioButton>
+            <label class="ui-radiobutton-label"> Data de cadastro </label>
+
+            <p-radioButton name="dateFilter" value="valuationStatusDate" [(ngModel)]="selectedValue"></p-radioButton>
+            Data de aprovação -->
+          </div>
+        </div>
+        <div class="p-col-12 p-md-4">
+          <label for="situacao">Situação da matrícula</label>
+          <p-dropdown [options]="statusModel" id="caret" name="status" [(ngModel)]="registryform.status" styleClass="dropdown"></p-dropdown>
+        </div>
+
+        <div class="p-col-12 p-md-4">
+          <label for="complemento">Complemento</label>
+          <input type="text" pInputText placeholder="Insira o complemento" name="complement" [(ngModel)]="registryform.complement"
+            class="ui-text-box" />
+        </div>
+        <div *ngIf="selectedValue === 'inclusionDate'" class="p-col-6 p-md-2">
+          <p for="datacadastroinicio" class="date-margin date-font">De</p>
+          <p-calendar [(ngModel)]="registryform.inclusionDate1" name="inclusionDate1" [locale]="en" dateFormat="dd/mm/yy"
+            [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" placeholder="De" styleClass="calendar"></p-calendar>
+        </div>
+
+
+        <div *ngIf="selectedValue === 'inclusionDate'" class="p-col-6 p-md-2">
+          <p for="datacadastrofim" class="date-margin date-font">Até</p>
+          <p-calendar [(ngModel)]="registryform.inclusionDate2" name="inclusionDate2" [locale]="en" dateFormat="dd/mm/yy"
+            [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" placeholder="Até" styleClass="calendar"></p-calendar>
+        </div>
+
+        <div *ngIf="selectedValue === 'valuationStatusDate'" class="p-col-6 p-md-2">
+          <p for="dataaprovacaoinicio" class="date-margin date-font">De</p>
+          <p-calendar [(ngModel)]="registryform.valuationStatusDate1" name="valuationStatusDate1" [locale]="en" dateFormat="dd/mm/yy"
+            [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" placeholder="De" styleClass="calendar"></p-calendar>
+        </div>
+        <div *ngIf="selectedValue === 'valuationStatusDate'" class="p-col-6 p-md-2">
+          <p for="dataaprovacaofim" class="date-margin date-font">Até</p>
+          <p-calendar [(ngModel)]="registryform.valuationStatusDate2" name="valuationStatusDate2" [locale]="en" dateFormat="dd/mm/yy"
+            [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" placeholder="Até" styleClass="calendar"></p-calendar>
+        </div>
+      </div>
+
+      <div class="p-grid form-group">
+        <div class="p-col-12 p-md-4">
+          <label for="name">Nome</label>
+          <input type="text" pInputText placeholder="Insira o nome" name="name" [(ngModel)]="registryform.name" class="ui-text-box" />
+        </div>
+        <div class="p-col-12 p-md-4">
+          <label for="cpfcnpj">CPF/CNPJ</label>
+
+          <!-- <cpf-mask (cpfcnpjChange)="getCpf($event)" name="cpfcnpj"></cpf-mask> -->
+
+          <input pInputText [textMask]='mask()' [(ngModel)]="registryform.cpfcnpj" placeholder="Insira o CPF/CNPJ"  name="cpfcnpj" />
+
+          <!-- <input type="text" pInputText placeholder="Insira o CPF/CNPJ" name="cpfcnpj" minlength="11" [(ngModel)]="registryform.cpfcnpj"
+            class="ui-text-box" /> -->
+          <!-- [ngClass]="{'is-invalid': form.get('cpf').touched && form.get('cpf').invalid}" [(ngModel)]="cpfcnpj" class="ui-text-box" -->
+          <!-- <div class="invalid-feedback">
+          <div>First Name is required</div>
+        </div> -->
+        </div>
+        <div class="p-col-12 p-md-4">
+          <label for="code">ID da matrícula</label>
+          <input type="text" pInputText placeholder="Insira o ID da matrícula" name="code" [(ngModel)]="registryform.code" class="ui-text-box" />
+        </div>
+      </div>
+
+      <div class="p-grid">
+        <div class="p-col-12 p-md-4">
+          <label>CAR</label>
+          <input type="text" pInputText placeholder="Insira o código do CAR" required name="car" [(ngModel)]="registryform.car"
+            class="ui-text-box" />
+        </div>
+      </div>
+      <div class="p-grid">
+        <div class="p-col-12 buscar-align-right">
+          <button pButton type="button" label="Limpar" class="ui-button ui-button-color" (click)="resetForm(registryForm)"></button>
+          <button pButton type="submit" label="Buscar" class="ui-button ui-button-color"></button>
+        </div>
+      </div>
+    </form>
+
+  </p-card>
+<p-card styleClass="audsat-card">
+  <p-footer>
+    <!-- <app-matriculatable [revisions]="revisions"></app-matriculatable> -->
+    <p-table [value]="revisions" [paginator]="true" [rows]="rowsNumber" [lazy]="true" [lazyLoadOnInit]="true" [totalRecords]="totalRecords" [loading]="loading" (onLazyLoad)="changePage($event)">
+      <ng-template pTemplate="header">
+       <tr>
+         <th>ID da matrícula</th>
+         <th>Nome</th>
+         <th>Complemento do imóvel</th>
+         <th>Área</th>
+         <th>Status</th>
+       </tr>
+     </ng-template>
+     <ng-template pTemplate="body" let-revision>
+       <tr (click)="getMatricula(revision.thing.id)" style="cursor: pointer">
+         <td class="ui-table-text">{{revision.registry.code}}</td>
+         <td class="ui-table-text">{{revision.registry.name}}</td>
+         <td class="ui-table-text">{{revision.registry.complement}}</td>
+         <td class="ui-table-text">{{revision.registry.area}}</td>
+         <td class="ui-table-text">{{revision.status}}</td>
+       </tr>
+     </ng-template>
+   </p-table>
+   <div class="p-grid">
+       <div class="p-col-12 p-md-4"><p style="color:white">{{revisions?(totalRecords+' matriculas encontradas'):''}}</p></div>
+     <div class="p-col-12 p-md-2 p-md-offset-6">
+       <!-- <button pButton type="button" label="Baixar XLSX" class="ui-button ui-button-color" (click)="exportAsXLSX()" #baixar></button> -->
+       <button pButton type="button" label="Baixar XLSX" class="ui-button" (click)="exportAsXLSX()" #baixar></button>
+     </div>
+   </div>
+  </p-footer>
+</p-card>

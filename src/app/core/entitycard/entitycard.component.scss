@@ -1,0 +1,114 @@
+@import "../../../assets/sass/_mixins";
+@import "../../../assets/sass/_variables";
+
+
+.entity-icon2-wrapper{
+  float: right;
+  margin: 0.5rem 0rem;
+  i{
+    font-size: 2.2rem !important;
+  }
+}
+.entity-icon2{
+  cursor:pointer;
+}
+
+.entity-card {
+  min-width: 250px!important;
+  .ui-card-content{
+    position: relative;
+    .ui-widget-content{
+      background: transparent !important;
+    }
+  }
+  .ui-card-title{
+    // padding: 1rem 1rem 0.5rem 1rem;
+    padding: 10px 0 0 0px;
+    text-align: left;
+    i.icon-clientes{
+      font-size: 56px;
+      color: #fff;
+      display: inline-block;
+    }
+    i.icon-matriculas{
+      font-size: 56px;
+      color: #fff;
+      display: inline-block;
+    }
+    i.icon-operacoes{
+      font-size: 56px;
+      color: #fff;
+      display: inline-block;
+    }
+    i.icon-imoveis{
+      font-size: 56px;
+      color: #fff;
+      display: inline-block;
+    }
+    i.icon-garantias{
+      font-size: 56px;
+      color: #fff;
+      display: inline-block;
+    }
+      .name-ui-wrapper{
+        display: inline-block;
+        vertical-align: top;
+        padding-top: 15px;
+        font-size: $BoxSectionTitle;
+        font-weight: 500;
+        .status{
+          font-size:0.5em;
+          font-weight: bold;
+          display: block;
+          text-align: left;
+          padding-top: 5px;
+          font-size: 13px;
+          font-weight: 400;
+        }
+      }
+    }
+
+  .ui-card-subtitle{
+    padding: 0 1rem 0 1.05rem;
+  }
+  .details{
+    background-color:transparent!important;
+  }
+  .blank-icon{
+    color: transparent;
+    font-size: 1rem;
+  }
+
+  // .entity-details-secondary-icons{
+  //   float: right;
+  //   margin: 0.5em 0.5em 0 0;
+  // }
+  // .entity-details-alert-icon {
+  //   color:$dangerColor;
+  // }
+  // .details-panel {
+  //   margin: 20px -1em -1em -1em !important;
+  //   .ui-widget {
+  //     border: 0 !important;
+  //   }
+  //   .ui-panel-titlebar {
+  //     display: none !important;
+  //     border: 0 !important;
+  //   }
+  //   .details-toggle-button {
+  //     * {
+  //       background-color: transparent !important;
+  //     }
+  //     .ui-button {
+  //       color: #666666;
+  //       display: block;
+  //       margin: auto !important;
+  //       height: 15px;
+  //     }
+  //     display: block;
+  //     width: 100%;
+  //     background-color: #eeeeee;
+  //     cursor: pointer;
+  //   }
+  // }
+  }

@@ -1,0 +1,93 @@
+<div (click)="showDialog()" class="add-entity-related">+</div>
+<p-dialog
+  [(visible)]="displayDialog"
+  [modal]="true"
+  [closable]="true"
+  [closeOnEscape]="true"
+  [responsive]="true"
+  [dismissableMask]="true"
+  [positionTop]="15"
+  [minWidth]="700"
+  [minHeight]="500"
+  [width]="1100"
+  [autoZIndex]="true"
+  [contentStyle]="{'max-height': '550px'}"
+  styleClass="dialog-radius"
+  (onShow)="resetForm(operationForm)"
+  >
+  <form #operationForm="ngForm" (ngSubmit)="save()">
+    <p-header>
+      <h2><i class="icon-operacoes client-color"></i> Incluir Operação</h2>
+    </p-header>
+
+    <div class="p-grid">
+      <div class="p-col-6">
+        <div class="ui-inputgroup">
+          <label>Código</label>
+          <input
+            pInputText
+            pKeyFilter="int"
+            placeholder="Insira o Código"
+            required
+            (change)="getOperation()"
+            name="revision.operation.code"
+            [(ngModel)]="revision.operation.code"
+          />
+          <div class="hint">
+            <span *ngIf="newThing==1">
+              Nova Operação
+            </span>
+            <span *ngIf="newThing==0">
+              Operação já existente
+            </span>
+          </div>
+        </div>
+        <div class="ui-inputgroup" *ngIf="revision.operation.operationType == 'Custeio agrícola'" >
+          <label>Cultura</label>
+          <p-dropdown
+          required
+          placeholder="Selecione"
+          [options]="cultureList"
+          [(ngModel)]="revision.operation.crop"
+          name="revision.operation.crop"
+          defaultLabel="Selecione"
+          dataKey='unitId'
+          styleClass="dropdown"
+        ></p-dropdown>
+        </div>
+      </div>
+        <div class="p-col-6">
+          <div class="ui-inputgroup">
+            <label>Ponto de Atendimentos</label>
+            <p-multiSelect
+              required
+              [options]="unitsList"
+              [filter]="false"
+              [(ngModel)]="revision.units"
+              name="revision.units"
+              defaultLabel="Selecione"
+              dataKey='unitId'
+            ></p-multiSelect>
+          </div>
+          <div class="ui-inputgroup">
+            <label>Tipo de operação</label>
+            <p-dropdown
+              required
+              [options]="operationType"
+              [filter]="false"
+              [(ngModel)]="revision.operation.operationType"
+              name="revision.operation.operationType"
+              defaultLabel="Selecione"
+              dataKey='unitId'
+              styleClass="dropdown"
+            ></p-dropdown>
+          </div>
+        </div>
+        <div class="p-grid" style="text-align: left">
+          <div class="p-col-12 wizard-buttons">
+            <!--<button pButton type="button" label="Salvar" class="button-font-size" (click)="save()" ></button>-->
+            <button pButton type="submit" label="Salvar" class="button-font-size" ></button>
+          </div>
+        </div>
+    </div>
+  </form>

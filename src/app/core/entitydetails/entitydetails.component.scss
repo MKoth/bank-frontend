@@ -1,0 +1,137 @@
+@import "../../../assets/sass/_mixins";
+@import "../../../assets/sass/_variables";
+
+.entity-icon2-wrapper{
+  float: right;
+  margin: 0.5rem 0rem;
+  i{
+    font-size: 2.2rem !important;
+  }
+}
+
+
+
+
+// .chart_wrapper{
+//   position:relative;
+//   .chart_info{
+//     position: absolute;
+//     top: calc(9vw - 10vmin);
+//     width: 100%;
+//     .data_wrapper{
+//       text-align: center;
+//       text-transform: capitalize;
+//       .label{
+//         color: $textColor3;
+//         font-size: 0.75rem;
+//       }
+//       .data{
+//         font-weight:100;
+//         font-size: 2.5rem;
+//       }
+//     }
+//   }
+//   .chart{
+//     height:100%;
+//   }
+// }
+// .chart_wrapper{
+//   margin: 1rem 0 2.5rem 0;
+//   height:18vw;
+// }
+// @media screen and (max-width: 768px) {
+//   .chart_wrapper{
+//     height:60vw;
+//     .chart_info{
+//       top: calc(30vw - 14vmin);
+//     }
+//   }
+// }
+
+.entity-details {
+  .ui-card-title{
+    padding: 1rem 1rem 0.5rem 1rem;
+    .status{
+      font-size:0.5em;
+      font-weight: bold;
+    }
+  }
+  .ui-card-subtitle{
+    padding: 0 1rem 0 1.05rem;
+
+  }
+  .entity-icon {
+  }
+  .no-mark-icon{
+    width: 56px!important;
+    margin-left:0 !important;
+  }
+  .blank-icon{
+    color: transparent;
+    font-size: 1rem;
+  }
+  .highlights{
+    // padding-top: 1rem;
+  }
+
+  .client-map-section{
+    height: 517px;
+    padding-left: 15px;
+    .ui-corner-all{
+      canvas.ol-unselectable{
+        height:520px !important;
+      }
+    }
+  }
+
+  .expand-button{
+    position: absolute;
+    right: -1rem;
+    top: 40%;
+    background: #00485b;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 2rem;
+    line-height: 3rem;
+    text-align: center;
+    color: #fff;
+    font-size: 4vmin;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+  // .entity-details-secondary-icons{
+  //   float: right;
+  //   margin: 0.5em 0.5em 0 0;
+  // }
+  // .entity-details-alert-icon {
+  //   color:$dangerColor;
+  // }
+  // .details-panel {
+  //   margin: 20px -1em -1em -1em !important;
+  //   .ui-widget {
+  //     border: 0 !important;
+  //   }
+  //   .ui-panel-titlebar {
+  //     display: none !important;
+  //     border: 0 !important;
+  //   }
+  //   .details-toggle-button {
+  //     * {
+  //       background-color: transparent !important;
+  //     }
+  //     .ui-button {
+  //       color: #666666;
+  //       display: block;
+  //       margin: auto !important;
+  //       height: 15px;
+  //     }
+  //     display: block;
+  //     width: 100%;
+  //     background-color: #eeeeee;
+  //     cursor: pointer;
+  //   }
+  // }
+}
+

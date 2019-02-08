@@ -1,0 +1,136 @@
+<!-- <button
+pButton
+type="button"
+label="Incluir Cliente"
+(click)="showDialog()"
+class="ui-button"
+></button> -->
+<div (click)="showDialog()" class="add-entity-related">+</div>
+<p-dialog
+[(visible)]="displayDialog"
+[closable]="true"
+[modal]="true"
+[closeOnEscape]="true"
+[responsive]="true"
+[dismissableMask]="true"
+[width]="600"
+[minWidth]="300"
+[minY]="70"
+class="create-client-related-to"
+(onShow)="resetForm(clientForm)"
+
+>
+<form #clientForm="ngForm" (ngSubmit)="attachClient(clientForm)">
+  <p-header>
+    <h2><i class="fa fa-fw fa-user client-color"></i> Incluir cliente</h2>
+  </p-header>
+  <div id="pf" class="p-grid">
+
+    <div class="p-col-6">
+      <div class="ui-inputgroup">
+        <label>CPF/CNPJ</label>
+          <!--<cpf-mask
+            name="revision.client.cpfcnpj"
+            [(ngModel)]="revision.client.cpfcnpj"
+            required
+            (change)='loadRevision()'
+            ></cpf-mask>-->
+          <input
+            pInputText
+            [textMask]='mask()'
+            placeholder="Insira o CPF ou CNPJ"
+            name="cpfcnpj"
+            [(ngModel)]="revision.client.cpfcnpj"
+            (change)='loadRevision()'
+            required
+            />
+      </div>
+    </div>
+    <div class="p-col-6">
+
+      <span *ngIf="newThing==1">
+        <br style="line-height: 40px">Novo cliente
+      </span>
+      <span *ngIf="newThing==0">
+        <br style="line-height: 40px">Cliente já existente
+      </span>
+    </div>
+
+    <div class="p-col-6">
+      <div class="ui-inputgroup">
+        <label>Nome</label>
+        <input
+          type="text"
+          pInputText
+          [pKeyFilter]="blockSpecial"
+          placeholder="Insira o nome"
+          [(ngModel)]='revision.client.name'
+          name="revision.client.name"
+          [disabled]="!newThing"
+        />
+      </div>
+    </div>
+    <div class="p-col-6">
+      <div class="ui-inputgroup">
+        <label>Email</label>
+        <input
+          pInputText
+          type="email"
+          placeholder="Insira o email"
+          name="revision.client.email"
+          [(ngModel)]='revision.client.email'
+          [disabled]="!newThing"
+          email
+          />
+      </div>
+    </div>
+
+    <div class="p-col-6">
+      <div class="ui-inputgroup">
+        <label>Pontos de Atendimento</label>
+        <p-multiSelect
+          [style]="{'width':'100%'}"
+          [options]="unitsList"
+          [(ngModel)]="revision.units"
+          name="revision.units"
+          placeholder="Insira os pontos de atendimento"
+          defaultLabel="Selecione"
+          [filter]="false"
+          [showToggleAll]="false"
+          dataKey='unitId'
+          required
+          ></p-multiSelect>
+      </div>
+    </div>
+    <div class="p-col-5 p-offset-1" *ngIf="showPropertyClientRelationType">
+      <div class="ui-inputgroup">
+        <p-radioButton name="relationType" value="Proprietario" label="Proprietario" [(ngModel)]="relationType" inputId="opt1"></p-radioButton>
+      </div>
+      <div class="ui-inputgroup">
+        <p-radioButton name="relationType" value="Arrendatario" label="Arrendatario" [(ngModel)]="relationType" inputId="opt2"></p-radioButton>
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="p-grid">
+      <!-- <div class="p-col-4 p-offset-3">
+        <button
+        pButton
+        class="ui-button red-btn"
+        (click)="closeDialog()"
+        type="button"
+        label="Cancelar"
+        ></button>
+      </div> -->
+      <div class="p-col-4 p-offset-7">
+        <button
+        pButton
+        class="ui-button"
+        type="submit"
+        label="Incluir"
+        ></button>
+      </div>
+    </div>
+  </p-footer>
+</form>
+<!--</p-dialog>-->

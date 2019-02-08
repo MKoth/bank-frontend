@@ -1,0 +1,35 @@
+<form #changeForm="ngForm" (ngSubmit)="enviar(changeForm)">
+  <div class="p-grid">
+    <div class="p-col-12 p-md-12">
+      <label for="complemento">Digite a senha atual</label>
+      <input type="text" pInputText placeholder="" name="oldpassword" [(ngModel)]="changepass.oldpassword" class="ui-text-box" />
+    </div>
+
+    <div class="p-col-12 p-md-12">
+      <label for="complemento" >Digite a nova senha</label>
+      <input type="text" pInputText placeholder="" name="newpassword" [(ngModel)]="changepass.newpassword" class="ui-text-box" />
+    </div>
+
+    <div class="p-col-12 p-md-12">
+      <label for="complemento" >Confirme a nova senha</label>
+      <input type="text" pInputText placeholder="" name="cnewpassword" [(ngModel)]="changepass.cnewpassword" class="ui-text-box" />
+    </div>
+
+    <div class="p-col-12 p-md-12">
+      <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+        <!-- <span class="ui-button-icon-left ui-c"></span> -->
+        <span class="ui-button-text ui-c">Enviar</span>
+      </button>
+    </div>
+
+    <div *ngIf="sentNewpass" class="p-col-12 p-md-12">
+      <h3>Enviado!</h3>
+    </div>
+    <div *ngIf="!sentNewpass" class="p-col-12 p-md-12">
+      <h3>Não enviado!</h3>
+    </div>
+
+
+    
+  </div>
+</form>

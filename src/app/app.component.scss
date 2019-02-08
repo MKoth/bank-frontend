@@ -1,0 +1,35 @@
+$primaryColor: #028038;
+$primaryLightColor: #4ab064;
+$primaryDarkColor: #00520d;
+
+$secondaryColor: #1e3047;
+$secondaryLightColor: #485973;
+$secondaryDarkColor: #000620;
+
+p-toast{
+    margin-top:10px;
+    text-align:center;
+    width:40vw;
+}
+
+
+
+.footer {
+    background-color:secondaryColor;
+    color:#fff;
+    margin:0;
+    padding: 1rem 1rem;
+    line-height: 3vh;
+    div{
+      padding:0 !important;
+    }
+    i.icon-audsat{
+      font-size:6vh;
+      &:before{
+        margin: 0 !important;
+      }
+    }
+  }
+  .layout-wrapper{
+    min-height: 90vh;
+  }

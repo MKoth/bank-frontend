@@ -1,0 +1,51 @@
+<p-card>
+  <p-header>
+    <h2><i class="fa fa-fw fa-user"></i>Incluir Imóvel</h2>
+    {{addproperty.CAR | json}}
+    {{addpropertyForm.valid}}
+    {{addproperty.complement| json}}
+    {{addpropertyForm.valid}}
+  </p-header>
+  <app-stepsmatricula></app-stepsmatricula>
+  <!-- <div *ngIf="addpropertyForm.invalid" class="alert alert-danger">oi</div> -->
+  <div class="form-group">
+    <form #addpropertyForm="ngForm" (ngSubmit)="buscar(addpropertyForm)">
+    <div>
+      <div class="p-col-12" style="display:none">
+        <button pButton class="ui-button" type="submit" label="Incluir"></button>
+      </div>
+      <div class="p-col-12"> 
+        <div class="p-col-6">
+          <label>CAR</label>
+          <!-- <p-inputMask pInputText placeholder="Insira o CAR" mask="aa-9999999-9999.9999.9999.9999.9999.9999.9999.9999"
+            name="car" [(ngModel)]="addproperty.car"></p-inputMask> -->
+          <input pInputText placeholder="Insira o CAR" name="CAR" minlength="49" required [(ngModel)]="addproperty.CAR" #CAR="ngModel">
+          <!-- <div *ngIf="CAR.hasError('minlength')">Informe um CAR correto </div> -->
+        </div>
+        <div class="p-col-6">
+          <label>Complemento</label>
+          <input pInputText placeholder="Insira o complemento" name="complement" required [(ngModel)]="addproperty.complement" #complement="ngModel">
+          <!-- <div *ngIf="complement.hasError('minlength')">Informe o complemento</div> -->
+        </div>
+        <div *ngIf="addpropertyForm.invalid">
+            <!-- <p-message severity="warn" text="Preencha todos os campos corretamente"></p-message>   -->
+            <p-messages [(value)]="msgs" ></p-messages>
+            <!-- <button pButton type="button" label="Gravar e Continuar" class="ui-button" (click)="show()"></button> -->
+        </div>
+        <div class="p-col-6">
+          <!-- [routerLink]="['/mapaimovel']" -->
+          <!-- <a [routerLink]="[ '/relacionarimovel' ]" routerLinkActive="active">            
+            <button pButton type="button" label="Gravar e Continuar" class="ui-button" (click)="buscar(addpropertyForm)"
+              (click)="getAddproperty(addproperty)" (click)="show()"></button>
+               <button pButton type="button" label="Gravar e Continuar" class="ui-button" (click)="show()"></button> -->
+
+          <!-- </a>  -->
+          <button pButton type="button" label="Gravar e Continuar" class="ui-button" (click)="show()"></button>
+          <button pButton type="button" label="Cancelar" (click)="showDialog()"  class="ui-button">
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</p-card>

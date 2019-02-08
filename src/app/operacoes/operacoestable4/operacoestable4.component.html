@@ -1,0 +1,33 @@
+<div class="p-grid"> 
+    <div class="p-col-6 client-one-section" style="box-sizing: border-box; min-height: 200px; margin-right: 3%; width: 47%; margin-bottom: 3%;">
+      <p-card class="imovel-risco-analize-section">
+      <p-header>
+        <div class="ui-card-title">
+          <div class="clien-ame" style="text-align:center">GLEBAS SOBREPOSTAS DENTRO DA OPERAÇÃO</div>
+        </div>
+      </p-header>
+      </p-card>
+      <div style="width:100%;display: grid;min-height: 250px;">
+      <!--<p-chart type="line" [data]="lineData"></p-chart>-->
+        <ngx-charts-line-chart
+          style="color:#fff"
+          [results]="data"
+          [scheme]="{domain: ['#00fffffb', '#ffffff', '#ffffff', '#ffffff', '#ffffff']}" 
+          [gradient]="false" 
+          [customColors]="customColors"
+          [xAxis]="true" 
+          [yAxis]="true" 
+          [legend]="false" 
+          [showXAxisLabel]="false" 
+          [showYAxisLabel]="false"
+          [xAxisLabel]="" 
+          [yAxisLabel]="" 
+          [autoScale]="true"
+        ></ngx-charts-line-chart>
+      </div>
+    </div>
+  
+    <div class="p-col-6 client-one-section" style="box-sizing: border-box; min-height: 200px; margin-bottom: 3%;">
+      <app-operacoestableadjustable [tablecontent]="tablecontent"></app-operacoestableadjustable>
+    </div>
+</div>

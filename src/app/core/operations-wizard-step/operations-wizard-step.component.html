@@ -1,0 +1,141 @@
+<form #form="ngForm">
+  <div class="p-grid">
+    <div class="p-col-4">
+      <div class="ui-inputgroup">
+        <label>Código</label>
+        <input
+          pInputText
+          placeholder="Insira o código"
+          name="revision.operation.code"
+          [(ngModel)]="revision.operation.code"
+        />
+      </div>
+      <div class="ui-inputgroup">
+        <label>Ponto de Atendimentos</label>
+        <p-multiSelect
+          [style]="{'width':'100%'}"
+          required
+          [options]="unitsList"
+          [filter]="false"
+          [(ngModel)]="revision.units"
+          name="revision.units"
+          defaultLabel="Selecione"
+          dataKey='unitId'
+        ></p-multiSelect>
+      </div>
+      <div class="p-grid">
+        <div class="p-col-6">
+          <div class="ui-inputgroup">
+            <label>Complemento</label>
+            <input
+              pInputText
+              [pKeyFilter]="blockSpecial"
+              placeholder="Insira o complemento"
+              name="revision.operation.complement"
+              [(ngModel)]="revision.operation.complement"
+            />
+          </div>
+        </div>
+        <div class="p-col-6">
+          <div class="ui-inputgroup">
+            <label>Roteiro de Acesso</label>
+            <input
+              pInputText
+              placeholder="Insira o roteiro de acesso"
+              name="revision.operation.acessGuide"
+              [(ngModel)]="revision.operation.acessGuide"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-col-4">
+      <div class="ui-inputgroup">
+        <label>Tipo de operação</label>
+        <p-dropdown
+          required
+          [options]="operationTypesList"
+          [filter]="false"
+          [(ngModel)]="revision.operation.operationType"
+          name="revision.operation.operationType"
+          defaultLabel="Selecione"
+          dataKey='unitId'
+          styleClass="dropdown"
+        ></p-dropdown>
+      </div>
+      <div class="p-grid">
+        <div class="p-col-6">
+          <div class="ui-inputgroup">
+            <label>UF</label>
+            <input
+              pInputText
+              placeholder="Insira o UF"
+              name="revision.operation.uf"
+              [(ngModel)]="revision.operation.uf"
+            />
+          </div>
+        </div>
+        <div class="p-col-6">
+          <div class="ui-inputgroup">
+            <label>Município</label>
+            <input
+              pInputText
+              placeholder="Insira município"
+              name="revision.operation.city"
+              [(ngModel)]="revision.operation.city"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-col-4">
+      <div class="ui-inputgroup" *ngIf="revision.operation.operationType=='Custeio agrícola'">
+        <label>Cultura</label>
+        <p-dropdown
+        required
+        placeholder="Selecione"
+        [options]="culturasList"
+        [filter]="false"
+        [(ngModel)]="revision.operation.crop"
+        name="revision.operation.crop"
+        defaultLabel="Selecione"
+        dataKey='unitId'
+        styleClass="dropdown"
+      ></p-dropdown>
+
+      </div>
+      <div class="p-grid">
+        <div class="p-col-6 p-md-6"  style="margin-top:15px">
+          <p for="dataaprovacaoinicio" class="date-margin date-font">De</p>
+          <p-calendar
+            required
+            [(ngModel)]="revision.operation.timeSpanInitial"
+            name="timeSpanInitial"
+            [locale]="en"
+            dateFormat="dd/mm/yy"
+            [monthNavigator]="true"
+            [yearNavigator]="true"
+            yearRange="2000:2030"
+            placeholder="De"
+            styleClass="calendar"
+          ></p-calendar>
+        </div>
+        <div class="p-col-6 p-md-6"  style="margin-top:15px">
+          <p for="dataaprovacaofim" class="date-margin date-font">Até</p>
+          <p-calendar
+            required
+            [(ngModel)]="revision.operation.timeSpanFinal"
+            name="timeSpanFinal"
+            [locale]="en"
+            dateFormat="dd/mm/yy"
+            [monthNavigator]="true"
+            [yearNavigator]="true"
+            yearRange="2000:2030"
+            placeholder="Até"
+            styleClass="calendar"
+          ></p-calendar>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

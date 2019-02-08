@@ -1,0 +1,9 @@
+<form #form="ngForm">
+  <div class="p-grid">
+  	<div *ngFor="let gleba of amountOfGlebas;let i = index">
+    	<textarea  name="gleba" pInputTextarea  [(ngModel)]='glebas[i]'></textarea>
+    	<!-- <button class="glebas-add-button" (click)="addGleba()">+</button>
+    	<button class="glebas-remove-button" *ngIf="index>0" (click)="removeGleba()">-</button> -->
+    </div>
+  </div>
+</form>

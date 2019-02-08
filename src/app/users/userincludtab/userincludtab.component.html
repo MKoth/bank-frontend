@@ -1,0 +1,31 @@
+
+      <p-card title="Pontos de Atendimento">
+        <p-header>
+            <div class='p-grid'>
+                <div class="p-col-6">
+                  <span class="entity-details">Pontos de Atendimento</span>
+                </div>
+              </div>
+        </p-header>
+        <p-table [value]="unitWrite">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>ID da Unidade</th>
+              <th>Nome da Unidade</th>
+              <th>Permission<th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-unitWrite let-rindex="rowIndex">
+            <tr>
+              <td>{{unitWrite.unitId}}</td>
+              <td>{{unitWrite.unitLabel}}</td>
+              <td>
+                  <p-dropdown [style]="{ width: '16vw' }" (onChange)="teste($event, rindex)" [options]="perfil"></p-dropdown>
+              <td>
+            </tr>
+          </ng-template>
+          <ul *ngIf="unitWrite.length">
+            <li *ngFor="let file of unitWrite">teste</li>
+          </ul>
+        </p-table>
+    </p-card>

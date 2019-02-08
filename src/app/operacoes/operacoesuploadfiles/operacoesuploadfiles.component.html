@@ -1,0 +1,56 @@
+<div class="p-grid Arquivos" style="margin-top: 2rem">
+    <div class="p-col-12 p-md-12 ">
+        <p-card title="Arquivos">
+            <p-header>
+            <div class='p-grid'>
+                <div class="p-col-12">
+                    <img class="alerts" src="../assets/layout/images/arquivos.svg">
+                <span class="entity-details">Arquivos</span>
+                </div>
+            </div>
+            </p-header>
+            <p-table [value]='uploadedFiles'>
+            <ng-template pTemplate="header">
+                <tr>
+                <th>Arquivo</th>
+                <th>Tamanho</th>
+                <th> </th>
+                <th></th>
+                </tr>
+                <tr>
+                <td>abc.html</td>
+                <td>10mb</td>
+                <td rowspan="2" align="left" ><button class="upload-btn-close"><img src="../assets/layout/images/fechar.svg"></button></td>
+                <td rowspan="2" align="left">
+                    
+                    <button pButton type="button" label="Upload" (click)="showDialog()" class="ui-button"><i class="fa fa-upload" aria-hidden="true"></i></button>
+                    <p-dialog class="modal" [(visible)]="displayDialog" [modal]="true" [dismissableMask]="true" [width]="600" [height]="400">
+                    <p-fileUpload chooseLabel="Upload" multiple="multiple" maxFileSize="1000000" 
+                    name="file" [url]="API_Url" (onUpload)="onUpload($event)" (onBeforeSend)="onBeforeSend($event)" (onError)="onError($event)">
+                        <ng-template pTemplate="content">
+                        <ul *ngIf="uploadedFiles.length">
+                            <li *ngFor="let file of uploadedFiles"> {{file.name}} - {{file.size}} </li>
+                        </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                    </p-dialog></td>
+                </tr>
+                <tr>
+                <td colspan="3">
+                    <span class="label-error">You have uploaded a wrong file</span>
+                </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-file>
+                <tr>
+                <td>Arquivo 1</td>
+                <td>1 mb</td>
+                <td><button pButton type="button" (click)="delete(rowIndex)" label="X" class="ui-button-danger"></button></td>
+                </tr>
+            </ng-template>
+            </p-table>
+            
+            
+        </p-card>
+    </div>
+</div>

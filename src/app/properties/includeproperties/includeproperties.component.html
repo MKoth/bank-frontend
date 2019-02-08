@@ -1,0 +1,76 @@
+<button pButton type="button" label="Incluir Imóvel" (click)="showDialog()"></button>
+<p-dialog
+  [(visible)]="displayDialog"
+  [closable]="true"
+  [modal]="true"
+  [draggable]="false"
+  [closeOnEscape]="true"
+  [responsive]="true"
+  [dismissableMask]="true"
+  [positionTop]="15"
+  [minHeight]="400"
+  [width]="1200"
+  [contentStyle]="{'max-height':'500px'}"
+  [autoZIndex]="true"
+  styleClass="dialog-radius"
+>
+  <p-header>
+        <img class="center" src="{{step_img}}" />
+  </p-header>
+  <div class="p-grid">
+    <div class="p-col-12">
+      <p-tabView styleClass="d-none" [activeIndex]="stepActiveIndex">
+        <p-tabPanel styleClass="d-none" header="Informações do Imovel">
+          <property-wizard-step #propertyStep></property-wizard-step>
+          <div class="p-grid" style="text-align: left">
+            <div class="p-col-12 wizard-buttons">
+              <button pButton type="button" label="Adicionar no Mapa" class="ui-button button-font-size" (click)="goTo(1)" [disabled]="propertyStep.form.form.invalid || propertyStep.newThing==-1 || propertyStep.newThing==0 || propertyStep.infoCar"></button>
+              <button pButton type="button" label="Continuar" class="button-font-size" (click)="goTo(2)" [disabled]="propertyStep.form.form.invalid || propertyStep.newThing==-1 || propertyStep.newThing==1 && !propertyStep.infoCar" ></button>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Mapa">
+          <app-map [editable]='true' #map1 (getPolygons)="setPropertyCoordinates($event)" class="map-content"></app-map>
+          <div class="p-grid p-justify-end">
+            <div class="p-col-2">
+              <button pButton type="button" label="Voltar" class="ui-button button-font-size" (click)="goTo(0)"></button>
+            </div>
+            <div class="p-col-2">
+              <button pButton type="button" label="Continuar" class="ui-button button-font-size" (click)="goTo(2)"></button>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Clientes" >
+          <client-wizard-step #clientStep></client-wizard-step>
+          <div class="p-grid" style="text-align: left">
+            <div class="p-col-12 wizard-buttons">
+              <button pButton type="button" label="Voltar" class="ui-button button-font-size" (click)="goTo(0)"></button>
+              <button pButton type="button" label="Continuar" class="ui-button button-font-size" (click)="goTo(3)" [disabled]="clientStep.form.form.invalid"></button>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Matriculas">
+          <registry-wizard-step #registryStep></registry-wizard-step>
+          <div class="p-grid" style="text-align: left">
+            <div class="p-col-12 wizard-buttons">
+              <button pButton type="button" label="Voltar" class="ui-button button-font-size" (click)="goTo(2)"></button>
+              <button pButton type="button" label="Adicionar no Mapa" (click)="goTo(4)" class="ui-button button-font-size"[disabled]="registryStep.form.form.invalid || registryStep.newThing==0"></button>
+              <button pButton type="button" label="Salvar" (click)="save()" class="ui-button button-font-size"[disabled]="registryStep.form.form.invalid || registryStep.newThing==1"></button>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Mapa2">
+            <app-map [editable]='true' #map2 (getPolygons)="setRegistryCoordinates($event)" class="map-content"></app-map>
+            <div class="p-grid p-justify-end">
+              <div class="p-col-2">
+                <button pButton type="button" label="Voltar" class="ui-button button-font-size" (click)="goTo(3)"></button>
+              </div>
+              <div class="p-col-2">
+                <button pButton type="button" label="Salvar" class="ui-button button-font-size" (click)="save()"></button>
+              </div>
+            </div>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</p-dialog>

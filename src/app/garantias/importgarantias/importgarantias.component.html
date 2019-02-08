@@ -1,0 +1,34 @@
+<button pButton type="button" label="Importar garantia" class="ui-button" (click)="showDialog()"></button>
+<div>
+  <p-dialog class="modal" [(visible)]="displayDialog" [modal]="true" [dismissableMask]="true" [width]="600" [height]="400">
+    <p-header>
+      <h2>Importar Arquivo CSV</h2>
+    </p-header>
+            <!--
+            <p-fileUpload name="file [url]="API_Url" (onUpload)="onUpload($event)"
+                           accept=".csv,.xls,.xlsx" (onBeforeSend)="onBeforeSend($event)"
+                                  multiple="false" maxFileSize="100000000" (onError)="onError($event)">
+                                  <ng-template pTemplate="content">
+                                      <ul>
+                                          <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                        </ul>
+                    </ng-template>
+            </p-fileUpload>
+            -->
+            <div class="athos">
+            <p-fileUpload mode="advanced" name="file"
+            [url]="API_Url" accept=".csv,.xls,.xlsx" maxFileSize="1000000" (onUpload)="onUpload($event)"
+            (onBeforeSend)="onBeforeSend($event)" (onError)="onError($event)" chooseLabel="Selecionar Arquivos"></p-fileUpload>
+            </div>
+    <!-- <p-footer>
+    <div class="p-grid">
+      <div class="p-col-3 p-offset-9">
+        <div class="ui-dialog-buttonpane ui-helper-clearfix red-btn">
+          <p-button type="submit" (click)="closeDialog()" label="Voltar" ></p-button>
+            <button pButton type="submit" class="ui-button red-btn" (click)="closeDialog()" label="Voltar"></button>
+          </div>
+        </div>
+      </div>
+      </p-footer> -->
+  </p-dialog>
+</div>

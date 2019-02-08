@@ -1,0 +1,26 @@
+.create-registry-related-to{
+  .ui-inputtext{
+    border: 1px solid #003E51;
+    font-size: 0.8rem;
+    color: #003E51;
+    padding: 0.5rem;
+    padding-left: 0.5rem;
+    margin-top: 0.4rem;
+    &::placeholder{
+      color: #003e5199;
+      font-size: 0.8rem;
+    }
+    &:hover{
+      border: 1px solid #003E51;
+    }
+  }
+  .ui-dropdown{
+    width: 100%;
+    border-bottom: none;
+  }
+}
+.map-content{
+  display: block !important;
+  height:355px;
+  z-index: 20000;
+}

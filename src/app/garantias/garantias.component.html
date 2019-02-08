@@ -1,0 +1,24 @@
+<div class="p-grid" *ngIf="ready">
+  <div class="p-col-12">
+    <app-garantiasdetails #details [revision]="revision"></app-garantiasdetails>
+  </div>
+  <div class="p-col-12">
+    <relations-tabs (getTabPolygon)='centerToPolygon($event)' (sendData)='updateMap($event)' [revision]="revision" type="guarantee"></relations-tabs>
+  </div>
+  <div class="p-col-4 client-one-section" style="box-sizing: border-box">
+    <app-garantiastabone></app-garantiastabone>
+  </div>
+  <div class="p-col-8" style="box-sizing: border-box">
+    <aol-map [width]="'100%'" [height]="'100%'">
+      <aol-view [zoom]="16">
+        <aol-coordinate [y]="-23.618280" [x]="-46.676741" [srid]="'EPSG:4326'"></aol-coordinate>
+      </aol-view>
+      <aol-layer-tile>
+        <aol-source-osm></aol-source-osm>
+      </aol-layer-tile>
+    </aol-map>
+  </div>
+  <div class="p-col-12 client-one-section rsa-details-holder" style="box-sizing: border-box; min-height:200px;">
+    <app-garantiasrsadetails></app-garantiasrsadetails>
+  </div>
+</div>

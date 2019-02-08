@@ -1,0 +1,29 @@
+*{
+    box-sizing: border-box
+}
+
+.ol-custom{
+   z-index: 80;
+   bottom:50% !important;
+   right:1%;
+   position: absolute;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   padding-top: 20px;
+}
+.ol-zoom-in{
+  margin:5px;
+}
+i.entityicon{
+  float: left;
+  color: #fff;
+  padding-left: 30px;
+  padding-top: 0px;
+}
+.text-bold{
+  font-weight: 900!important;
+}
+.clientButton{
+  margin-left:50px !important;
+}

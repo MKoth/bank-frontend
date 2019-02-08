@@ -1,0 +1,78 @@
+<form #form="ngForm">
+  <div class="p-grid">
+    <div class="p-col-6">
+      <div class="ui-inputgroup">
+        <label>CAR</label>
+        <input
+          pInputText placeholder="Insira o CAR"
+          required
+          (change)="getCar()"
+          name="revision.property.car"
+          [(ngModel)]="revision.property.car"
+        />
+        <div class="hint">
+          <span *ngIf="newThing==1">
+            Novo imóvel
+          </span>
+          <span *ngIf="newThing==0">
+            Imóvel já existente
+          </span>
+        </div>
+      </div>
+      <div class="ui-inputgroup">
+        <label>Ponto de Atendimentos</label>
+        <p-multiSelect
+          [style]="{'width':'100%'}"
+          required
+          [options]="unitsList"
+          [filter]="false"
+          [(ngModel)]="revision.units"
+          name="revision.units"
+          defaultLabel="Selecione"
+          dataKey='unitId'
+        ></p-multiSelect>
+      </div>
+      <div class="ui-inputgroup">
+        <label>Complemento</label>
+        <input
+          pInputText
+          [pKeyFilter]="blockSpecial"
+          placeholder="Insira o complemento"
+          name="revision.property.complement"
+          [(ngModel)]="revision.property.complement"
+          [disabled]="newThing==0"
+        />
+      </div>
+      <div class="radios" *ngIf="showPropertyClientRelationType">
+        <div class="ui-inputgroup">
+          <p-radioButton name="propertyClientRelationType" value="Proprietário" label="Proprietário" [(ngModel)]="propertyClientRelationType" inputId="opt1"></p-radioButton>
+        </div>
+        <div class="ui-inputgroup">
+          <p-radioButton name="propertyClientRelationType" value="Arrendatário" label="Arrendatário" [(ngModel)]="propertyClientRelationType" inputId="opt2"></p-radioButton>
+        </div>
+      </div>
+    </div>
+    <div class="p-col-6 p-col-align-strech ">
+      <div class="entity-infobox">
+        <div class="ui-inputgroup">
+          <label>Dados do CAR</label>
+        </div>
+        <p>{{infoCar?.features[0].properties.municipio}} - {{infoCar?.features[0].properties.estado}}</p>
+        <div class="p-grid">
+          <div class="p-col-6">
+            <p>{{infoCar?.features[0].properties.area}}</p>
+            <p>{{infoCar?.features[0].properties.modulosFiscais}}</p>
+            <p>{{infoCar?.features[0].properties.condicao}}</p>
+          </div>
+          <div class="p-col-6">
+            <p>{{infoCar?.features[0].properties.tipo_imovel}}</p>
+            <p>{{infoCar?.features[0].properties.situacao}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-col-12" *ngIf="canBeGuarantee">
+    <guarantee-wizard-embed #guarantee [canRelateToOperation]="canGuaranteeRelateToOperation"></guarantee-wizard-embed>
+  </div>
+</form>

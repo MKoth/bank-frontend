@@ -1,0 +1,158 @@
+$space: 1rem;
+
+$bodyColor:       #F8F8F6;
+
+// $topbarColor:     #FFFFFF;
+// $topbarSmallColor: #FFFFFF;
+
+
+$dividerColor:    rgba(0,0,0,0.4);
+$textColor:       rgba(0,0,0,0.985);
+$textColor2:      rgba(0,0,0,0.820);
+$textColor3:      rgba(0,0,0,0.4);
+$textLightColor:  rgba(255,255,255,1);
+$textLightColor2: rgba(255,255,255,0.30);
+
+
+$primaryColor:       #003e51; // AZUL
+$primaryTextColor:   $textLightColor;
+$secondaryColor:     #008C44; // VERDE ESCURO
+$secondaryTextColor: $textLightColor;
+$successColor:       #8DC63F; // VERDE CLARO
+$sucessTextColor:    $textColor;
+$warningColor:       #ffad07; //#f1b263; //#D7DF23; // AMARELO
+$warningTextColor:   $textColor;
+$dangerColor:        #fc150d; //#f06364; //#AC100A; // VERMELHO
+$dangerTextColor:    $textColor;
+
+
+$clientColor: #003e51;
+$propertyColor: #9e9e9e;
+$operationsColor: #795548;
+$registryColor: #88dd18;
+$guaranteeColor: #ffad07;
+// $clientColor:#00bcd4;
+// $registryColor:#9e9e9e;
+// $propertyColor: #795548;
+// $operationColor: #88dd18;
+// $guaranteeColor: #ffad07;
+
+// Fix some bugs
+$textSecondaryColor: $textColor2;
+$pink: $dangerColor;
+
+
+
+/* -----------AUDSAT--------------*/
+$fontFamily:"Roboto", sans-serif;
+$borderRadius:1vmin;
+
+
+// $paginationColor: #808399;
+/* -------------------------*/
+
+/* Common */
+//$fontFamily:"Open Sans","Helvetica Neue",sans-serif;
+$fontSize:2.2vmin;
+
+// $textSecondaryColor:lighten($textColor,10%);
+// $borderRadius:2px;
+//$dividerColor:#c9cdd2;
+$iconWidth:16px;
+$iconHeight:16px;
+$transitionDuration:.3s;
+$inputInvalidBorderColor:#f06364;
+$inlineSpacing:.5em;
+
+/* Headers */
+$headerPadding:.5em 1em;
+$headerBgColor: transparent;//#2d353c;
+$headerTextColor:#ffffff;
+$headerHoverBgColor:#444d56;
+
+/* Contents */
+$contentPadding:.5em 1em;
+$contentBorderColor:#c9cdd2;
+$contentBgColor:#ffffff;
+
+/* Forms */
+$inputPadding:.35em;
+$inputBgColor:#ffffff;
+$inputBorderColor:#a8acb1;
+$inputHoverBorderColor:#5f666c;
+$inputInvalidBorderColor:#f06364;
+$inputGroupAddonBgColor:#e6e6e6;
+
+//$buttonTextColor: #ffffff;
+
+/* List Items */
+$listItemPadding:.5em 1em;
+$listItemHoverBgColor:#f0f3f5;
+$listItemHoverTextColor:#5f666c;
+
+/* Messages */
+$infoMessageBgColor:#2f8ee5;
+$infoMessageTextColor:#ffffff;
+$warnMessageBgColor:$warningColor;
+$warnMessageTextColor:#ffffff;
+$errorMessageBgColor:$dangerColor;
+$errorMessageTextColor:#ffffff;
+$successMessageBgColor:$successColor;
+$successMessageTextColor:#ffffff;
+
+/* Horizontal Menu */
+$hmenuBGColor:#f0f3f5;
+
+/* Misc */
+$maskBgColor:#424242;
+
+/* Predefined Colors */
+// $turquoise:#00acac;
+// $blue:#2f8ee5;
+// $orange:#efa64c;
+// $purple:#6c76af;
+// $pink: $dangetColor;
+// $lightBlue:#63c9f1;
+// $green:#57c279;
+// $deepPurple:#7e57c2;
+// $black:#2d353c;
+// $red:#EF5350;
+
+/*Custom*/
+// $colors: (
+//   limes: #97bd12,
+//   darkgreens: #028038,
+//   slategreys: #73808e,
+//   blue1: #1e3047,
+//   blue2: #434860,
+//   blue3: #273e50,
+//   blue4: #212d3e,
+//   grey1: #808399,
+//   darkblues: #152435,
+//   grey-blues: #aab4bd,
+//   verylightgreys: #ccc,
+//   grey-white: #f8fafc
+// );
+
+// @function color($color-name) {
+//   @return map-get($colors, $color-name);
+// }
+/* font-size on client age */
+$BoxSectionTitle:2.5vmin;
+$BoxSectioncontent:2vmin;
+
+//responsive 
+/* Large Devices, Wide Screens */
+$wideScreen-lg:1199px;
+
+/* Medium Devices, Desktops */
+$mediusScreen-md:991px;
+
+ /* Small Devices, Tablets */
+$tabScreen-sm:767px;
+
+ /* Extra Small Devices, Phones */                                                                                                                                                                               
+$mobileScreen:480px; 
+
+/* Custom, iPhone Retina */ 
+$customScreen-cs:320px;

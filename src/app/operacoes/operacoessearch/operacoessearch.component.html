@@ -1,0 +1,151 @@
+﻿<body>
+  <p-card styleClass="audsat-card">
+    <form #OperationForm="ngForm" (ngSubmit)="buscar(OperationForm)">
+
+      <div class="p-grid margin-top p-align-end">
+        <div class="p-col-12 p-md-3">
+          <h2 class="ui-title">Buscar Operação</h2>
+        </div>
+        <div class="p-col-12 p-md-9 buscar-align-right">
+          <app-includeoperacoes></app-includeoperacoes>
+          <app-importoperacoes></app-importoperacoes>
+        </div>
+      </div>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <div class="p-col-12 p-md-4 p-md-offset-8 buscar-align-right">
+
+            <p-radioButton name="dateFilter" value="inclusionDate" [(ngModel)]="selectedValue"></p-radioButton>
+            <label class="ui-radiobutton-label"> Data de cadastro </label>
+
+            <p-radioButton name="dateFilter" value="valuationStatusDate" [(ngModel)]="selectedValue"></p-radioButton>
+            Data de aprovação
+          </div>
+        </div>
+        <div class="p-col-12 p-md-4">
+          <label for="situacao">Situação da Operação</label>
+          <p-dropdown [options]="statusModel" placeholder="Selecione" id="caret" name="status" [(ngModel)]="operation.status"
+            styleClass="dropdown"></p-dropdown>
+        </div>
+
+        <div class="p-col-12 p-md-4">
+          <label for="complemento">Complemento</label>
+          <input type="text" pInputText placeholder="Insira o complemento" name="complement" [(ngModel)]="operation.complement"
+            class="ui-text-box" />
+        </div>
+        <div *ngIf="selectedValue === 'inclusionDate'" class="p-col-6 p-md-2">
+          <p for="datacadastroinicio" class="date-margin date-font">De</p>
+          <p-calendar [(ngModel)]="operation.inclusionDate1" name="inclusionDate1" [locale]="en" dateFormat="dd/mm/yy"
+            [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" placeholder="De" styleClass="calendar"></p-calendar>
+        </div>
+
+
+        <div *ngIf="selectedValue === 'inclusionDate'" class="p-col-6 p-md-2">
+          <p for="datacadastrofim" class="date-margin date-font">Até</p>
+          <p-calendar [(ngModel)]="operation.inclusionDate2" name="inclusionDate2" [locale]="en" dateFormat="dd/mm/yy"
+            [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" placeholder="Até" styleClass="calendar"></p-calendar>
+        </div>
+
+        <div *ngIf="selectedValue === 'valuationStatusDate'" class="p-col-6 p-md-2">
+          <p for="dataaprovacaoinicio" class="date-margin date-font">De</p>
+          <p-calendar [(ngModel)]="operation.valuationStatusDate1" name="valuationStatusDate1" [locale]="en" dateFormat="dd/mm/yy"
+            [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" placeholder="De" styleClass="calendar"></p-calendar>
+        </div>
+        <div *ngIf="selectedValue === 'valuationStatusDate'" class="p-col-6 p-md-2">
+          <p for="dataaprovacaofim" class="date-margin date-font">Até</p>
+          <p-calendar [(ngModel)]="operation.valuationStatusDate2" name="valuationStatusDate2" [locale]="en" dateFormat="dd/mm/yy"
+            [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" placeholder="Até" styleClass="calendar"></p-calendar>
+        </div>
+      </div>
+
+      <div class="p-grid form-group">
+        <div class="p-col-12 p-md-4">
+          <label for="name">Nome</label>
+          <input type="text" pInputText placeholder="Insira o nome" name="name" [(ngModel)]="operation.name" class="ui-text-box" />
+        </div>
+        <div class="p-col-12 p-md-4">
+          <label for="cpfcnpj">CPF/CNPJ</label>
+
+          <!--<cpf-mask (cpfcnpjChange)="getCpf($event)" name="cpfcnpj"></cpf-mask>-->
+
+          <input pInputText  [textMask]='mask()' placeholder="Insira o CPF/CNPJ" name="cpfcnpj" />
+
+          <!--<input type="text" pInputText placeholder="Insira o CPF/CNPJ" name="cpfcnpj" minlength="11" [(ngModel)]="operation.cpfcnpj"
+            class="ui-text-box" />-->
+          <!-- [ngClass]="{'is-invalid': form.get('cpf').touched && form.get('cpf').invalid}" [(ngModel)]="cpfcnpj" class="ui-text-box" -->
+          <!-- <div class="invalid-feedback">
+            <div>First Name is required</div>
+          </div> -->
+        </div>
+        <div class="p-col-12 p-md-2">
+          <label for="culture">Cultura</label>
+          <p-dropdown [options]="cropModel" placeholder="Selecione uma cultura" name="crop" [(ngModel)]="operation.crop"
+            styleClass="dropdown"></p-dropdown>
+            <!-- <input type="text" pInputText placeholder="Insira a cultura" name="crop" [(ngModel)]="operation.crop" class="ui-text-box" /> -->
+        </div>
+        <div class="p-col-12 p-md-2">
+          <label for="key">Código</label>
+          <input type="text" pInputText placeholder="Insira o código" name="code" [(ngModel)]="operation.code" class="ui-text-box" />
+        </div>
+      </div>
+
+      <div class="p-grid">
+        <div class="p-col-12 p-md-4">
+          <label for="car">Situação de Fiscalização</label>
+          <p-dropdown placeholder="Selecione" [options]="fiscalizationStatusModel" id="caret" name="situacao" [(ngModel)]="operation.fiscalizationStatus"
+            styleClass="dropdown"></p-dropdown>
+        </div>
+      </div>
+
+      <div class="p-grid">
+        <div class="p-col-12 buscar-align-right">
+          <button pButton type="button" label="Limpar" class="ui-button ui-button-color" (click)="resetForm(OperationForm)"></button>
+          <button pButton type="submit" label="Buscar" class="ui-button ui-button-color"></button>
+        </div>
+      </div>
+    </form>
+
+  </p-card>
+</body>
+
+<p-card styleClass="audsat-card">
+  <p-footer>
+    <!-- <app-operacoestable [revisions]="revisions" *ngIf="ready" ></app-operacoestable> -->
+    <p-table [value]="revisions" [paginator]="true" [rows]="rowsNumber" [lazy]="true" [lazyLoadOnInit]="true" [totalRecords]="totalRecords" [loading]="loading" (onLazyLoad)="changePage($event)">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Código</th>
+          <th>CPF/CNPJ</th>
+          <th>Complemento</th>
+          <th>Cultura</th>
+          <th>Área Financiada (ha)</th>
+          <th>Ponto de Atendimento</th>
+          <th>Data do Cadastro</th>
+          <th>Situação</th>
+          <th>Situação de Fiscalização</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-revision let-rowIndex="rowIndex">
+        <tr (click)="getOperacao(revision.thing.id)" style="cursor: pointer">
+            <td class="ui-table-text">{{revision?.operation.code}}</td>
+            <td class="ui-table-text"></td>
+            <td class="ui-table-text">{{revision?.operation.complement}}</td>
+            <td class="ui-table-text">{{revision?.operation.crop}}</td>
+            <td class="ui-table-text"></td>
+            <td class="ui-table-text">{{unitsvector[rowIndex-operation2.page*rowsNumber]}}</td>
+            <td class="ui-table-text">{{revision?.thing.createdAt | date:"dd/MM/yyyy"}}</td>
+            <td class="ui-table-text"></td>
+            <td class="ui-table-text">{{revision?.operation.fiscalizationStatus}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <div class="p-grid">
+      <div class="p-col-12 p-md-4" style="color:white">{{revisions?(totalRecords + ' opperações encontradas'):''}}</div>
+      <div class="p-col-12 p-md-2 p-md-offset-6">
+        <!-- <button pButton type="button" label="Baixar XLSX" class="ui-button ui-button-color" (click)="exportAsXLSX()" #baixar></button> -->
+        <button pButton type="button" label="Baixar XLSX" class="ui-button" (click)="exportAsXLSX()" #baixar></button>
+      </div>
+    </div>
+
+  </p-footer>
+</p-card>

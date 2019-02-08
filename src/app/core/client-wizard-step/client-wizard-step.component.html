@@ -1,0 +1,81 @@
+<form #form="ngForm">
+  <div class="p-grid">
+    <div class="p-col-6" >
+      <div class="ui-inputgroup">
+        <label>CPF/CNPJ</label>
+        <!--<cpf-mask
+          placeholder="Insira o CPF ou CNPJ"
+          minlength=14
+          name="revision.client.cpfcnpj"
+          [(ngModel)]="revision.client.cpfcnpj"
+          (cpfcnpjChange)='getCpfcnpj()'
+        ></cpf-mask>-->
+        <input
+          pInputText
+          [textMask]='mask()'
+          placeholder="Insira o CPF ou CNPJ"
+          name="cpfcnpj"
+          [(ngModel)]="revision.client.cpfcnpj"
+          (cpfcnpjChange)='getCpfcnpj()'
+          required
+          />
+        <div class="hint">
+          <span *ngIf="newThing==1">
+            Novo cliente
+          </span>
+          <span *ngIf="newThing==0">
+            Cliente já existente
+          </span>
+        </div>
+      </div>
+      <div class="ui-inputgroup">
+        <label>Email</label>
+        <input
+          pInputText
+          pKeyFilter="email"
+          type="email"
+          placeholder="Insira o email"
+          name="revision.client.email"
+          [(ngModel)]='revision.client.email'
+          [disabled]="newThing==0"
+          email
+        />
+      </div>
+      <div class="ui-inputgroup">
+        <label>Nome</label>
+        <input
+          pInputText
+          [pKeyFilter]="blockSpecial"
+          placeholder="Insira o nome"
+          [(ngModel)]='revision.client.name'
+          name="revision.client.name"
+          [disabled]="newThing==0"
+        />
+      </div>
+    </div>
+    <div class="p-col-6">
+      <div class="ui-inputgroup">
+        <label>Pontos de Atendimento</label>
+        <p-multiSelect
+          [style]="{'width':'100%'}"
+          [options]="unitsList"
+          [(ngModel)]="revision.units"
+          name="revision.units"
+          placeholder="Insira os pontos de atendimento"
+          defaultLabel="Selecione"
+          dataKey='unitId'
+          [filter]="false"
+          required
+        ></p-multiSelect>
+      </div>
+      <div class="radios">
+        <div class="ui-inputgroup">
+          <p-radioButton name="propertyClientRelationType" value="Proprietário" label="Proprietário" [(ngModel)]="propertyClientRelationType" inputId="opt1"></p-radioButton>
+        </div>
+        <div class="ui-inputgroup">
+          <p-radioButton name="propertyClientRelationType" value="Arrendatário" label="Arrendatário" [(ngModel)]="propertyClientRelationType" inputId="opt2"></p-radioButton>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

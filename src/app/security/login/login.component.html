@@ -1,0 +1,24 @@
+<div class="login-panel ui-fluid">
+  <form (ngSubmit)="login()">
+    <div class="p-grid">
+      <div class="p-col-12 logo-container">
+        <img id='logo-audsat' src="{{logo}}">
+      </div>
+      <div class="p-col-12">
+        <label>E-mail</label>
+        <input type="text" autocomplete="off" class="ui-inputtext ui-corner-all ui-state-default ui-widget" placeholder="Email" [(ngModel)]="email" name="email">
+      </div>
+      <div class="p-col-12">
+        <label>Senha</label>
+        <input type="password" autocomplete="off" class="ui-inputtext ui-corner-all ui-state-default ui-widget" placeholder="Senha" [(ngModel)]="password" name="password">
+        <a routerLink="/esquecisenha" routerLinkActive="active" class="forgot">
+          <span class="ui-button-text ui-c">Esqueci a senha</span>
+        </a>
+      </div>
+      <div class="p-col-12 button-container">
+        <p-progressSpinner strokeWidth="2" [style]="{width: '2rem', height: '2rem', float: 'right'}" [style.display]="loading? 'block':'none'"></p-progressSpinner>
+        <p-button [style.display]="loading ? 'none':''" label="Login"></p-button>
+      </div>
+    </div>
+  </form>
+</div>

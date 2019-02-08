@@ -1,0 +1,15 @@
+
+<div class="p-grid" *ngIf="ready">
+  <div class="p-col-12 " *ngIf="revisionLoaded |async">
+    <app-clientdetails #details [revision]="revision"></app-clientdetails>
+  </div>
+  <div class="p-col-12">
+    <alert-client [cpfcnpj]="revision?.client.cpfcnpj"></alert-client>
+  </div>
+  <div class="p-col-12">
+    <relations-tabs (getTabPolygon)='centerToPolygon($event)' (sendData)='updateMap($event)' [revision]="revision" type="client"></relations-tabs>
+  </div>
+  <div class="p-col-12">
+    <documents id="{{revision?.id}}" [documents]="revision?.documents"></documents>
+  </div>
+</div>

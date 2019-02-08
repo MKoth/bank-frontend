@@ -1,0 +1,41 @@
+<form #form="ngForm">
+  <div class="p-grid">
+    <div [ngClass]="{'p-col-4':canBeGuarantee,'p-col-12':!canBeGuarantee}">
+      <div class="ui-inputgroup">
+        <label>Número da matrícula</label>
+        <input pInputText pKeyFilter="int" (change)='getRegistry()' placeholder="Insira o número da matrícula" class="box-border" name="revision.registry.code" [(ngModel)]="revision.registry.code" />
+        <div class="hint">
+          <span *ngIf="newThing==1">
+            Nova matrícula
+          </span>
+          <span *ngIf="newThing==0">
+            Matrícula já existente
+          </span>
+        </div>
+      </div>
+      <div class="ui-inputgroup">
+        <label>Nome da matrícula</label>
+        <input pInputText placeholder="Insira o complemento" name="revision.registry.name" class="box-border" [(ngModel)]="revision.registry.name" />
+      </div>
+      <div class="ui-inputgroup">
+        <label>Ponto de Atendimentos</label>
+          <p-multiSelect
+          
+            [style]="{'width':'100%'}"
+            [options]="unitsList"
+            [(ngModel)]="revision.units"
+            name="revision.units"
+            placeholder="Insira os pontos de atendimento"
+            defaultLabel="Selecione"
+            dataKey='unitId'
+            [filter]="false"
+            [resetFilterOnHide] = "true"
+            required
+          ></p-multiSelect>
+      </div>
+    </div>
+    <div class="p-col-8" *ngIf="canBeGuarantee">
+      <guarantee-wizard-embed #guarantee [canRelateToOperation]="canGuaranteeRelateToOperation"></guarantee-wizard-embed>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,76 @@
+<app-entitydetails
+  title="{{revision?revision.garantias.name:''}}"
+  subtitle=""
+  icon="icon-audsat" icon2="fa fa-fw fa-map-marker"
+  detailsCollapsed="{{detailsCollapsed}}"
+  status="Ativo"
+  class="client"
+  >
+  <!--<i class="fa fa-fw fa-map-marker"></i>-->
+  <div class="p-grid">
+    <div class="p-col-6">
+      Id do imóvel: {{revision?revision.client.cpfcnpj:''}}
+    </div>
+    <div class="p-col-6">
+      Número CAR: {{revision?revision.client.email:''}}
+    </div>
+    <div class="p-col-6">
+      Área total: {{revision?revision.office:""}}
+    </div>
+    <div class="p-col-6">
+      Data do cadastro: {{revision?revision.thing.id:''}}
+    </div>
+    <div class="p-col-6">
+      Localização: {{revision?revision.thing.id:''}}
+    </div>
+    <div class="p-col-6">
+      Ponto de atendimento: {{revision?revision.thing.id:''}}
+    </div>
+    <div class="p-col-6">
+      Usuário cadastrado: {{revision?revision.thing.id:''}}
+    </div>
+    <div class="p-col-6">
+      Situação do imóvel: {{revision?revision.thing.id:''}}
+    </div>
+    <div class="p-col-6">
+      Possui restrição: {{revision?revision.thing.id:''}}
+    </div>
+  </div>
+  
+  <p-footer>
+    <div class="p-grid">
+      <div class="p-col-6 p-md-4">
+        Telefone: {{revision?revision.client.telephone:''}}
+      </div>
+      <div class="p-col-6 p-md-4">
+        Celular: {{revision?revision.client.cellphone:''}}
+      </div>
+    </div>
+    <hr>
+
+    <div class="p-grid">
+      <div class="p-col-6 p-md-4">
+        Descrição: {{revision?revision.client.cellphone:''}}
+      </div>
+      <div class="p-col-6 p-md-4">
+        Intersecção: {{revision?revision.client.cellphone:''}}
+      </div>
+      <div class="p-col-6 p-md-4">
+        Porcentagem: {{revision?revision.client.cellphone:''}}
+      </div>
+    </div>
+
+    <div class="p-col-6 p-md-2">
+      <!-- <button pButton type="button" label="Editar" class="ui-button" (click)="showDialog()"></button> -->
+      <a [routerLink]="[ 'edit']" routerLinkActive="active">
+        <button pButton type="button" label="Editar" class="ui-button"></button>
+      </a>
+    </div>
+  </p-footer>
+
+  <!-- <p-dialog class="modal" [(visible)]="displayDialog" [modal]="true" [closeOnEscape]="true" [closable]="true" [width]="600"
+    [height]="400">
+    <app-client-edit [revision]="revision"></app-client-edit>
+  </p-dialog> -->
+
+</app-entitydetails>

@@ -1,0 +1,237 @@
+<!-- <p-card>
+  <p-header>
+    <h3>Editar usuarios</h3>
+  </p-header>
+  <div class="p-grid">
+
+    <div class="p-col">
+      <div class="p-grid p-dir-col">
+
+
+        <div class="p-col ">
+          <div class="ui-inputgroup">
+            <span class="ui-float-label">
+              <input type="text" pInputText placeholder="" value="" #email>
+              <label for="float-input">Email</label>
+            </span>
+          </div>
+        </div>
+
+
+        <div class="p-col ">
+          <div class="ui-inputgroup">
+            <span class="ui-float-label">
+              <input type="text" pInputText placeholder="" value="" #nome>
+              <label for="float-input">Nome</label>
+            </span>
+          </div>
+        </div>
+
+
+        <div class="p-col">
+          <div class="ui-inputgroup">
+            <span class="ui-float-label">
+              <input type="text" pInputText placeholder="" value="" #cpfcnpj>
+              <label for="float-input">Cpf/Cnpj</label>
+            </span>
+          </div>
+        </div>
+
+        <div class="p-col">
+          <div class="ui-inputgroup">
+            <span class="ui-float-label">
+              <input type="text" pInputText placeholder="" value="" #cellphone>
+              <label for="float-input">Celular</label>
+            </span>
+          </div>
+        </div>
+
+        <div class="p-col">
+          <div class="ui-inputgroup">
+            <span class="ui-float-label">
+              <input type="text" pInputText placeholder="" value="" #telephone>
+              <label for="float-input">Telefone</label>
+            </span>
+          </div>
+        </div>
+        <div class="p-col">
+          <div class="ui-inputgroup">
+            <span class="ui-float-label">
+              <input type="text" pInputText placeholder="" value="" #perfil>
+              <label for="float-input">Perfil</label>
+            </span>
+          </div>
+        </div>
+
+        <div class="p-col">
+          <div class="ui-inputgroup">
+            <span class="ui-float-label">
+              <input type="text" pInputText placeholder="" value="" #situation>
+              <label for="float-input">Situação</label>
+            </span>
+          </div>
+        </div>
+
+        <div class="p-col">
+          <div class="ui-inputgroup">
+            <span class="ui-float-label">
+              <input type="text" pInputText placeholder="" value="" #RSA>
+              <label for="float-input">Email</label>
+            </span>
+          </div>
+        </div>
+        <div class="p-grid p-dir-col">
+
+          <div class="p-col-6">
+            <div class="ui-g-nopad">
+              <label>Recebe Email RSA test-demo?</label>
+              <div class="p-grid">
+                <div class="p-col-3">
+                  <p-radioButton label="Sim" value="true" name="RSA" [(ngModel)]="selectedValue"></p-radioButton>
+                </div>
+                <div class="p-col-3">
+                  <p-radioButton label="Não" value="false" name="RSA" [(ngModel)]="selectedValue"></p-radioButton>
+                </div>
+              </div>
+            </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-2 p-offset-10">
+        <span class="ui-float-label">
+          <button pButton type="button" class="ui-button " label="Confirmar" (click)="grava(nome.value,cpfcnpj.value,email.value,situation.value,telephone.value,cellphone.value,perfil.value)"></button>
+        </span>
+      </div>
+    </div>
+</p-card> -->
+<p-card styleClass="pro-edit">
+    <p-header>
+      <div class="image-holder">
+        <img src="assets/layout/images/avatar.png" alt="admin Img">
+        <h2 class="header-text">Fernando Gael</h2>
+      </div>
+    <!--  <div class="hard-code-btn-top">
+        <button (click)="isDisabled()">Editar</button>
+        <button>Sair</button>
+      </div>  -->
+  
+    </p-header>
+
+    <form #settingsForm="ngForm" (ngSubmit)="confirmEdit(settingsForm)">
+      <div class="user-edit">
+        <button pButton
+          icon="fa fa-pencil"
+          (click)="toggleEdit()" type="button" [style.float]="'right'" [style.clear]="'both'" [style.display]="loading || !disabled? 'none':'block'">
+        </button>
+        <button pButton
+      class="basic"
+      icon="fa fa-thumbs-up"
+      (click)="showApprove()" type="button" [style.float]="'right'" [style.clear]="'both'" [style.display]="loading || !disabled? 'none':'block'" [style.marginTop]="'0.5rem'">
+      </button>
+        <button pButton
+          class="basic"
+          icon="fa fa-check"
+          (click)="isDisabled()" [disabled]="settingsForm.invalid" [style.float]="'right'" [style.clear]="'both'" [style.display]="loading || disabled? 'none':'block'">
+        </button>
+        <button pButton
+          class="basic"
+          icon="fa fa-times"
+          (click)="isDisabled()" type="button" [style.float]="'right'" [style.clear]="'both'" [style.display]="loading || disabled? 'none':'block'" [style.marginTop]="'0.5rem'">
+        </button>
+      </div>
+
+
+      <div class="p-grid input-fade-out">
+                <div class="p-md-4">
+                  <label>Email</label>
+                  <span class="ui-inputgroup">
+                      <input type="text" pInputText placeholder="" name="email" [(ngModel)]="user.email" [disabled]="true">
+                  </span>
+                </div>
+            <!-- <div class="ui-inputgroup">
+                  <span  class="ui-float-label">
+                  <p-inplace closable="closable">
+                    <span pInplaceDisplay>
+                        {{exampleUser.email}}
+                    </span>
+                    <span pInplaceContent>
+                        <input type="text" value="{{exampleUser.email}}" [(ngModel)]="exampleUser.email" pInputText>
+                    </span>
+                  </p-inplace>
+                  </span>
+                </div>   -->
+            <div class="p-md-4">
+              <label>CPF</label>
+              <span class="ui-inputgroup">
+                  <p-inputMask class="teste" mask="999.999.999-99" unmask="false" name="cpf" [(ngModel)]="user.cpf" [disabled]="true"></p-inputMask>
+              </span>
+            </div>
+            <div class="p-md-4">
+              <label>Telefone</label>
+              <span class="ui-inputgroup">
+                  <input type="text" pInputText placeholder="" name="phoneNumber" [(ngModel)]="user.phoneNumber" [disabled]="disabled">
+              </span>
+            </div>
+
+            <!-- <div class="p-md-4">
+              <div  class="ui-inputgroup">
+                  <label for="float-input">Emails RSA</label>
+                  <input type="text" pInputText [(ngModel)]="exampleUser.recebe_email_monitoramento" #RSA>
+              </div>
+            </div> -->
+            <div class="p-md-4">
+
+              <label>Celular</label>
+                <span class="ui-inputgroup">
+                    <p-inputMask class="teste" mask="(99)99999-9999" unmask="false" placeholder="Celular"  name="cellPhone" [(ngModel)]="user.cellPhone" [disabled]="disabled"></p-inputMask>
+                </span>
+             </div>
+
+
+           <!-- <div class="p-md-6">
+              <label for="float-input">Recebe emails de monitoramento RSA?</label>
+              <div  class="ui-inputgroup">
+                <input type="text">
+              </div>-->
+
+            <div class="p-md-4">
+                <label>Perfil</label>
+              <div class="ui-inputgroup fade-out-dropdown">
+                  <p-dropdown [options]="modelRoles" name="Roles" [style]="{'width':'100%', 'min-height': '35px', 'border-radius':'5px'}"
+                    [(ngModel)]="user.roles" [disabled]="disabled"></p-dropdown>
+              </div>
+            </div>
+            <div class="p-md-4 fade-out-dropdown">
+                <label>Situaçao</label>
+              <div  class="ui-inputgroup">
+                  <p-dropdown  [options]="status" name="status" [style]="{'width':'100%', 'min-height':'35px', 'border-radius':'5px'}"
+                    [(ngModel)]="selectedStatus" [disabled]="disabled" #situacao></p-dropdown>
+              </div>
+            </div>
+            <div class="p-md-4 input-fade-out">
+              <label>Empresa</label>
+              <div  class="ui-inputgroup">
+                  <input type="text" pInputText placeholder=""  name="company" [(ngModel)]="user.company" [disabled]="disabled">
+              </div>
+            </div>
+
+            <div class="p-md-4 input-fade-out">
+              <label>Pontos de atendimento</label>
+              <div class="ui-inputgroup">
+                  <!-- <input type="text" pInputText placeholder="" [(ngModel)]="exampleUser.units" #pontos> -->
+                  <p-multiSelect [style]="{'height':'35px', 'width': '100%', 'border-radius':'5px'}" [options]="labelUnits" name="units"
+                  [(ngModel)]="units" dataKey='unitId' [filter]="false" [disabled]="disabled" defaultLabel="Selecionar" ></p-multiSelect>
+              </div>
+            </div>
+
+
+        <div class="p-col-12 p-md-2 p-md-offset-10">
+          <!-- <button  pButton type="button" class="ui-button " label="Confirmar" (click)="adminUpdate(email?.value,CPF?.value,empresa?.value,CNPJ?.value,telefone?.value,celular?.value,RSA?.value,situacao?.value,perfil?.value,atendimentos?.value,pontos?.value);"></button> -->
+      <!--    <button  pButton type="submit" class="ui-button " label="Confirmar"></button>  -->
+        </div>
+      </div>
+    </form>
+  </p-card>

@@ -1,0 +1,174 @@
+<div class="panel-main-conteiner">
+    <div class="p-grid sample-layout">
+        <div class="p-col-3 panel-left-side-holder" [class.shrinked]="!expandedPanel">
+            <div class="loading_blocker" *ngIf="mapLoading"></div>
+            <div class="menu-open-trigger" (click)="onExpandPanel()">{{expandedPanel?"<":">"}}</div>
+            <div class="p-col-4 panel-labels-holder" *ngIf="expandedPanel" >
+                <div class="p-col-3 panel-icons-holder"></div>
+                <div class="p-col-9 panel-namings-holder">
+                    <p class="panel-item" [class.item-selected]="focusedForm=='criteria'" (click)="onFocusForm('criteria', true)">
+                        <img src="../assets/layout/images/carteiras.svg"/>
+                        CARTEIRAS
+                    </p>
+                    <p class="panel-item" [class.item-selected]="focusedForm=='geografico'" (click)="onFocusForm('geografico', true)" [style.margin-top]="focusedForm=='geografico'?topDistance:'30px'">
+                        <img src="../assets/layout/images/filtro-geografico.svg"/>
+                        FILTRO GEOGRÁFICO</p>
+                    <p class="panel-item" [class.item-selected]="focusedForm=='alertas'" (click)="onFocusForm('alertas', true)" [style.margin-top]="focusedForm=='alertas'?topDistance:'30px'">
+                        <img src="../assets/layout/images/audsat-images/icons/alerta-2.svg"/>
+                        ALERTAS
+                    </p>
+                    <p class="panel-item" [class.item-selected]="focusedForm=='imoveis'" (click)="onFocusForm('imoveis', true)" [style.margin-top]="focusedForm=='imoveis'?topDistance:'30px'">
+                        <img src="../assets/layout/images/navbar-imoveis.svg"/>
+                        IMÓVEIS
+                    </p>
+                    <p class="panel-item" [class.item-selected]="focusedForm=='matriculas'" (click)="onFocusForm('matriculas', true)" [style.margin-top]="focusedForm=='matriculas'?topDistance:'30px'">
+                        <img src="../assets/layout/images/navbar-matriculas.svg"/>
+                        MATRÍCULAS
+                    </p>
+                    <p class="panel-item" [class.item-selected]="focusedForm=='produtos'" (click)="onFocusForm('produtos', true)" [style.margin-top]="focusedForm=='produtos'?topDistance:'30px'">
+                        <img src="../assets/layout/images/produtos.svg"/>
+                        PRODUTOS
+                    </p>
+                    <p class="panel-item" [class.item-selected]="focusedForm=='garantias'" (click)="onFocusForm('garantias', true)" [style.margin-top]="focusedForm=='garantias'?topDistance:'30px'">
+                        <img src="../assets/layout/images/navbar-garantias.svg"/>
+                        GARANTIAS
+                    </p>
+                    <button pButton label="Limpar Filtros" class="ui-button-success clear-filters" (click)="clearFiltersClick()"></button>
+                </div>
+            </div>
+            <div class="shrink-panel-icons-holder" *ngIf="!expandedPanel">
+                <img src="../assets/layout/images/carteiras.svg"/>
+                <img src="../assets/layout/images/filtro-geografico.svg"/>
+                <img src="../assets/layout/images/audsat-images/icons/alerta-2.svg"/>
+                <img src="../assets/layout/images/navbar-imoveis.svg"/>
+                <img src="../assets/layout/images/navbar-matriculas.svg"/>
+                <img src="../assets/layout/images/produtos.svg"/>
+                <img src="../assets/layout/images/navbar-garantias.svg"/>
+            </div>
+            <div class="p-col-8 panel-forms-holder" *ngIf="expandedPanel">
+                <form class="criteria-form" [class.form-selected]="focusedForm=='criteria'">
+                    <p-selectButton [options]="criteria"  [(ngModel)]="selectedCriteria" name="criteria" (onChange)="onFocusForm('criteria')" (onChange)="applyFilters()"></p-selectButton>
+                </form>
+                <form class="filtro-geografico" [class.form-selected]="focusedForm=='geografico'">
+                    <h2>FILTRO GEOGRÁFICO</h2>
+                    <p-dropdown name="filter" [options]="payis" [(ngModel)]="selectedFilter" [showClear]="true" (onFocus)="onFocusForm('geografico')" (onChange)="applyFilters()" (onChange)="applyGeografics()"></p-dropdown>
+                </form>
+                <form class="alertas-form" [class.form-selected]="focusedForm=='alertas'">
+                    <h2>ALERTAS</h2>
+                    <p-checkbox name="alertas" value="Alertas" label="Alertas" [(ngModel)]="selectedAlertas" inputId="alertas" (onChange)="onFocusForm('alertas')" (onChange)="applyFilters()"></p-checkbox>
+                    <div class="padding-block"></div>
+                    <p-dropdown name="filter" [options]="embargos" [(ngModel)]="selectedEmbargo" [disabled]="selectedAlertas.length==0" (onFocus)="onFocusForm('alertas')" (onChange)="applyFilters()"></p-dropdown>
+                    <div class="padding-block"></div>
+                    <p-checkbox name="atencao" value="Atenção" label="Atenção" [(ngModel)]="selectedAttention" inputId="anttention" (onChange)="onFocusForm('alertas')" (onChange)="applyFilters()"></p-checkbox>
+                    <div class="padding-block"></div>
+                    <p-dropdown name="attentions" [options]="attentions" [(ngModel)]="selectedAttentions" [disabled]="selectedAttention.length==0" placeholder="Selecione uma atenção" [showClear]="true" (onFocus)="onFocusForm('alertas')" (onChange)="applyFilters()"></p-dropdown>
+                    <div class="padding-block"></div>
+                    <p-checkbox name="laudos" value="Laudos em desconformidade" label="Laudos em desconformidade" [(ngModel)]="selectedLaudos" inputId="laudos" (onChange)="onFocusForm('alertas')" (onChange)="applyFilters()"></p-checkbox>
+                </form>
+                <form class="imoveis-form" [class.form-selected]="focusedForm=='imoveis'">
+                    <h2>IMÓVEIS</h2>
+                    <p-checkbox name="valuo" value="Valoração" label="Valoração" [(ngModel)]="selectedValue" inputId="value" (onChange)="onFocusForm('imoveis')" (onChange)="applyFilters()"></p-checkbox>
+                </form>
+                <form class="matriculas-form" [class.form-selected]="focusedForm=='matriculas'">
+                    <h2>MATRÍCULAS</h2>
+                    <p-checkbox name="valuo2" value="Valoração" label="Valoração" [(ngModel)]="selectedValue2" inputId="value2" (onChange)="onFocusForm('matriculas')" (onChange)="applyFilters()"></p-checkbox>
+                </form>
+                <form class="produtos-form" [class.form-selected]="focusedForm=='produtos'">
+                    <h2>PRODUTOS</h2>
+                    <p-triStateCheckbox name="comesem" value="Com e sem imóveis" label="Com e sem imóveis" [(ngModel)]="selectedComesem" inputId="comesem" (onChange)="onFocusForm('produtos')" (onChange)="applyFilters()"></p-triStateCheckbox>
+                    <div class="padding-block"></div>
+                    <p-triStateCheckbox name="garantia" value="Garantia" label="Garantia" [(ngModel)]="selectedGarantia" inputId="garantia" (onChange)="onFocusForm('produtos')" (onChange)="applyFilters()"></p-triStateCheckbox>
+                    <div class="padding-block"></div>
+                    <p-triStateCheckbox name="agricola" value="Custeio agrícola" label="Custeio agrícola" [(ngModel)]="selectedAgricola" inputId="agricola" (onChange)="onAgricolaChange($event)" (onChange)="onFocusForm('produtos')" (onChange)="applyFilters()"></p-triStateCheckbox>
+                    <div class="padding-block"></div>
+                    <p-multiSelect name="agricolas" [options]="agricolas" [(ngModel)]="selectedAgricolas" [disabled]="selectedAgricola===null" defaultLabel="Selecione" (onFocus)="onFocusForm('produtos')" (onChange)="applyFilters()"></p-multiSelect>
+                    <div class="padding-block"></div>
+                    <p-triStateCheckbox name="laudo" value="Laudo" label="Laudo" [(ngModel)]="selectedLaudo" inputId="laudo" (onChange)="onFocusForm('produtos')" (onChange)="applyFilters()"></p-triStateCheckbox>
+                    <div class="padding-block"></div>
+                    <p-triStateCheckbox name="outro" value="Outros" label="Outros" [(ngModel)]="selectedOutro" inputId="outro" (onChange)="onOutroChange($event)" (onChange)="onFocusForm('produtos')" (onChange)="applyFilters()"></p-triStateCheckbox>
+                    <div class="padding-block"></div>
+                    <p-multiSelect name="outros" [options]="outros" [(ngModel)]="selectedOutros" [disabled]="selectedOutro===null" defaultLabel="Selecione" (onFocus)="onFocusForm('produtos')" (onChange)="applyFilters()"></p-multiSelect>
+                </form>
+                <form class="garantias-form" [class.form-selected]="focusedForm=='garantias'">
+                    <h2>GARANTIAS</h2>
+                    <p-triStateCheckbox name="valor" value="Com e sem valoração" label="Com e sem valoração" [(ngModel)]="selectedValor" inputId="valor" (onChange)="onFocusForm('garantias')" (onChange)="applyFilters()"></p-triStateCheckbox>
+                    <div class="padding-block"></div>
+                    <p-multiSelect name="valoras" [options]="valoras" [(ngModel)]="selectedValoras" [disabled]="selectedValor===null" defaultLabel="Selecione" (onFocus)="onFocusForm('garantias')" (onChange)="applyFilters()"></p-multiSelect>
+                    <div class="padding-block"></div>
+                </form>
+            </div>
+        </div>
+        <div class="p-col-9 panel-right-side-holder" [class.expanded]="!expandedPanel">
+            <div class="panel-widgets-holder">
+                <div class="panel-widget">
+                    <div class="left-side">
+                        <img src="../assets/layout/images/navbar-clientes.svg"/>
+                        <p class="left-header">Clientes</p>
+                    </div>
+                    <div class="right-side">
+                        <p class="quantity">{{filteredClientes}}</p>
+                        <p class="percentage">{{percentageClientes}}%</p>
+                        <p class="total">Total {{totalClientes}}</p>
+                    </div>
+                </div>
+                <div class="panel-widget">
+                    <div class="left-side">
+                        <img src="../assets/layout/images/navbar-imoveis.svg"/>
+                        <p class="left-header">Imóveis</p>
+                    </div>
+                    <div class="right-side">
+                        <p class="quantity">{{filteredProperties}}</p>
+                        <p class="percentage">{{percentageProperties}}%</p>
+                        <p class="total">Total {{totalProperties}}</p>
+                    </div>
+                </div>
+                <div class="panel-widget">
+                    <div class="left-side">
+                        <img src="../assets/layout/images/navbar-matriculas.svg"/>
+                        <p class="left-header">Matrículas</p>
+                    </div>
+                    <div class="right-side">
+                        <p class="quantity">{{filteredRegistries}}</p>
+                        <p class="percentage">{{percentageRegistries}}%</p>
+                        <p class="total">Total {{totalRegistries}}</p>
+                    </div>
+                </div>
+                <div class="panel-widget">
+                    <div class="left-side">
+                        <img src="../assets/layout/images/navbar-operacoes.svg"/>
+                        <p class="left-header">Operações</p>
+                    </div>
+                    <div class="right-side">
+                        <p class="quantity">{{filteredOperations}}</p>
+                        <p class="percentage">{{percentageOperations}}%</p>
+                        <p class="total">Total {{totalOperations}}</p>
+                    </div>
+                </div>
+                <div class="panel-widget">
+                    <div class="left-side">
+                        <img src="../assets/layout/images/navbar-garantias.svg"/>
+                        <p class="left-header">Garantias</p>
+                    </div>
+                    <div class="right-side">
+                        <p class="quantity">{{filteredGuarantees}}</p>
+                        <p class="percentage">{{percentageGuarantees}}%</p>
+                        <p class="total">Total {{totalGuarantees}}</p>
+                    </div>
+                </div>
+            </div>
+            <h4 *ngIf="mapLoading" style="text-align: center">Carregando as informações...</h4>
+            <div class="p-col-12 p-md-12 client-map-section" style="box-sizing: border-box" *ngIf="!mapLoading">
+                <p-card [style]="{position:'relative'}">
+                    <app-map  #map 
+                        (drawFinished)='drawFinished($event)' 
+                        [height]="mapHeight" 
+                        [dataMatricula]="dataMatricula" 
+                        [dataImoveis]="dataImoveis"
+                        [pointDataImoveis]="pointDataImoveis"    
+                        [pointDataMatricula]="pointDataMatricula"    
+                    ></app-map>
+                </p-card>
+            </div>
+        </div>
+    </div>
+</div>

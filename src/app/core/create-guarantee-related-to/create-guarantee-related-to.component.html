@@ -1,0 +1,152 @@
+<div (click)="showDialog()" class="add-entity-related">+</div>
+<p-dialog
+  [(visible)]="displayDialog"
+  [modal]="true"
+  [closeOnEscape]="true"
+  [responsive]="true"
+  [dismissableMask]="true"
+  [positionTop]="15"
+  [minWidth]="700"
+  [width]="1100"
+  [(height)]="modalHeight"
+  styleClass="dialog-radius"
+  (onHide)="resetForm()"
+  >
+  <p-header>
+        <img class="center" src="{{step_img}}" />
+  </p-header>
+
+  <div class="p-grid p-nogutter">
+    <div class="p-col-12">
+      <p-tabView styleClass="d-none" [activeIndex]="stepActiveIndex">
+        <p-tabPanel styleClass="d-none" header="Informações da Garantia" style="border-bottom:1px #000000 solid !important;">
+        <form #includForm="ngForm" >
+          <p-header>
+            <h2><i class="icon-garantias"></i>Incluir garantia</h2>
+          </p-header>
+          <div id="pf" class="p-grid buscar-align-right">
+        <div class="p-col-6">
+          <div class="p-grid p-nogutter p-dir-col">
+            <div class="p-col-12">
+              <div class="ui-inputgroup">
+                <label> Nome da garantia </label>
+                <input pInputText placeholder="Insira a garantia" name="revision.guarantee.name" [(ngModel)]="revision.guarantee.name" required class="box-border" (change)='loadRevision()'>
+              </div>
+            </div>
+            <div class="p-col-12">
+              <span *ngIf="newThing==1"><br style="line-height: 40px">
+                Nova garantia
+              </span>
+              <span *ngIf="newThing==0"><br style="line-height: 40px">
+                Garantia já existente
+              </span>
+            </div>
+
+            <div class="p-col-12">
+              <div class="ui-inputgroup">
+                <label> Valor</label>
+                <input 
+                currencyMask
+                style="width:100%"
+                class="ui-currency-mask-modal"
+                placeholder="Insira o valor" 
+                name="revision.gurantee.value"
+                [(ngModel)]="revision.guarantee.value"
+                [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+                <!-- <input pInputText placeholder="Insira o complemento" name="revision.gurantee.complement" [(ngModel)]="revision.guarantee.complement" class="box-border" [disabled]="!newThing"> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="p-col-6">
+            <div class="p-grid p-nogutter p-dir-col">
+                <div class="p-col-12">            
+              <div class="ui-inputgroup">
+                <label>Pontos de Atendimento</label>
+                <p-multiSelect
+                  [style]="{'width':'100%'}"
+                  [options]="unitsList"
+                  [(ngModel)]="revision.units"
+                  name="revision.units"
+                  placeholder="Insira os pontos de atendimento"
+                  defaultLabel="Selecione"
+                  [filter]="false"
+                  dataKey='unitId'
+                  required
+                  ></p-multiSelect>
+              </div>
+            </div>
+
+            <div class="p-col-3">
+              <div class="ui-inputgroup">
+                <p-radioButton name="relationType" value="Hipotecaria" label="Hipotecaria" [(ngModel)]="revision.guarantee.guaranteeType" inputId="opt1" (onClick)='notDisplay()' ></p-radioButton>
+              </div>
+              <div class="ui-inputgroup">
+                <p-radioButton name="relationType" value="Outros" label="Outros"  inputId="opt2" (onClick)='display()'></p-radioButton>
+              </div>
+            </div>  
+              <div class="p-col-3" *ngIf="revision.guarantee.guaranteeType == 'Outros'">
+                <input pInputText placeholder="Outros" name="Outros" [(ngModel)]="revision.guarantee.otherType" class="box-border" >
+              </div>
+            </div>
+          </div>
+        </div>
+      
+          <p-footer>
+              <button pButton *ngIf="revision.guarantee.guaranteeType == 'Outros'" type="button" label="Salvar" class="ui-button button-font-size" (click)="save()"></button>
+              <button pButton *ngIf="revision.guarantee.guaranteeType == 'Hipotecária'" type="button" label="Incluir imóvel" class="ui-button button-font-size" (click)="goTo(2)"></button>
+              <button pButton *ngIf="revision.guarantee.guaranteeType == 'Hipotecária'" type="button" label="Incluir matrícula" class="ui-button button-font-size" (click)="goTo(1)"></button>
+            <!-- <div class="p-grid">
+              <div class="p-col-3 p-offset-2">
+                <button
+                pButton
+                class="ui-button red-btn"
+                (click)="hideDialog()"
+                type="button"
+                label="Cancelar"
+                ></button>
+              </div>
+
+              <div class="p-col-3">
+                <button
+                pButton
+                class="ui-button"
+                type="submit"
+                label="Ver no Mapa"
+                (click)='goTo(1)'
+                [disabled] = '!validated'
+                ></button>
+              </div>
+              <div class="p-col-3">
+                <button
+                pButton
+                class="ui-button"
+                type="submit"
+                label="Incluir no Mapa"
+                (click)='goTo(1)'
+                [disabled] = '!validated'
+                ></button>
+              </div> -->
+            <!-- </div> -->
+          </p-footer>
+        </form>
+        </p-tabPanel>
+
+        <p-tabPanel header="Mapa">
+            <div class="p-grid p-justify-end" style="margin-bottom: 5px">
+                <div class="p-col-2">
+                  <button pButton type="button" label="Voltar" class="ui-button button-font-size" (click)="goTo(0)"></button>
+                </div>
+                <div class="p-col-2">
+                  <button pButton type="button" label="Finalizar" class="ui-button button-font-size" (click)="save()"></button>
+                </div>
+              </div>
+          <app-map [editable]='true' (getPolygons)="setCoordinates($event)"  [dataGarantia]='coordinate' class="map-content"></app-map>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</p-dialog>

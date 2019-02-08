@@ -1,0 +1,39 @@
+<div class="login-panel ui-fluid">
+  <form #forgotForm="ngForm" (ngSubmit)="enviar(forgotForm)" class="forgot-form">
+    <div class="p-grid">
+      <div class="p-col-12 logo-container">
+        <img id='logo-audsat' src="{{logo}}">
+      </div>
+      <div *ngIf="sentEmail" class="p-col-12 login-error">
+        <div class="ui-messages ui-widget ui-corner-all ui-messages-sucess d-none" style="margin: 0 0 1em 0; color: white">
+          <span class="ui-messages-icon fa fa-fw fa-2x fa-check"></span>
+          <ul>
+            <li>
+              <span class="ui-messages-summary" style="font-size:16px">Email enviado com sucesso.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+        <div class="p-col-12">
+          <p class="forget-title">Esqueci minha senha</p>
+        </div>
+        <div class="p-col-12">
+          <label>E-mail</label>
+          <input type="text" autocomplete="off" class="ui-inputtext ui-corner-all ui-state-default ui-widget" placeholder="Email"
+            #User name="email" [(ngModel)]="forgot.email">
+        </div>
+        <div class="p-col-6 button-container">
+          <a [routerLink]="['/']"><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only red-btn">
+            <!-- <span class="ui-button-icon-left ui-c"></span> -->
+            <span class="ui-button-text ui-c">Cancelar</span>
+          </button></a> 
+        </div>
+        <div class="p-col-6 button-container">
+          <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+            <!-- <span class="ui-button-icon-left ui-c"></span> -->
+            <span class="ui-button-text ui-c">Enviar</span>
+          </button>
+        </div>
+  </div>
+    </form>
+</div>

@@ -1,0 +1,49 @@
+*{
+    box-sizing: border-box
+}
+.text-bold{
+    font-weight: 900 !important;
+    min-width:30px !important;
+}
+*{
+    box-sizing: border-box
+}
+
+.ol-custom{
+   z-index: 80;
+   bottom:50% !important;
+   right:1%;
+   position: absolute;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   padding-top: 20px;
+}
+.ol-zoom-in{
+  margin:5px;
+}
+/*.plus {
+    width: 100px;
+    cursor:pointer;
+    transition: all .3s ease 0s;
+    height: 100px;
+    background: green;
+    border-radius: 50%;
+    display: flex;
+    position: relative;
+}
+
+.btn {
+    background-color: green;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    width: 100px;
+    height: 100px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#clickableAwesomeFont {
+    cursor: pointer
+}*/

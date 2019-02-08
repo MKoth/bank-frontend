@@ -1,0 +1,98 @@
+<p-tabView (onChange)="tabChanged($event)" class="information-tabview">
+  <p-tabPanel *ngIf="type!='client'">
+    <ng-template pTemplate="header">
+      <span class="text-bold">Clientes</span>
+      <span [ngClass]="{'text-bold':true, 'alert-badge': clientTab.hasAlerts === true, 'simple-badge':clientTab.hasAlerts ===false}">
+        {{clientTab.revisions.length}}
+      </span>
+    </ng-template>
+        <div class="p-grid">
+          <div class='p-col-12'>
+            <create-client-related-to (reload)="reload()"  (clientCreated)="load('client')" [relatedTo]='revision' [type]="type" [showPropertyClientRelationType]="type=='property'"></create-client-related-to>
+          </div>
+        </div>
+        <p-carousel [value]="clientTab.revisions" [numVisible]="3" [effectDuration]="slow" [pageLinks]="10">
+        <ng-template let-revision pTemplate="client">
+            <app-clienttab (coords)="centerMap($event)" [client]="revision?.client" [revision]='revision'></app-clienttab>
+        </ng-template>
+      </p-carousel>
+  </p-tabPanel>
+  <p-tabPanel *ngIf="type!='property'">
+    <ng-template pTemplate="header">
+       
+      <span class="text-bold">Imoveis</span>
+      <span [ngClass]="{'text-bold':true, 'alert-badge': propertyTab.hasAlerts === true, 'simple-badge':propertyTab.hasAlerts === false}">
+        {{ propertyTab.revisions.length }}
+      </span>
+    
+    </ng-template>
+    <div class="p-grid">
+      <div class='p-col-12' >
+        <create-property-related-to (reload)="reload()" [relatedTo]='revision' [type]="type"></create-property-related-to>
+      </div>
+    </div>
+   
+    <p-carousel [value]="propertyTab.revisions" [numVisible]="3" [effectDuration]="slow" [pageLinks]="10">
+      <ng-template let-revision pTemplate="property">
+        <app-propertytab (coords)="centerToPolygon($event)" class="p-col-3" [property]="revision?.property" [revision]='revision'></app-propertytab>
+      </ng-template>
+    </p-carousel>
+    </p-tabPanel>
+  <p-tabPanel *ngIf="type!='registry'">
+    <ng-template pTemplate="header">
+      <span class="text-bold">Matrículas</span>
+      <span [ngClass]="{'text-bold':true, 'alert-badge': registryTab.hasAlerts === true, 'simple-badge':registryTab.hasAlerts === false}">
+        {{ registryTab?.revisions.length }}
+      </span>
+    </ng-template>
+    <div class="p-grid">
+      <div class='p-col-12'>
+        <create-registry-related-to (reload)="reload()"  (registryCreated)="load('registry')" [relatedTo]='revision' [type]="type"></create-registry-related-to>
+      </div>
+    </div>
+    <p-carousel  [value]="registryTab?.revisions" [numVisible]="3" [effectDuration]="slow" [pageLinks]="10">
+      <ng-template let-revision pTemplate="registry">
+        <app-registrytab (coords)="centerToPolygon($event)" class="p-col-3" [registry]="revision?.registry" [revision]='revision'></app-registrytab>
+      </ng-template>
+    </p-carousel>
+  </p-tabPanel>
+  <p-tabPanel *ngIf="type!='operation'">
+    <ng-template pTemplate="header">
+      <span class="text-bold">Operações</span>
+      <span class="simple-badge text-bold">
+        {{ operationTab?.revisions.length }}
+      </span>
+    </ng-template>
+    <div class="p-grid">
+      <div class='p-col-12'>
+        <!--  <create-operation-related-to *ngIf="type!=='guarantee'" (operationCreated)="load('registry')" [relatedTo]='revisionId'></create-operation-related-to>  -->
+        <create-operation-related-to *ngIf="!guaranteeHasOperation" (reload)="reload()"  (operationCreated)="load('operation')" [relatedTo]='revision'></create-operation-related-to>
+      </div>
+    </div>
+    <p-carousel [value]="operationTab?.revisions" [numVisible]="3" [effectDuration]="slow" [pageLinks]="10">
+      <ng-template let-revision pTemplate="operation">
+        <app-operationstab (coords)="centerToPolygon($event)" [operation]="revision?.operation" [revision]='revision'></app-operationstab>
+      </ng-template>
+    </p-carousel>
+  </p-tabPanel>
+  <p-tabPanel *ngIf="type!='guarantee'">
+    <ng-template pTemplate="header">
+      <span class="text-bold">Garantias</span>
+      <span [ngClass]="{'text-bold':true, 'alert-badge': guaranteeTab.hasAlerts === true, 'simple-badge':guaranteeTab.hasAlerts === false}">
+        {{ guaranteeTab?.revisions.length }}
+      </span>
+    </ng-template>
+    <div class="p-grid">
+      <div class='p-col-12'>
+        <create-guarantee-related-to-registry (reload)="reload()"  *ngIf="type=='registry'" (guaranteeCreated)="load('guarantee')" [relatedTo]='revision.id'></create-guarantee-related-to-registry>
+        <create-guarantee-related-to-client (reload)="reload()"  *ngIf="type=='client'" (guaranteeCreated)="load('guarantee')" [clientRevision]='revision'></create-guarantee-related-to-client>
+        <create-guarantee-related-to-property (reload)="reload()"  *ngIf="type=='property'" (guaranteeCreated)="load('guarantee')" [relatedTo]='revision.id'></create-guarantee-related-to-property>
+      </div>
+    </div>
+    <p-carousel [value]="guaranteeTab?.revisions" [numVisible]="3" [effectDuration]="slow" [pageLinks]="10">
+      <ng-template let-revision pTemplate="guarantee">
+        <app-warrantytab (coords)="centerToPolygon($event)" [guarantee]="revision?.guarantee" [revision]='revision'></app-warrantytab>
+      </ng-template>
+    </p-carousel>
+  </p-tabPanel>
+</p-tabView>

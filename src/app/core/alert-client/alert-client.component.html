@@ -1,0 +1,30 @@
+<p-card class="entity-details alert-content" [style.width]="'100%'" [hidden]="alerts==0" *ngIf="ready">
+  <p-header>
+    <div class="p-grid">
+      <div class="p-col-md-3">
+        <img class="alerts" src="../assets/layout/images/alertas.svg">
+      </div>
+      <div class="p-col-md-2 alerttext">
+        Alertas
+      </div>
+      <div class="p-col-md-2 alert-alt">
+        <div class="aler-badge-icon">
+          <span class="badge-count">
+            {{alerts}}
+            <span class="badge-notification"></span>
+          </span>
+        </div>
+        <!-- <i class="icon-attention-alt"></i> -->
+      </div>
+    </div>
+  </p-header>
+  <p-scrollPanel [style]="{ 'width': '100%', 'height': '200px'}">
+    <div class="p-grid" style="background-color: transparent!important">
+      <ng-template ngFor let-base [ngForOf]="alertData">
+        <div class="p-col-12 p-sm-6 p-md-3 ">
+          <alert-client-details [base]="base"></alert-client-details>
+        </div>
+      </ng-template>
+    </div>
+  </p-scrollPanel>
+</p-card>

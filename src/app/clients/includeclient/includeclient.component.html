@@ -1,0 +1,95 @@
+<button pButton type="button" label="Incluir Cliente" (click)="showDialog()" class="ui-button" ></button>
+<form #includForm="ngForm" class="incluir-cliente-dialog" (ngSubmit)="registerClient(includForm)">
+  <p-dialog
+    [(visible)]="displayDialog"
+    [maximizable]="false"
+    [closable]="true"
+    [modal]="true"
+    [closeOnEscape]="true"
+    [responsive]="true"
+    [dismissableMask]="true"
+    [width]="600"
+    [minWidth]="300"
+    [minY]="70"
+    (onShow)="resetForm(includForm)"
+    >
+    <p-header>
+      <h2><i class="fa fa-fw fa-user client-color"></i>Incluir cliente</h2>
+    </p-header>
+    <div id="pf" class="p-grid buscar-align-left">
+      <!-- hack to go up -->
+      <div class="p-col-12" style="display:none">
+        <button pButton class="ui-button" type="submit" label="Incluir"></button>
+      </div>
+
+      <div class="p-col-6">
+        <div class="ui-inputgroup">
+          <label>Nome</label>
+          <input pInputText [pKeyFilter]="blockSpecial" placeholder="Insira o nome" name="nome" [(ngModel)]="includform.nome" required />
+        </div>
+      </div>
+      <div class="p-col-6">
+        <div class="ui-inputgroup">
+          <label>CPF/CNPJ</label>
+          <!--<cpf-mask required></cpf-mask>-->
+          <input
+            pInputText
+            [textMask]='mask()'
+            placeholder="Insira o CPF ou CNPJ"
+            name="cpfcnpj"
+            [(ngModel)]="includform.cpfcnpj"
+            required
+            />
+        </div>
+      </div>
+      <div class="p-col-12">
+        <div class="ui-inputgroup">
+          <label>Email</label>
+          <input
+            pInputText
+            pKeyFilter="email"
+            type="email"
+            placeholder="Insira o email"
+            name="email" [(ngModel)]="includform.email"
+            email
+            />
+        </div>
+      </div>
+      <div class="p-col-12">
+        <div class="ui-inputgroup">
+          <label>Pontos de Atendimento</label>
+          <p-multiSelect [style]="{'width':'100%'}" [filter]="false" required [options]="unitsList" [(ngModel)]="units" name="units" placeholder="Insira os pontos de atendimento" defaultLabel="Selecione" dataKey='unitId' required></p-multiSelect>
+        </div>
+      </div>
+      <div class="p-col-6">
+        <div class="ui-inputgroup">
+          <label>Celular</label>
+          <p-inputMask
+            placeholder="Insira o número de celular"
+            mask="(99) 99999-9999"
+            name="cellPhone" [(ngModel)]="includform.cellPhone"
+            ></p-inputMask>
+        </div>
+      </div>
+      <div class="p-col-6">
+        <div class="ui-inputgroup">
+          <label>Telefone</label>
+          <p-inputMask
+            placeholder="Insira o número de telefone"
+            mask="(99) 9999-9999"
+            name="phoneNumber" [(ngModel)]="includform.phoneNumber"
+            ></p-inputMask>
+        </div>
+      </div>
+    </div>
+    <p-footer>
+      <button
+        pButton
+        [disabled]="includForm.invalid"
+        class="ui-button button-right"
+        type="submit"
+        label="Confirmar"
+      ></button>
+    </p-footer>
+  </p-dialog>
+</form>

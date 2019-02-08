@@ -1,0 +1,21 @@
+<app-entitycard title="{{property.name}}"
+subtitle=""
+icon="icon-imoveis"
+icon2="icon-location propertyMapText"
+detailsCollapsed="{{detailsCollapsed}}"
+status="{{revision.status}}"
+class="property"
+id="{{revision.thing.id}}"
+entityroute="/imovel"
+[property] = 'property'
+(coordinates) = 'getCoordinates($event)'
+>
+  <div [ngClass]="{'danger': hasAlerts === true,'':hasAlerts ===false}" class="p-col-12 car-feild">
+    CAR: {{property.car}}
+  </div>
+  <div [ngClass]="{'warning': hasAttentions === true,'':hasAttentions ===false}" class="p-col-12">
+    Estado e município: {{property.city}}-{{property.uf}}
+  </div>
+  <p-footer>
+  </p-footer>
+</app-entitycard>

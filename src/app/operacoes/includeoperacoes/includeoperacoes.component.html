@@ -1,0 +1,88 @@
+﻿<button pButton type="button" label="Incluir Operação" (click)="showDialog()"></button>
+<p-dialog
+  [(visible)]="displayDialog"
+  [closable]="true"
+  [modal]="true"
+  [draggable]="false"
+  [closeOnEscape]="true"
+  [responsive]="true"
+  [dismissableMask]="true"
+  [positionTop]="15"
+  [minHeight]="400"
+  [width]="1200"
+  [contentStyle]="{'max-height':'500px'}"
+  [autoZIndex]="true"
+  styleClass="dialog-radius"
+>
+  <p-header>
+        <img class="center" src="{{step_img}}" />
+  </p-header>
+  <div class="p-grid">
+    <div class="p-col-12">
+      <p-tabView styleClass="d-none" [activeIndex]="stepActiveIndex">
+        <p-tabPanel styleClass="d-none" header="Incluir Operação">
+          <operation-wizard-step #operationStep></operation-wizard-step>
+          <div class="p-grid" style="text-align: left">
+            <div class="p-col-12 wizard-buttons">
+              <button pButton type="button" label="Adicionar no Mapa" class="ui-button button-font-size" (click)="goTo(1)" [disabled]="operationStep.form.form.invalid"></button>
+             <!--  <button pButton type="button" label="Continuar" class="button-font-size" (click)="goTo(2)" [disabled]="operationStep.form.form.invalid" ></button> -->
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Mapa">
+          <app-map [editable]='true' #map (getPolygons)="setOperationCoordinates($event)" class="map-content"></app-map>
+          <div class="p-grid p-justify-end">
+            <div class="p-col-2">
+              <button pButton type="button" label="Voltar" class="ui-button button-font-size" (click)="goTo(0)"></button>
+            </div>
+            <div class="p-col-2">
+              <button pButton type="button" label="Continuar" class="ui-button button-font-size" (click)="goTo(2)"></button>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel styleClass="d-none" header="Incluir Glebas">
+          <glebas-wizard-step #glebasStep [amountOfGlebas]='amountOfGlebas' ></glebas-wizard-step>
+          <div class="p-grid p-justify-end">
+            <div class="p-col-2">
+              <button pButton type="button" label="Voltar" class="ui-button button-font-size" (click)="goTo(1)"></button>
+            </div>
+            <div class="p-col-2">
+              <button pButton type="button" label="Continuar" class="ui-button button-font-size" (click)="goTo(3)"></button>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel styleClass="d-none" header="Informações do Imovel">
+          <property-wizard-step #propertyStep></property-wizard-step>
+          <div class="p-grid" style="text-align: left">
+            <div class="p-grid" style="text-align: left">
+              <div class="p-col-12 wizard-buttons">
+                <button pButton type="button" label="Adicionar no Mapa" class="ui-button button-font-size" (click)="goTo(4)" [disabled]="operationStep.form.form.invalid"></button>
+         <!--        <button pButton type="button" label="Continuar" class="button-font-size" (click)="goTo(5)" [disabled]="operationStep.form.form.invalid" ></button> -->
+              </div>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Mapa2">
+          <app-map [editable]='true' #map2 (getPolygons)="setPropertyCoordinates($event)" class="map-content"></app-map>
+          <div class="p-grid p-justify-end">
+            <div class="p-col-2">
+              <button pButton type="button" label="Voltar" class="ui-button button-font-size" (click)="goTo(3)"></button>
+            </div>
+            <div class="p-col-2">
+              <button pButton type="button" label="Continuar" class="ui-button button-font-size" (click)="goTo(5)"></button>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Clientes" >
+          <client-wizard-step #clientStep></client-wizard-step>
+          <div class="p-grid" style="text-align: left">
+            <div class="p-col-12 wizard-buttons">
+              <button pButton type="button" label="Voltar" class="ui-button button-font-size" (click)="goTo(4)"></button>
+              <button pButton type="button" label="Salvar" class="ui-button button-font-size" (click)="save()" [disabled]="clientStep.form.form.invalid"></button>
+            </div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</p-dialog>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 56.2 56.2" style="enable-background:new 0 0 56.2 56.2;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#fff;}
+	.st1{clip-path:url(#SVGID_2_);}
+	.st2{clip-path:url(#SVGID_4_);fill:#fff;}
+</style>
+<g>
+	<g>
+		<path class="st0" d="M43.7,56.2H12.5C5.6,56.2,0,50.6,0,43.7V12.5C0,5.6,5.6,0,12.5,0h31.2c6.9,0,12.5,5.6,12.5,12.5v31.2
+			C56.2,50.6,50.6,56.2,43.7,56.2z M12.5,1C6.2,1,1,6.2,1,12.5v31.2C1,50,6.2,55.2,12.5,55.2h31.2c6.3,0,11.5-5.2,11.5-11.5V12.5
+			C55.2,6.2,50,1,43.7,1H12.5z"/>
+		<path class="st0" d="M43.8,53.2H12.4C7.2,53.2,3,49,3,43.8V12.4C3,7.2,7.2,3,12.4,3h31.5c5.2,0,9.4,4.2,9.4,9.4v31.5
+			C53.2,49,49,53.2,43.8,53.2z M12.4,3.7c-4.8,0-8.6,3.9-8.6,8.6v31.5c0,4.8,3.9,8.6,8.6,8.6h31.5c4.8,0,8.6-3.9,8.6-8.6V12.4
+			c0-4.8-3.9-8.6-8.6-8.6H12.4z"/>
+	</g>
+	<g>
+		<defs>
+			<path id="SVGID_1_" d="M26.4,23.1c0-1,0.8-1.8,1.8-1.8c1,0,1.8,0.8,1.8,1.8v9.1c0,1-0.8,1.8-1.8,1.8c-1,0-1.8-0.8-1.8-1.8V23.1z
+				 M28.2,39.5c-1,0-1.8-0.8-1.8-1.8c0-1,0.8-1.8,1.8-1.8c1,0,1.8,0.8,1.8,1.8C30,38.7,29.2,39.5,28.2,39.5z M29.3,16
+				c-0.8-1.4-1.6-1.1-2.2,0L14.1,39.3c-0.6,1.2-0.4,2.1,1.2,2.1h26c1.2,0,2-0.6,1.2-2.1L29.3,16z M24,14.2L24,14.2
+				c2.2-3.9,6.4-3.9,8.5,0l13.1,23.3c2.2,3.8,0,7.5-4.4,7.5h-26c-4.4,0-6.5-3.6-4.4-7.5L24,14.2z"/>
+		</defs>
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;fill-rule:evenodd;clip-rule:evenodd;fill:#606060;"/>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		</clipPath>
+		<g class="st1">
+			<defs>
+				<rect id="SVGID_3_" x="-370.4" y="-2900.7" width="2042.2" height="3988"/>
+			</defs>
+			<use xlink:href="#SVGID_3_"  style="overflow:visible;fill:#606060;"/>
+			<clipPath id="SVGID_4_">
+				<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+			</clipPath>
+			<rect x="2.9" y="4.2" class="st2" width="50.6" height="47.8"/>
+		</g>
+	</g>
+</g>
+</svg>
